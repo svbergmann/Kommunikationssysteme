@@ -21,7 +21,7 @@ Die IDs können frei gewählt werden, müssen sich nur unterscheiden:
 \end{flushleft}
 \fbox{%
     \begin{minipage}[c]{0.5\textwidth}
-        R -> MTU 1500 -> B
+        R → MTU 1500 → B
         \centering
         \begin{tabular}{|c|c|c|c|}
             \hline
@@ -39,8 +39,8 @@ Die IDs können frei gewählt werden, müssen sich nur unterscheiden:
     \end{minipage}}
 \bigbreak
 
-Auf der ersten Strecke (A -> R) wird das Paket in zwei Unterpakete mit einer Payload-Größe von 1976+1624=3600 Bytes zerlegt.
+Auf der ersten Strecke (A → R) wird das Paket in zwei Unterpakete mit einer Payload-Größe von 1976 + 1624 = 3600 Bytes zerlegt.
 1976 muss dabei durch 8 teilbar sein!
-Auf der zweiten Strecke (R -> B) werden diese zwei Pakete dann in Pakete mit Payload-Größe 1480+496+1480+144=3600 Bytes zerlegt.
+Auf der zweiten Strecke (R → B) werden diese zwei Pakete dann in Pakete mit Payload-Größe 1480 + 496 + 1480 + 144 = 3600 Bytes zerlegt.
 1480 muss dabei durch 8 teilbar sein!
 Das letzte Paket muss das MF-Bit (\textbf{M}ore \textbf{F}ragments) auf 0 setzen!

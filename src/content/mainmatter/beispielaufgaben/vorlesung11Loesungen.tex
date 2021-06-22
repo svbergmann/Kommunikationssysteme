@@ -4,31 +4,30 @@
 Zur Berechnung der CRC Prüfsumme wird das Generatorpolynom in eine Bitfolge mit führender '1' umgewandelt:
 \[1x^5 + 0x^4 + 1x^3 + 1x^2 + 0x^1 + 1x^0 ->  101101\]
 Das Polynom ist also vom Grad 5, und wir müssen 5 Nullen an die zu sendenden Daten anhängen!
-Danach rechnen wir so lange in Modulo-2 Arithmetik (XOR-Verknüfungen), bis keine Bits mehr übrig sind:
+Danach rechnen wir so lange in Modulo-2 Arithmetik (XOR-Verknüpfungen), bis keine Bits mehr übrig sind:
 
 \begin{center}
     \begin{tabular}{c c c c c c c c c c c c c}
-        1 & 1 & 1 & 1 & 0 & 1 & 1 & 1 & 0                   & 0                   & 0                   & 0                   & 0                   \\
-        1 & 0 & 1 & 1 & 0 & 1 &   &   &                     &                     &                     &                     &                     \\
+        1 & 1 & 1 & 1 & 0 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 \tabularnewline
+        1 & 0 & 1 & 1 & 0 & 1 & & & & & & & \tabularnewline
         \hline
-        0 & 1 & 0 & 0 & 0 & 0 & 1 &   &                     &                     &                     &                     &                     \\
-        & 1 & 0 & 1 & 1 & 0 & 1 &   &                     &                     &                     &                     &                     \\
+        0 & 1 & 0 & 0 & 0 & 0 & 1 & & & & & & \tabularnewline
+        & 1 & 0 & 1 & 1 & 0 & 1 & & & & & & \tabularnewline
         \hline
-        & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 0                   &                     &                     &                     &                     \\
-        &   &   & 1 & 0 & 1 & 1 & 0 & 1                   &                     &                     &                     &                     \\
+        & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 0 & & & & \tabularnewline
+        & & & 1 & 0 & 1 & 1 & 0 & 1 & & & & \tabularnewline
         \hline
-        &   &   & 0 & 1 & 1 & 1 & 1 & 1                   & 0                   &                     &                     &                     \\
-        &   &   &   & 1 & 0 & 1 & 1 & 0                   & 1                   &                     &                     &                     \\
+        & & & 0 & 1 & 1 & 1 & 1 & 1 & 0 & & & \tabularnewline
+        & & & & 1 & 0 & 1 & 1 & 0 & 1 & & & \tabularnewline
         \hline
-        &   &   &   & 0 & 1 & 0 & 0 & 1                   & 1                   & 0                   &                     &                     \\
-        &   &   &   &   & 1 & 0 & 1 & 1                   & 0                   & 1                   &                     &                     \\
+        & & & & 0 & 1 & 0 & 0 & 1 & 1 & 0 & & \tabularnewline
+        & & & & & 1 & 0 & 1 & 1 & 0 & 1 & & \tabularnewline
         \hline
-        &   &   &   &   & 0 & 0 & 1 & 0                   & 1                   & 1                   & 0                   & 0                   \\
-        &   &   &   &   &   &   & 1 & 0                   & 1                   & 1                   & 0                   & 1                   \\
+        & & & & & 0 & 0 & 1 & 0 & 1 & 1 & 0 & 0 \tabularnewline
+        & & & & & & & 1 & 0 & 1 & 1 & 0 & 1 \tabularnewline
         \hline
-        &   &   &   &   &   &   & 0 & \textcolor{blue}{0} & \textcolor{blue}{0} & \textcolor{blue}{0} & \textcolor{blue}{0} & \textcolor{blue}{1} \\
+        & & & & & & & 0 & \textcolor{blue}{0} & \textcolor{blue}{0} & \textcolor{blue}{0} & \textcolor{blue}{0} & \textcolor{blue}{1} \tabularnewline
     \end{tabular}
 \end{center}
 
-Das Ergebnis der Prüfsummenberechnung ist 00001, d.h. die zu sendende Bitfolge ist:
-11110111\textcolor{blue}{00001}
+Das Ergebnis der Prüfsummenberechnung ist 00001, d. h. die zu sendende Bitfolge ist: 11110111\textcolor{blue}{00001}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.6.22)  22 JUN 2021 12:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.6.22)  22 JUN 2021 13:15
 entering extended mode
 **./main.tex
 (main.tex
@@ -948,11 +948,11 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <8> on input line 1.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <6> on input line 1.
-)
+ [3])
 \tf@tdo=\write5
 \openout5 = `main.tdo'.
 
- [3] [4]
+ [4]
 \openout2 = `content/mainmatter/vorlesungsfragen/vorlesung1.aux'.
 
 
@@ -1197,38 +1197,35 @@ ungsfragen/vorlesung11.aux)
 (C:/Users\Sven\IdeaProjects\Kommunikationssysteme\out\content/mainmatter/beispi
 elaufgaben/vorlesung11Aufgaben.aux)
 (C:/Users\Sven\IdeaProjects\Kommunikationssysteme\out\content/mainmatter/beispi
-elaufgaben/vorlesung11Loesungen.aux))
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+elaufgaben/vorlesung11Loesungen.aux)) ) 
 Here is how much of TeX's memory you used:
- 22882 strings out of 478838
- 464976 string characters out of 2848494
- 1122780 words of memory out of 3000000
- 40083 multiletter control sequences out of 15000+600000
+ 22890 strings out of 478838
+ 465169 string characters out of 2848494
+ 1123482 words of memory out of 3000000
+ 40091 multiletter control sequences out of 15000+600000
  465640 words of font info for 156 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  110i,10n,111p,10601b,1572s stack positions out of 5000i,500n,10000p,200000b,80000s
-{C:/Users/Sven/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc
-}{C:/Users/Sven/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/
-Users/Sven/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users
-/Sven/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/
-Sven/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Users/S
-ven/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}<C:/Users/Sven/
-AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/Sven/A
-ppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Users/Sven/Ap
-pData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Users/Sven/App
-Data/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi8.pfb><C:/Users/Sven/AppDa
-ta/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/Sven/AppData
-/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/Sven/AppData/L
-ocal/Programs/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:/Users/Sven/AppData/Loca
-l/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/Sven/AppData/Local/P
-rograms/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/Sven/AppData/Local/Pr
-ograms/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb><C:/Users/Sven/AppData/Local/P
-rograms/MiKTeX/fonts/type1/public/lm/lmsy10.pfb>
+{C:/Users/Sven/AppData/Local/Programs/Mi
+KTeX/fonts/enc/dvips/lm/lm-mathex.enc}{C:/Users/Sven/AppData/Local/Programs/MiK
+TeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Users/Sven/AppData/Local/Programs/MiKTeX/f
+onts/enc/dvips/lm/lm-rm.enc}{C:/Users/Sven/AppData/Local/Programs/MiKTeX/fonts/
+enc/dvips/lm/lm-mathit.enc}{C:/Users/Sven/AppData/Local/Programs/MiKTeX/fonts/e
+nc/dvips/lm/lm-mathsy.enc}{C:/Users/Sven/AppData/Local/Programs/MiKTeX/fonts/en
+c/dvips/lm/lm-ts1.enc}<C:/Users/Sven/AppData/Local/Programs/MiKTeX/fonts/type1/
+public/lm/lmbx10.pfb><C:/Users/Sven/AppData/Local/Programs/MiKTeX/fonts/type1/p
+ublic/lm/lmex10.pfb><C:/Users/Sven/AppData/Local/Programs/MiKTeX/fonts/type1/pu
+blic/lm/lmmi10.pfb><C:/Users/Sven/AppData/Local/Programs/MiKTeX/fonts/type1/pub
+lic/lm/lmmi8.pfb><C:/Users/Sven/AppData/Local/Programs/MiKTeX/fonts/type1/publi
+c/lm/lmr10.pfb><C:/Users/Sven/AppData/Local/Programs/MiKTeX/fonts/type1/public/
+lm/lmr12.pfb><C:/Users/Sven/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm
+/lmr6.pfb><C:/Users/Sven/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lm
+r8.pfb><C:/Users/Sven/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri1
+0.pfb><C:/Users/Sven/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbx
+10.pfb><C:/Users/Sven/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy1
+0.pfb>
 Output written on C:/Users\Sven\IdeaProjects\Kommunikationssysteme\out\main.pdf
- (64 pages, 380003 bytes).
+ (64 pages, 380326 bytes).
 PDF statistics:
  278 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
