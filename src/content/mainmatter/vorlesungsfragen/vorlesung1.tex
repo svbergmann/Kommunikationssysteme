@@ -1,0 +1,274 @@
+\addsec{Vorlesung 1 - Schichtenmodelle}
+
+\minisec{Was ist der Unterschied zwischen Client-Server und Peer-to-Peer Netzwerken?}
+\begin{itemize}
+    \item \textcolor{blue}{Client-Server}
+    \begin{itemize}
+        \item Server-Prozess: Langlebige Anwendung, die kontinuierlich auf Anfragen wartet, diese verarbeitet und beantwortet
+        \item Client-Prozess: Zumeist kurzlebige Anwendung die Anfragen an den Server-Prozess stellt und auf die Antwort wartet. Die Rolle ist damit zumeist beendet
+    \end{itemize}
+    \item \textcolor{blue}{Peer-to-Peer}
+    \begin{itemize}
+        \item Gleichrangige Kommunikationspartner
+        \item Oft bessere Leistung als Client-Server
+        \item Übergreifender Datenbestand
+    \end{itemize}
+\end{itemize}
+
+\minisec{Welche Arten Proxies existieren in Rechnernetzen, und welche Aufgaben haben sie typischerweise?}
+\begin{itemize}
+    \item Forward Proxy
+    \item Reverse Proxy
+    \item Aufgaben:
+    \begin{itemize}
+        \item Proxy zum Zwischenspeichern/Anonymisieren
+        \item Proxy zum Lastbalanzieren von Webseiten
+    \end{itemize}
+\end{itemize}
+
+\minisec{Wie unterscheiden sich Point-to-Point und Multi-Access-Netzwerke?}
+\begin{itemize}
+    \item \textcolor{blue}{Point-to-Point (Punkt-zu-Punkt)}
+    \begin{itemize}
+        \item Ein Paar von Rechnern ist durch eine direkte Leitung verbunden
+        \item kein anderer Rechner kann diese Leitung nutzen
+        \item Full-Duplex: Senden und Empfangen gleichzeitig möglich
+        \item Half-Duplex: Nur eines von beiden gleichzeitig möglich
+        \item Simplex: Daten können nur in eine Richtung fließen
+    \end{itemize}
+    \item \textcolor{blue}{Multi-Access-Netze}
+    \begin{itemize}
+        \item Mehrere angeschlossenen Rechner teilen sich einen Übertragungskanal
+        \item Damit Daten trotzdem an den richtigen Empfänger gesendet werden, müssen sie mit einer Zieladresse versehen werden
+        \item Daten werden in Übertragungseinheiten (Frames) eingeteilt und mit der Adresse des Empfängers ausgewiesen
+        \item „Rechner“ prüfen, ob die Nachricht für sie ist (aktiver Vorgang!)
+        \item Sollen alle Stationen gleichzeitig eine Nachricht erhalten, so werden Broadcast-Adressen (spezielle Adressen zur Adressierung aller Stationen) verwendet
+    \end{itemize}
+\end{itemize}
+
+\minisec{Welche Konsequenzen entstehen für die Datenkommunikation im Falle von Multi-Access-Netzwerken?}
+\begin{itemize}
+    \item Mehrere angeschlossenen Rechner teilen sich einen Übertragungskanal
+    \item Damit Daten trotzdem an den richtigen Empfänger gesendet werden, müssen sie mit einer Zieladresse versehen werden
+    \item Daten werden in Übertragungseinheiten (Frames) eingeteilt und mit der Adresse des Empfängers ausgewiesen
+    \item „Rechner“ prüfen, ob die Nachricht für sie ist (aktiver Vorgang!)
+    \item Sollen alle Stationen gleichzeitig eine Nachricht erhalten, so werden Broadcast-Adressen (spezielle Adressen zur Adressierung aller Stationen) verwendet
+\end{itemize}
+
+\minisec{Wie unterscheiden sich statische und dynamische Netzwerke?}
+\begin{itemize}
+    \item \textcolor{blue}{Statische Netze:}
+    \begin{itemize}
+        \item fest verdrahtete Punkt-zu-Punkt Verbindungen oder Multi-Access-Netze
+        \item jeder Knoten besitzt eine feste Anzahl von Nachbarn oder einen Zugang zu einem Multi-Access-Netze
+        \item besitzen keine inhärent im Netz verankerte Vermittlungsfunktion
+        \item Vermittlung über Netzgrenzen hinweg jedoch durch Weiterleiten möglich (Store-and-Forward)
+    \end{itemize}
+    \item \textcolor{blue}{Dynamische Netze:}
+    \begin{itemize}
+        \item Verbindungen enthalten konfigurierbare Schaltelemente
+        \item diese können dynamisch vermitteln (Weg wird geschaltet)
+        \item ein- oder mehrstufiger Aufbau möglich
+        \item Mit Aufwand blockadefreie Schaltungen ohne Crossbar
+    \end{itemize}
+\end{itemize}
+
+\minisec{Ordnen Sie die Begriffe Paketvermittlung und Leitungsvermittlung zu!}
+\begin{itemize}
+    \item \textcolor{blue}{Leitunsgvermittlung (circuit switching} stellt zwischen zwei oder mehr Teilnehmern einen Übertragungskanal über mehrere Vermittlungsstellen für die Dauer der Übertragung her.
+    Die Leitungsvermittlung eignet sich in der Regel für zeitkritische Anwendungen bzw. der Übertragung von Daten in Echtzeit.
+    \item Bei der  \textcolor{blue}{Paketvermittlung (store and forward} werden die Daten oder Informationen in Pakete aufgeteilt. Der Dienst bzw. die Anwendung übergibt die einzelnen Pakete an das Kommunikationssystem und versieht sie mit der Zieladresse und weiteren Vermittlungsinformationen. Das Kommunikationssystem vermittelt die Datenpakete vom Sender zum Empfänger. Die Pakete können dabei unterschiedliche Wege zu ihrem Ziel nehmen. Beim Empfänger werden die Datenpakete dann wieder zusammengesetzt.
+    Die Paketvermittlung eignet sich für zeitunkritische Übertragungen.
+\end{itemize}
+
+\minisec{Was versteht man unter dem Store-and-Forward-Verfahren, und wo wird es eingesetzt?}
+\begin{itemize}
+    \item Im Netze findet ein Store-and-Forward statt. An der Grenze zwischen zwei Netzen sorgen Router für die Weiterleitung der Daten. Nach dem Empfang findet die Entscheidung über den nächsten Router konzeptionell anhand der Zieladresse statt.
+    \item Wird in der Interent-Schicht eingesetzt (entspricht ISO/OSI 3) bei statischen Netzen
+\end{itemize}
+
+\minisec{Welche Metriken kennen Sie, um Topologien von Rechnernetzen zu charakterisieren?}
+\begin{itemize}
+    \item \textcolor{blue}{Durchmesser (Diameter)}
+    \begin{itemize}
+        \item Maximaler Abstand zweier Knoten, d.h. die Anzahl von Kanten
+        \item → Ziel: Möglichst klein (Zeitbedarf für Übertragung)
+    \end{itemize}
+    \item \textcolor{blue}{Bisektionsbreite (Connectivity)}
+    \begin{itemize}
+        \item Minimale Anzahl von Kanten die man entfernen muss, um das Netzwerk in zwei Hälften zu teilen
+        \item → Ziel: Möglichst groß zur Verbesserung der Fehlertoleranz
+    \end{itemize}
+    \item \textcolor{blue}{Knotengrad}
+    \begin{itemize}
+        \item Anzahl von Verbindungen eines Knotens zu seinen Nachbarn. Ist die Anzahl nicht konstant, so wird der das Maximum aller Knoten genommen
+        \item → Ziel: Möglichst klein, da die Kosten so mit diesem Grad steigen
+    \end{itemize}
+\end{itemize}
+
+\minisec{ Welche räumliche Ausdehnung besitzen typischerweise LANs?}
+\begin{itemize}
+    \item 10m - wenige km
+\end{itemize}
+
+\minisec{Was versteht man unter einem Protokoll im Kontext der Datenkommunikation?}
+\begin{itemize}
+    \item \textcolor{blue}{Ein Protokoll ist die Gesamtheit aller Vereinbarungen zwischen Computeranwendungen zum Zweck einer gemeinsamen Kommunikation}
+\end{itemize}
+
+\minisec{Nennen Sie 3-4 Problemdomänen, die für eine erfolgreiche Datenkommunikation zu lösen sind!}
+\begin{itemize}
+    \item \todo 1 3-4 Problemdomänen nennen
+\end{itemize}
+
+\minisec{Welche Vorteile (und ggf. auch Nachteile) haben Schichten-Architekturen?}
+\begin{itemize}
+    \item Vorteile:
+    \begin{itemize}
+        \item Einzelne Schichten sind leicht veränderbar, bei der Einhaltung der Schnittstellen/Interfaces
+        \item Bei Veränderung der Schnittstellen/Interfaces sind nur die beiden angrenzenden Schichten betroffen
+        \item Schichtenarchitekturen kapseln Maschinenabhängigkeiten, daher leicht portierbar. Nur die innerste Schicht muss neu implementiert werden
+    \end{itemize}
+    \item Nachteile:
+    \begin{itemize}
+        \item Es ist schwierig Systeme sauber in Schichten zu strukturieren. Wenn äußere Schichte Dienste der inneren Schichten benötigen, wird leicht die einfache Abhängigkeit von der nächstunteren Schicht zerstört
+        \item Es kann Performanz-Probleme geben, weil mit dem Zugriff auf die Dienste eine Schicht immer eine gewisser Overhead verbunden ist
+    \end{itemize}
+\end{itemize}
+
+\minisec{Wie heißen die sieben Schichten des ISO/OSI-Modells, und welche grobe Aufgabe haben sie jeweils?}
+\begin{itemize}
+    \item \textcolor{blue}{Schicht 7: Anwendungsschicht (Application Layer)}
+    \begin{itemize}
+        \item In dieser Ebene werden (Standard-)Schnittstellen zur Verfügung gestellt, die bestimmten Anwendungstypen ganze Kommunikationsdienste bereitstellen
+        \item Ein Beispiel hierfür ein allgemeingültiges Protokoll zur Übertragung von Webseiten samt fest definierter Schnittstelle (GET, POST, DELETE, …) sein. Wer einen Webbrowser oder einen Webserver implementieren will, könnte dann diese Schnittstelle zur Kommunikation mit den Produkten anderer verwenden
+        \item \textbf{Merke:} Das Internet realisiert das anders.
+    \end{itemize}
+    \item \textcolor{blue}{Schicht 6: Darstellungsschicht (Presentation Layer)}
+    \begin{itemize}
+        \item Beschäftigt sich damit, die zu übertragenden Daten so darzustellen, dass sie von vielen unterschiedlichen Systemen gehandhabt werden können
+        \item Beispielsweise codieren manche Rechner einen String mit ASCII-Zeichen, andere benutzen Unicode, manche benutzen bei Integern das 1-, andere das 2-Komplement. Problematisch ist auch die Byteordnung des Prozessors (Big/Little-Endian)
+        \item Formal wird hier das verwendete Format beschrieben werden
+        \begin{itemize}
+            \item Anstatt für jede Anwendung eine eigene Übertragungssyntax und -semantik zu definieren, stellt man hier eine allgemeingültige Lösung bereit
+            \item Die spezifische Daten eines Rechners werden hier eindeutig beschrieben
+        \end{itemize}
+    \end{itemize}
+    \item \textcolor{blue}{Schicht 5: Sitzungsschicht (Session Layer)}
+    \begin{itemize}
+        \item Dialogkontrolle, d.h. es kann festgelegt werden, welcher Kommunikationspartner wann übertragen darf (wer redet, wer hört zu?). Da wir bei ISO/OSI eigentlich eine Steuerung über einen Header benötigen könnte hierzu ein Token verwendet werden. Bei bestimmten Operationen darf dann nur der Kommunikationspartner, der im Besitz des Tokens ist, diese Operation durchführen
+        \item Wichtiger Ansatz wäre auch die Bereitstellung von Wiederaufsetzpunkten. Wurde beispielsweise eine 2-stündige Dateiübertragung mittendrin durch einen Ausfall unterbrochen, so braucht nicht die gesamt Übertragung wiederholt werden, sondern man geht nur bis zum letzten Aufsetzpunkt zurück
+    \end{itemize}
+    \item \textcolor{blue}{Schicht 4: Transportschicht (Transport Layer)}
+    \begin{itemize}
+        \item Ermöglicht die Kommunikation zwischen Anwendungen der Endsysteme
+        \begin{itemize}
+            \item Segmentierung von Datenströmen zur Übertragung der Daten in Einheiten: Datagramme (Paketen)
+            \item Verbergen wesentlicher Charakteristika der Netzinfrastruktur
+        \end{itemize}
+        \item Aufgabe: Transport der Daten zwischen den Kommunikationspartnern mit bestimmten (aushandelbaren) Dienstmerkmalen
+        \begin{itemize}
+            \item Adressierung von Anwendungsprozessen
+            \item Eventuell Regeln zur Behandlung von Fehlern
+            \item Eventuell Flusskontrolle/Staukontrolle zur Anpassung der Datenrate an die Fähigkeiten des Netzes und des Empfängers
+        \end{itemize}
+    \end{itemize}
+    \item \textcolor{blue}{Schicht 3: Vermittlungsschicht (Network Layer)}
+    \begin{itemize}
+        \item Übertragung der Daten zwischen Rechnern in einem Netz aus Netzen
+        \item Hauptaufgabe ist dabei, eine geeignete Wegewahl (Routing) zu treffen
+        \item Eine notwendige Voraussetzung sind dazu u.a. ein gemeinsamer Adressraum für Rechner und eine Einigung auf eine maximale PDU-Größe (Datagramm-Größe)
+        \item Statisches Netzkonzept: Zwischenknoten speichern ankommende Nachrichten zwischen und ermitteln (über Tabellen) den Teilnehmer, der die Daten als nächstes erhält. Hierbei muss man mit diesem direkt kommunizieren können.
+        \item Weiterhin: Multiplexing mehrerer logischer Verbindungen über eine physikalische Verbindung
+    \end{itemize}
+    \item \textcolor{blue}{Schicht 2: Sicherungsschicht (Data Link Layer)}
+    \begin{itemize}
+        \item Kommunikation zwischen Rechnern in einem einzelnen Netz
+        \item Logical Link Control (LLC):
+        \begin{itemize}
+            \item Liefert der Vermittlungsschicht eine fehlerfreie Übertragung der Daten zwischen zwei Rechnern (z.B. innerhalb eines lokalen Netzes)
+            \item Dazu werden die ankommenden Daten in sog. Rahmen unterteilt, die einzeln übertragen werden
+            \item Der Empfänger überprüft, ob die Übertragung korrekt war (z.B. mittels einer Prüfsumme). Im Fehlerfall wird der entsprechende Rahmen neu angefordert
+            \item Weiterhin wird versucht, eventuell auftretende Staus durch Flusskontrolle zu vermeiden, z.B. wenn der Empfänger überlastet ist.
+        \end{itemize}
+        \item Medium Access Control:
+        \begin{itemize}
+            \item Bei lokalen Netzen wird außerdem der konfliktfreie Zugriff auf das Netz geregelt, es können ja ggf. nicht mehrere Teilnehmer gleichzeitig senden
+        \end{itemize}
+    \end{itemize}
+    \item \textcolor{blue}{Schicht 1: Bitübertragungsschicht (Physical Layer)}
+    \begin{itemize}
+        \item Transportiert die einzelnen Bits über eine bestimmte physikalische Leitung (Medium)
+        \item D.h. es muss festgelegt werden, welchen Leitungstyp man benutzt und wie eine “1” bzw. eine “0” auf der Leitung kodiert werden
+        \begin{itemize}
+            \item Dazu legt man z.B. bei Verwendung von Kupferkabel als Leitung fest, dass Bits als Spannungspulse übertragen werden (z.B. „Übertrage für eine Millisekunde +1 Volt, um eine 1 zu transportieren“)
+        \end{itemize}
+        \item Weiterhin wird definiert:
+        \begin{itemize}
+            \item Stecker (Pinbelegungen),
+            \item Übertragungsrichtung (uni-/bidirektional) ,
+            \item ...
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\minisec{Wie überträgt jede Schicht die für sie relevanten Informationen?}
+\begin{itemize}
+    \item \todo 1 Wie überträgt jede Schicht die für sie relevanten Informationen?
+\end{itemize}
+
+\minisec{Welche Unterschiede existieren zwischen dem ISO/OSI-Modell und dem Internet-Referenzmodell?}
+\bigbreak
+\begin{tabularx}{\textwidth}{|c|X|X|}
+    \hline
+    & ISO/OSI-Modell                                                                                         & Internet-Referenzmodell                                                                  \\
+    \hline
+    Alias           & Open Systems Interconnection                                                                           & Transmission Controll Protocol (TCP)                                                     \\
+    \hline
+    \# Schichten    & 7                                                                                                      & 4                                                                                        \\
+    \hline
+    Zuverlässigkeit &                                                                                                        & zuverlässiger als ISO/OSI                                                                \\
+    \hline
+    Grenzen         & streng                                                                                                 & nicht sehr streng                                                                        \\
+    \hline
+    Ansatz          & vertikal                                                                                               & horizontal                                                                               \\
+    \hline
+    -               & verwendet verschiedene Session- und Präsentationsschichten                                             & verwendet in der Anwendungsschicht sowohl die Session- als auch die Präsentationsschicht \\
+    \hline
+    Kommunikation   & Unterstützt auf der Netzwerkebene sowohl verbindungslose als auch verbindungsorientierte Kommunikation & bietet Unterstützung für die verbindungslose Kommunikation innerhalb der Netzwerkschicht                                        \\
+    \hline
+    Abhängigkeit    & protokollunabhängig                                                                                    & protokollabhängig                                                                        \\
+    \hline
+\end{tabularx}
+
+\minisec{Zu welcher Schicht gehören die Protokolle TCP und UDP, und wie unterscheiden sie sich?}
+Beide Protokolle gehören zur Schicht 4, der Transport-Schicht.
+\bigbreak
+\begin{tabularx}{\textwidth}{|X|X|X|}
+    \hline
+    & TCP                                   & UDP                                    \\
+    \hline
+    Zuverlässigkeit                & hoch                                  & niedriger                              \\
+    \hline
+    Geschwindigkeit                & Niedriger                             & hoch                                   \\
+    \hline
+    Transfermethode                & Pakete werden nacheinander zugestellt & Pakete werden im Datenstrom zugestellt \\
+    \hline
+    Fehlererkennung und - behebung & ja                                    & nein                                   \\
+    \hline
+    Congestion control             & ja                                    & nein                                   \\
+    \hline
+    Empfangsbestätigung            & ja                                    & nur die Prüfsumme                      \\
+    \hline
+\end{tabularx}
+
+\minisec{Welche Vorteile hat es (bzw. warum ist es notwendig), die Host-to-Network-Schicht komplett in Hardware zu realisieren?}
+\begin{itemize}
+    \item Idee: die faktische Datenübertragung wird von der Netzwerkkarte des Rechners erledigt
+    \begin{itemize}
+        \item Vorteil bei Multi-Access-Netzen: Die Netzwerkkarte kann selber entscheiden, ob die Daten für den eigenen Rechner sind -> Entlastung des Betriebssystems (da kein Interrupt notwendig)
+        \item Starke Entkopplung vom Betriebssystem: IP teilt dem Treiber der Netzwerkkarte mit, dass diese Daten (zuverlässig) an eine gegeben Zieladresse (MAC-Adresse) übertragen soll
+        \item Übertrage das IP-Datagramm der Länger 1500 Byte an die MACAdresse
+        \item Direkte Anbindung des Zielrechners erforderlich
+    \end{itemize}
+\end{itemize}

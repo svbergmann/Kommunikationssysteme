@@ -1,0 +1,117 @@
+\addsec{Vorlesung 4 - Routingprotokolle und NAT}
+
+\minisec{Erklären Sie den Unterschied zwischen Routing und Forwarding. Ordnen Sie den beiden Begriffen die Begriffe Control Plane und Data Plane zu.}
+\begin{itemize}
+    \item Das eigentliche Routing (die Control-Plane) ist verantwortlich fürWegewahl, mit der die Ende-zu-Ende-Kommunikation erreicht wird
+    \item Das Weiterleiten (engl. forwarding) der Pakete (die Data-Plane) gemäß den Vorgaben der Control-Plane
+\end{itemize}
+
+\minisec{Mit welchem Algorithmus kann ein optimaler Quelle-Senke Baum berechnet werden?}
+\begin{itemize}
+    \item Mit dem Dijkstra Algorithmus
+\end{itemize}
+
+\minisec{Welche 2 Arten von Routingverfahren kennen Sie, und welche Unterschiede existieren zwischen den Verfahren?}
+\begin{itemize}
+    \item Distanzvektoralgorithmen: ohne Kenntnis der gesamten Netztopologie
+    \item Link-State Routing: mit Kenntnis der gesamten (zumindest im AS) vorhandenen Netztopologie
+\end{itemize}
+
+\minisec{Erklären Sie den Bellmann-Ford Algorithus mit eigenen Worten}
+\begin{itemize}
+    \item Definiere
+    \begin{itemize}
+        \item \(c_x(v)\) := Kosten zum Nachbarn v von x aus
+        \item \(d_x(y)\) := Kosten des günstigsten Weges von x nach y
+    \end{itemize}
+    \item Gibt es einen Weg zwischen x und y und sind x und y nicht direkt verbunden, dann muss es einen Nachbarn v von x geben für den gilt:
+    \[d_x(y) = \min \{c_x(v) + d_v(y) \}\]
+    hierbei wird das Minimum über alle Nachbarn von x genommen.
+    Die Kosten der direkten Verbindung wird als bekannt angenommen
+\end{itemize}
+
+\minisec{Erklären Sie wie es zum sog. Count to Infinity-Problem kommen kann!}
+\begin{itemize}
+    \item Der Ausfall von Routen/Routern führt zum ``Count-to-Infinity`` Problem: \[A -\: B -\: C\]
+    \item Betrachte B: Router A fällt aus, bekommt aber von C gesagt, dass er einen Weg nach A kennt (der allerdings über B führt, was B nicht weiß…) → Die Kosten zum Weg nach A schaukeln sich langsam auf...
+\end{itemize}
+
+\minisec{Wie funktioniert das Link-State Routing?}
+\begin{itemize}
+    \item Jeder Router führt die folgenden Schritte durch:
+    \begin{enumerate}
+        \item Die Nachbarn und deren Netzadressen ermitteln
+        \item Die Kosten zu jedem seiner Nachbarn festlegen
+        \item Ein Paket zusammenstellen, in dem alles steht was bisher gelernt wurde
+        \item Dieses Paket an alle anderen Router senden und von allen anderen Routern derartige Pakete empfangen
+        \item Den kürzesten Pfad zu allen anderen Routern berechnen
+    \end{enumerate}
+    \item Dadurch wird die gesamte Topologie in jedem Router abgebildet.
+    Anwendung des Dijkstra-Algorithmus möglich!
+\end{itemize}
+
+\minisec{Nennen Sie jeweils ein konkretes Routing-Protokoll, was das Distanzvektor-Verfahren bzw. das Link-State-Verfahren benutzt.}
+\begin{itemize}
+    \item RIP, RIP2: Intra-AS, Distance-Vector, veraltet
+    \item IS-IS: Intra-AS, ursprünglich für DECnet, danach ISO Standard und Grundlage für OSPF, (Shortest Path First)
+    \item OSPF: Intra-AS, Link-State, Unicast (Shortest Path First)
+    \item BGP: Border Gateway Protokol Inter-AS, Distance-Vector
+\end{itemize}
+
+\minisec{Warum werden Distanzvektor-Verfahren gerne zwischen autonomen Systemen eingesetzt?}
+\begin{itemize}
+    \item Leicht zu implementieren, einfache Berechnung
+    \item Neue, bessere Routen werden im Netz schnell propagiert
+\end{itemize}
+
+\minisec{Was sind ''private'' IP-Netze und -Adressen?}
+\begin{itemize}
+    \item Jeder Endkunde (jede kleinere Firma etc.) bekommt lediglich nur eine eindeutige öffentliche IPv4 Adresse vom ISP, d.h. es existiert auch nur ein Zugangspunkt (Gateway) zu diesem Netz
+    \item Innerhalb des Hauses/der Firma wird ein ``privates`` Netz betrieben, was die spezifizierten privaten IP-Adressblöcke benutzt:
+    \begin{itemize}
+        \item \( 10.0.0.0 -\: 10.255.255.255 \)
+        \item \( 172.16.0.0 -\: 172.31.255.255 \)
+        \item \( 192.168.0.0 -\: 192.168.255.255 \)
+    \end{itemize}
+\end{itemize}
+
+\minisec{Wie werden solche Adressen im Zusammenhang mit NAT eingesetzt?}
+\begin{itemize}
+    \item Der NAT-Router ersetzt die Source-IP (z.B. 10.0.0.3) mit der öffentlichen Adresse
+\end{itemize}
+
+\minisec{Was passiert beim Verschicken eines IP-Paketes über einen NAT-Router?}
+\begin{itemize}
+    \item Der NAT-Router ersetzt die Source-IP (z.B. 10.0.0.3) mit der öffentlichen Adresse
+\end{itemize}
+
+\minisec{Was passiert anschließend beim Empfangen eines Antwortpaketes (von einem Server außerhalb des privaten Netzes)?}
+\begin{itemize}
+    \item \todo A
+\end{itemize}
+
+\minisec{Warum verletzt das NAT-Verfahren die Schichtenarchitektur?}
+\begin{itemize}
+    \item Layer 3 kennt Details des Layer 4, was eigentlich nicht sein darf.
+\end{itemize}
+
+\minisec{Nennen Sie 2 Szenarien, wo der Einsatz von NAT zu Problemen führen würde. Begründen Sie jeweils ihre Antwort!}
+\begin{itemize}
+    \item Es wird nicht TCP/UTP verwendet
+    \begin{itemize}
+        \item \todo A Begründung:
+    \end{itemize}
+    \item Übergeordnete Protokolle übertragen die IP als Paload (z.B. ftp)
+    \begin{itemize}
+        \item \todo A Begründung:
+    \end{itemize}
+    \item Verschlüsselte Verbindungen werden genutzt
+    \begin{itemize}
+        \item \todo A Begründung:
+    \end{itemize}
+\end{itemize}
+
+\minisec{Was wird bei Port Restricted Cone NAT bei Antwortpaketen überprüft? Was muss sich der NAT-Router dazu merken?}
+\begin{itemize}
+    \item Dieser Fall erweitert den restricted cone NAT in der Art, dass auch nur der entfernte Port mit dem internen Rechner kommunizieren kann. Der Router merkt sich Ziel-IP und Ziel-Port.
+\end{itemize}

@@ -1,0 +1,171 @@
+\addsec{Vorlesung 11 - Kanalzuteilung, Fehlerkorrektur}
+
+\minisec{Welche Aufgabe hat der MAC Sublayer in der Schicht 2 (Wiederholungsfrage, siehe Vorlesung 10)?}
+\begin{itemize}
+    \item \todo A
+\end{itemize}
+
+\minisec{Welche Eigenschaften hätte ein ideales Mehrfachzugriffsprotokoll?}
+Broadcast-Medium mit Maximalrate R bps
+\begin{itemize}
+    \item Ein einzelner Knoten kann mit der Rate R übertragen
+    \item M Knoten können mit einer mittleren Rate von $\frac{R}{M}$ übertragen
+    \item Das Protokoll ist dezentral, d.h. es gibt keine Master-Knoten, die ausfallen und das ganze System zum Absturz bringen können
+    \item Das Protokoll ist einfach und kann somit kostengünstig implementiert werden
+\end{itemize}
+
+\minisec{Nennen Sie 3 grundsätzliche Strategien, wie der mehrfache Zugriff auf ein gemeinsames Medium gelöst werden kann!}
+\begin{itemize}
+    \item \todo A
+\end{itemize}
+
+\minisec{Erklären Sie kurz die Funktionsweise von TDMA, FDMA und CDMA!}
+\begin{itemize}
+    \item \textcolor{blue}{TDMA: Time Division Multiple Access:}
+    \begin{itemize}
+        \item Aufteilung des Kanals in kleine Zeiteinheiten, die sich in Runden wiederholen
+        \item Jeder Knoten kann eine bestimmte Anzahl an Zeiteinheiten in jeder Runde Nutzen
+        \item Ungenutzte Einheiten (slots) bleiben ungenutzt
+        \item Die Zeiteinheiten können meist auch gruppiert angefordert werden
+        \item Anforderung entspricht Konfiguration der NIC-Karte
+    \end{itemize}
+    \item \textcolor{blue}{FDMA: Frequency Division Multiple Access}
+    \begin{itemize}
+        \item Aufteilung des Kanals in Frequenzbänder
+        \item Nach Nyquist kann ein rauschfreier Kanal mit einem Frequenzband der Breite x Hz binäre Signale nicht mit mehr als 2x Bps übertragen (Nyquist-Bandbreite)
+        \item Jede Station nutzt ein Frequenzband
+        \item Die Kapazität nicht genutzter Frequenzbänder geht verloren
+    \end{itemize}
+    \item \textcolor{blue}{CDMA: Code Division Multiple Access}
+    \begin{itemize}
+        \item Keine Unterteilung in Zeitslots oder Frequenzen
+        \item Nutzung von ‚orthogonalen Codes‘ bei der (De-) Modulation, die sich im Medium überlagern/mischen, aber trotzdem auf Empfängerseite eindeutig wiederhergestellt werden können
+        \item Vorteil: Es gibt keine ungenutzten Resourcen wie bei TDMA/FDMA
+    \end{itemize}
+\end{itemize}
+
+\minisec{Erklären Sie die Funktionsweise von CSMA/CD! Was bedeutet diese Abkürzung?}
+\begin{itemize}
+    \item \textcolor{blue}{Carrier Sense Multiple Access (CSMA)}
+    \begin{itemize}
+        \item höre vor der Übertragung das Medium ab
+        \item sende nur, falls das Medium frei ist
+        \item Analogie: Unterbreche keine Anderen
+    \end{itemize}
+    \item \textcolor{blue}{Carrier Sense Multiple Access with Collision Detection (CSMA/CD)}
+    \begin{itemize}
+        \item wie CSMA, zusätzlich: höre während der Sendung das Medium weiter ab und breche die Übertragung ab, wenn eine Kollision auftritt
+        \item sende ein Jamming-Signal, damit jede Station weiß, dass eine Kollision aufgetreten ist und die Nachricht nutzlos geworden ist.
+        \item Wichtig: Man muss so lange senden, dass man ein Jamming -Signal während dessen auch mitbekommt
+    \end{itemize}
+\end{itemize}
+
+\minisec{Erklären Sie, warum bei CSMA/CD ein Sender eine Mindestzeit senden muss (und parallel per "CD" das Medium abhören muss)! Wie lässt sich diese Mindestzeit berechnen und ggf. in eine Mindest-Rahmengröße umrechnen?}
+\begin{itemize}
+    \item
+\end{itemize}
+
+\minisec{Wie funktioniert und wozu dient der "Binary Exponential Backoff"-Algorithmus?}
+Um nach einer Kollision die gleichzeitige Wiederholung der kollidierten Sendungen
+zu vermeiden (Folgekollision), wird eine zufällige Wartezeit aus einem vorgegebenen
+Intervall gezogen.
+Das Intervall wird \textit{klein} gehalten, um große Wartezeiten
+bis zur Wiederholung zu vermeiden.
+Dadurch ist allerdings das Risiko eines
+Folgekonflikts groß.
+Kommt es so zu einer weiteren Kollision, wird das Intervall
+vor dem nächsten Versuch vergrößert, um mehr Spielraum für alle sendenden
+Parteien zu schaffen.
+
+\minisec{Welche heute typischerweise eingesetzten Ethernet-Standards kennen Sie? Wie sind die Namen aufgebaut?}
+Basiert auf IEEE 802.3 „CSMA/CD“
+4 Klassen von Ethernet-Varianten:
+\begin{itemize}
+    \item Standard Ethernet -> 10 $\frac{Mb}{s}$
+    \item Fast Ethernet -> 100 $\frac{Mb}{s}$
+    \item Gigabit Ethernet -> 1000 $\frac{Mb}{s}$
+    \item 10Gigabit-Ethernet -> 10000 $\frac{Mb}{s}$
+\end{itemize}
+
+\minisec{Warum wurde bei Gigabit-Ethernet die minimale Rahmenlänge von 64 auf 520 Bytes erhöht?}
+\begin{itemize}
+    \item  \todo A
+\end{itemize}
+
+\minisec{Warum wurde bei Fast-Ethernet die Segmentlänge von 2500m (10MBit Ethernet) auf 200-250m verkleinert?}
+Die minimale Rahmenlänge zur Kollisionserkennung bei Ethernet beträgt 64 Byte. Bei 100 Mb/s wird der Rahmen aber ca. 10 Mal so schnell abgesendet, so dass eine Kollisionserkennung nicht mehr gewährleistet ist.
+
+\minisec{Wie ist die Rahmen-Struktur eines Ethernet-Paketes aufgebaut? Welche Daten (-Felder) werden im Header und Trailer auf Schicht 2 übertragen?}
+Ethernet-Rahmen:
+\begin{itemize}
+    \item \textcolor{blue}{\textit{Präambel :}} kennzeichnet eine folgende Übertragung und synchronisiert den Empfänger mit dem Sender.
+    \item Der \textcolor{blue}{\textit{Start-of-Frame-Delimiter :}} (bzw. die beiden aufeinanderfolgenden Einsen) zeigen an, dass endlich Daten folgen.
+    \item \textcolor{blue}{\textit{Destination Address :}} das erste Bit kennzeichnet den Empfänger: entweder eine einzelne Station (1. Bit = 0) oder eine Gruppenadresse (1. Bit = 1; Broadcast ist auch hier durch 11...1 gegeben).
+    \item \textcolor{blue}{\textit{Length/Type :}} Bei einem Wert bis 1500 wird die Angabe als Länge des Datenteils aufgefasst (dies ist der Fall beim so genannten CSMA/CD), bei einem Wert ab 1536 wird hier angegeben, an welches Schicht-3- Protokoll die Daten weitergegeben werden sollen (verwendet bei Ethernet).
+    \item \textcolor{blue}{\textit{FCS :}} Checksumme, 32-Bit CRC. Diese erstreckt sich über die Felder DA, SA, Length/Type, Data/Padding.
+\end{itemize}
+Felder in Schicht 2:
+\begin{itemize}
+    \item MAC-Empfänger
+    \item MAC-Absender
+    \item 802.1Q-Tag (opt.)
+    \item EtherType
+    \item Nutzlast (1500 bytes)
+    \item Frame Check Sequence
+\end{itemize}
+
+\minisec{Erklären Sie die grundsätzliche Vorgehensweise des Medienzugriffes beim Token-Ring Netz!}
+\begin{itemize}
+    \item “Token“-Verfahren, nur wer ein bestimmtes Token ( = Bitfolge) besitzt, darf senden
+    \item Die Rechner teilen sich einen Ring aus Punkt-zu-Punkt- Verbindungen
+    \item Das Token wird zyklisch weitergegeben
+\end{itemize}
+
+\minisec{Was ist ein Hamming-Abstand bei einem Code C mit den Wörtern $c_1$ bis $c_n$?}
+\begin{itemize}
+    \item Anzahl unterschiedlicher Bits zweier Codewörter $c_1$ und $c_2$, d.h. Anzahl der 1-Bits von $c_1$ XOR $c_2$.
+    \item Beispiel: d(10001001, 10110001) = 3
+    \item Hamming-Abstand D von vollständigem Code C : \[ D(c)\coloneqq \min\{d(c_1 ,c_2)\ |\ c_1 ,c_2\ \epsilon \ C; \ c_1 \neq c_2\}\]
+\end{itemize}
+
+\minisec{Was versteht man unter "Forward Error Correction"?}
+\begin{itemize}
+    \item \todo A
+\end{itemize}
+
+\minisec{Wie groß muss der Hamming-Abstand mindestens sein, um e-Bitfehler zu erkennen bzw. zu beheben?}
+\begin{itemize}
+    \item \textcolor{blue}{erkennen} von e-Bit-Fehlern: Hamming-Abstand \textcolor{blue}{e+1} notwendig
+    \item \textcolor{blue}{beheben} von e-Bit-Fehlern: Hamming-Abstand \textcolor{blue}{2e+1} notwendig
+\end{itemize}
+
+\minisec{Nennen Sie einen Code, der mit einer minimalen Anzahl von Prüfbits Einzelbitfehler korrigieren kann!}
+\begin{itemize}
+    \item \todo A
+\end{itemize}
+
+\minisec{Was versteht man unter Modulo-2 Arithmetik? Wie werden Addition und Subtraktion durchgeführt?}
+\begin{itemize}
+    \item Die Rechenoperationen werden in der Modulo-2-Arithmetik einfacher, da hierbei keine Überträge zu berücksichtigen sind!
+    \item Addition und Subtraktion führen so zu dem gleichen Ergebnis.
+    \item Wir können einfach mit XOR arbeiten!
+    \item Digitaltechnik, hier Halbaddierer: Eine Addition ist logisch ein XOR, das Carry ein UND
+    \item Es gibt eine Bitkombination n, so dass gilt: $(D \cdot 2^r) XOR \ R = n G$
+    \item D.h., R soll so gewählt werden, dass G in $D \cdot 2^r$ ohne Rest teilbar ist
+    \item $D \cdot 2^r = nG \ XOR \ R$
+    \item Damit kann man R berechnen, denn wenn man $D \cdot 2^r$ durch G teilt, ist der Rest des Wertes genau R
+    \[R = Rest\left[\frac{D \cdot 2^r}{G}\right]\]
+\end{itemize}
+
+\minisec{Was leistet bzw. wie funktioniert das CRC-Verfahren? Wozu dient das Generator-Polynom?
+Wo wird das Verfahren im Kontext von Ethernet eingesetzt?}
+\begin{itemize}
+    \item Polynom-Codes: Interpretiere Datenbits D als Bitkette eines Polynoms, dessen Koeffizienten die 0-1-Werte der Bitkette sind
+    \item Prüfung basiert auf Polynom-Arithmetik
+    \item Sender und Empfänger einigen sich auf ein gemeinsam verwendetes Bitmuster der Länge r+1 Bit, das als Generator G bezeichnet wird. Das höchstwertige Bit hiervon ist 1
+    \item Konzept: Berechne die r CRC-bits R so, dass die d + r Bits (als Binärzahl interpretiert) mit der Modulo-2-Arithmetik genau durch G teilbar sind
+    \begin{itemize}
+        \item Empfänger kennt G, teilt <D,R> durch G. Falls der Rest ungleich 0, so liegt ein Fehler vor!
+        \item Kann Burst-Fehler von weniger als r+1 Bits und jede ungerade Fehlerzahl erkennen
+    \end{itemize}
+\end{itemize}

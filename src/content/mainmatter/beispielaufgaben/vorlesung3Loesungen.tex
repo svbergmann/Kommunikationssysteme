@@ -1,0 +1,80 @@
+\addsec{Vorlesung 3 - Lösungen}
+
+\minisec{\textbf{Übungsaufgabe 1:}}
+Um diese Aufgabe zu lösen, muss der sog. longest prefix match verwendet werden. Dazu müssen die Routing-Tabellen-Einträge in eine binäre Darstellung überführt werden (die Netzwerk-Bits sind hier unterstrichen dargestellt):
+
+\begin{center}
+    \begin{tabular}{|c | c | c|}
+        \hline
+        Zieleintrag (CIDR) & Binärdarstellung                                & Zu nehmender Router \\
+        \hline
+        139.179.200.0/21   & \underline{10001011.10110011.11001}000.00000000 & R1                  \\
+        139.179.128.0/18   & \underline{10001011.10110011.1}0000000.00000000 & R2                  \\
+        139.179.112.0/20   & \underline{10001011.10110011.0111}0000.00000000 & R3                  \\
+        139.179.192.0/20   & \underline{10001011.10110011.11}000000.00000000 & R4                  \\
+        139.179.0.0/16     & \underline{10001011.10110011}.00000000.00000000 & R5                  \\
+        \hline
+    \end{tabular}
+\end{center}
+
+Die IP Adressen werden ebenfalls in eine Binärdarstellung gewandelt:
+
+\begin{enumerate}[(a)]
+    \item 139.179.60.10 -> 10001011.10110011.00111100.00001010
+    \item 139.179.210.40 -> 10001011.10110011.11010010.00101000
+    \item 139.179.197.55 -> 10001011.10110011.11000101.00110111
+    \item 139.179.205.180 -> 10001011.10110011.11001101.10110100
+\end{enumerate}
+
+Bei scharfem Hinschauen sieht man, dass die ersten 2 Bytes in allen Routing-Einträgen gleich sind, und das die Netzwerkbits immer mindestens 16 Bit lang sind. Daher kann man sich ganz auf das 3. (und ggf. 4) Byte in den Adressen konzentrieren.
+
+\begin{enumerate}[(a)]
+    \item Die ersten 4 Einträge passen alle nicht -> R5 wird genommen
+    \item Die ersten 4 Einträge passen alle nicht -> R5 wird genommen
+    \item Der 4. Eintrag passt -> R4 wird genommen
+    \item Der 1. und der 4. Eintrag passen. Weil der Netzanteil des ersten Eintrags länger ist, wird dieser verwendet!
+\end{enumerate}
+
+\minisec{\textbf{Übungsaufgabe 2:}}
+Zunächst schreiben wir die Tabelle in Binärform (Netzwerk Bits sind unterstrichen):
+
+\begin{center}
+    \begin{tabular}{|c | c | c|}
+        \hline
+        Zieleintrag (CIDR) & Binärdarstellung                                & Next Hop \\
+        \hline
+        128.128.0.0/9      & \underline{10000000.1}0000000.00000000.00000000 & R1       \\
+        128.160.0.0/11     & \underline{10000000.101}00000.00000000.00000000 & R2       \\
+        128.176.0.0/12     & \underline{10000000.1011}0000.00000000.00000000 & R1       \\
+        128.192.0.0/10     & \underline{10000000.11}000000.00000000.00000000 & R1       \\
+        default            &                                                 & R3       \\
+        \hline
+    \end{tabular}
+\end{center}
+
+Wir können nur Routing-Einträge zusammen fassen, die zu dem gleichen Ziel gehen! Eintrag 1 ist der allgemeinste Eintrag, und Einträge 4, 2 und 3 immer feinere Spezialisierungen des 1. Eintrages.
+Eintrag 4 ist eine Spezialisierung von Eintrag 1, und beide Einträge haben das gleiche Ziel. Da es keine weiteren Einträge gibt, die durch eine Zusammenlegung überschrieben würden, können diese Einträge zusammengefasst werden. Dazu kann der spezialisiertere Eintrag gelöscht werden, also:
+
+\begin{center}
+    \begin{tabular}{|c | c|}
+        \hline
+        128.128.0.0/9  & R1 \\
+        128.160.0.0/11 & R2 \\
+        128.176.0.0/12 & R1 \\
+        default        & R3 \\
+        \hline
+    \end{tabular}
+\end{center}
+
+Zusatzfrage:
+Eintrag 2 spezialisiert Eintrag 1 und leitet nach R2, wobei allerdings die weitere Spezialisierung im 3. Eintrag wieder nach R1 leitet. Diese Situation könnte man auch lösen, in dem man beim 2. Eintrag einen Präfix von 12 verwendet, und dadurch den 3. Eintrag überflüssig macht, weil nun Regel 1 die IPs, die vorher von Regel 3 erfasst wurden, auch nach R1 routet, also:
+
+\begin{center}
+    \begin{tabular}{|c | c|}
+        \hline
+        128.128.0.0/9  & R1 \\
+        128.160.0.0/12 & R2 \\
+        default        & R3 \\
+        \hline
+    \end{tabular}
+\end{center}

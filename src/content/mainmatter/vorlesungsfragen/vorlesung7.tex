@@ -1,0 +1,163 @@
+\addsec{Vorlesung 7 - TCP}
+
+\minisec{Wie identifiziert TCP ein Segment bzw. ein ACK? In welcher Einheit wird 'gemessen'?}
+\begin{itemize}
+    \item \todo A
+\end{itemize}
+
+\minisec{Wird bei jedem TCP-Paket ein ACK mitgesendet?}
+Nein, aber:
+\begin{itemize}
+    \item Nach 500ms \textbf{muss} ein ACK gesendet werden
+    \item Nach zwei vollständigen Segmenten \textbf{sollte} ein ACK gesendet werden
+\end{itemize}
+
+\minisec{Warum muss der Empfänger seine aktuelle Fenstergröße ('advertised window') dem Sender mitteilen? Wie?}
+\begin{itemize}
+    \item Um den Puffer berechnen zu können
+    \begin{itemize}
+        \item Bedingungen für den Sender:
+        \begin{gather*}
+            \text{LastByteAcked }\leq \text{LastByteSent}\\
+            \text{LastByteSent }\leq \text{LastByteWritten}\\
+        \end{gather*}
+        Zwischenspeichern der Daten zwischen \textbf{LastByteAcked} und \textbf{LastByteWritten}
+        \[\text{LastByteSent }- \text{LastByteAcked }< \text{ AdvertisedWindow}\]
+        EffectiveWindow $=$ AdvertisedWindow - (LastByteSent - LastByteAcked)
+        \item Bedingungen für den Empfänger:
+        \begin{gather*}
+            \text{LastByteAcked }<\text{ NextByteExpected}\\
+            \text{NextByteExpected }\leq \text{ LastByteRcvd} + 1\\
+        \end{gather*}
+        Zwischenspeichern der Daten zwischen \textbf{LastByteRead} und \textbf{LastByteRcvd}
+        AdvertisedWindow $=$ Empfangspuffer – ((NextByteExpected - 1) - LastByteRead)
+    \end{itemize}
+    \item über den TCP-Header und damit die Window Scale Option
+\end{itemize}
+
+\minisec{Erklären Sie auf Empfängerseite den Unterschied zwischen Empfangspuffer-Größe und aktueller Fenster-Größe!}
+\begin{itemize}
+    \item \todo A
+\end{itemize}
+
+\minisec{Unter welchen Bedingungen wird in TCP ein ACK versendet?}
+Liegen keine Daten an, werden
+Acks verzögert – irgendwann aber
+doch verschickt
+\begin{itemize}
+    \item Annahme: Es kommen viele Segmente hintereinander
+    \item Delayed Acknowledgments
+    \item Nach 500ms \textbf{muss} ein ACK gesendet werden
+    \item Nach zwei vollständigen Segmenten \textbf{sollte} ein ACK gesendet werden
+\end{itemize}
+
+\minisec{Welche Strategien zur Fehlerbehebung verwendet TCP? (Go-Back-N? Selective Repeat? Selective Reject?)}
+\begin{itemize}
+    \item \todo A
+\end{itemize}
+
+\minisec{Wozu dient der Retransmission Timer? Wie wird seine Länge bestimmt?}
+\begin{itemize}
+    \item \todo A
+\end{itemize}
+
+\minisec{Was ist ein 'Congestion Collapse'? Wie wird er hervorgerufen?}
+\begin{itemize}
+    \item Verstärkung der Überlastsituation durch unnütze Übertragung
+    Durch viele Verbindungen können Router überlastet \textcolor{blue}{werden}
+    \begin{itemize}
+        \item Überlast/Verstopfung: engl.: \textcolor{blue}{Congestion}
+        \item Pakete werden verworfen, auf TCP-Ebene gehen keine Quittungen ein
+        \item TCP wiederholt die Daten und belastet das Netz damit noch stärker
+    \end{itemize}
+\end{itemize}
+
+\minisec{Welche Einflussgrößen steuern die Bandbreite des Senders bei TCP?}
+\begin{itemize}
+    \item \todo A
+\end{itemize}
+
+\minisec{Was versteht man bei TCP unter 'Slow Start'?}
+\begin{itemize}
+    \item Congestion Window bestimmt insbesondere zu Beginn die Übertragungsrate (Slow Start)
+\end{itemize}
+
+\minisec{Erklären Sie die unterschiedlichen Strategien zur Kontrolle der genutzen Bandbreite bei TCP Reno!}
+\begin{itemize}
+    \item Vorsichtiger Beginn (Slow-Start), aber nur bis zu einem Schwellwert
+    \item Unterscheidung zwischen Timeout und duplicate ACKs:
+    \begin{itemize}
+        \item Bei Timeout gleiches Verhalten wie TCP Thaoe
+        \item Bei dup-ACKs (selective Reject) → Halbierung des Congestion Window (fast recovery)
+    \end{itemize}
+\end{itemize}
+
+\minisec{Wie funktioniert der Verbindungsaufbau bei TCP? Welcher Begriff wird zur Beschreibung des Verfahrens verwendet?}
+\begin{itemize}
+    \item Three-Way-Handshake:
+    \begin{enumerate}
+        \item Der Server wartet auf eingehende Verbindungswünsche
+        \item Der Client führt unter Angabe von IP-Adresse, Portnummer und maximal akzeptabler Segment-Größe eine CONNECT-Operation aus
+        \item CONNECT sendet ein SYN
+        \item Ist der Destination Port der CONNECTAnfrage identisch zu der Port-Nummer, auf der der Server wartet, wird die Verbindung akzeptiert, andernfalls mit RST abgelehnt
+        \item Der Server schickt seinerseits das SYN zum Client und bestätigt zugleich den Erhalt des ersten SYN-Segments
+        \item Der Client schickt eine Bestätigung des SYNSegments des Servers. Damit ist die Verbindung aufgebaut
+    \end{enumerate}
+\end{itemize}
+
+\minisec{Wozu dient der Keepalive-Timer? Wann ist dieser Timer wichtig?}
+\begin{itemize}
+    \item Rel. lange Wartezeit. Wir bei jeder Transaktion rückgesetzt. Nach Ablauf → Abbau der Verbindung
+\end{itemize}
+
+\minisec{Welche Datenfelder enthält der TCP-Header? Wozu werden sie jeweils verwendet?}
+\begin{itemize}
+    \item \textcolor{blue}{Source Port :} Identifiziert die Anwendung auf der Senderseite.
+    \item \textcolor{blue}{Destination Port :} Identifiziert die Anwendung auf der Empfängerseite.
+    \item \textcolor{blue}{Sequence Number :} TCP betrachtet die zu übertragenden Daten als nummerierten Byte-Strom. Die Sequence Number ist die Nummer des ersten im Segment enthaltenen Datenbytes.
+    \item \textcolor{blue}{Acknowledgement Number :} Dieses Feld bezieht sich auf einen Datenfluss in Gegenrichtung, d.h. hiermit werden Daten bestätigt, die die Station, die das Segment absendet, zuvor von der Zielstation empfangen hat.
+    \item \textcolor{blue}{Data Offset :} Da der Segment-Header Optionen enthalten kann, ist seine Länge nicht fix. Im Data Offset-Feld wird die Länge (d.h. der Beginn des Datenteils) in 32-Bit-Einheiten angegeben.
+    \item \textcolor{blue}{Res. :} Reserviert für zukünftige Nutzung.
+    \item \textcolor{blue}{Code :} Die Bits des Code-Feldes steuern besondere Funktionen des Segments.
+    \begin{itemize}
+        \item \textcolor{red}{URG :} Urgent Pointer Field is valid
+        \item \textcolor{red}{PSH :} This segment requests a push
+        \item \textcolor{red}{SYN :} Synchronize sequence numbers
+        \item \textcolor{red}{ACK :} Acknowledgement Field is valid
+        \item \textcolor{red}{RST :} Reset the Connection
+        \item \textcolor{red}{FIN :} Sender has reached end of his byte stream
+    \end{itemize}
+    \item \textcolor{blue}{Window :} Spezifiziert die Anzahl der Datenbytes (beginnend mit der im Acknowledgement - Feld angegebenen Byte-Nummer), die der Sender des Segments als Empfänger eines Datenstromes in Gegenrichtung akzeptieren wird.
+    \item \textcolor{blue}{Checksum :} 16-Bit Längsparität über das gesamte Segment (Header + Daten).
+    \item \textcolor{blue}{Urgent Pointer :} Damit können Teile des zu übertragenden Byte-Stroms als dringend markiert werden.
+\end{itemize}
+
+\minisec{Wozu dient der Persistence-Timer in TCP? Was passiert nach seinem Ablauf?}
+\begin{itemize}
+    \item Timer wird nach Empfang einer Fenstergröße von 0 gestartet. Nach Ablauf Anfrage nach neuem Fenster (>0)
+\end{itemize}
+
+\minisec{Wie funktioniert die (häufig eingesetzte) Window-Scale Option in TCP? Wann wird sie benötigt?}
+\begin{itemize}
+    \item Einführen einer Window-Scale-Erweiterung die ein Skalierungsfaktor für das 16-Bit Window-Feld darstellt
+    \item Der Skalierungsfaktor wird als neue TCP-Option eingeführt: Window Scale ist 3 Byte lang – Das letzte Byte gibt die Skalierung LOGARITHMISCH an (shift count: Das Fenster wird shift count bits nach links veschieben – hierbei ist der maximale Wert 14!)
+    \item Die Option wird nur in einem SYN-Segement beim Verbindungsaufbau übertragen.
+    Danach wird der Wert für die Ganze Verbindung angenommen
+    \item Beide Seiten müssen eine Window-Scale-Option verschicken Null bedeutet "keine Skalierung"
+    \item Die neue maximale Fenstergröße in Bytes errechnet sich wie folgt: \[65536 * 214 = 65535 * 16384 = 1.073.725.440\]
+    \item TCP-intern wird die Fenstergröße jetzt als 32-Bit-Zahl verwaltet
+\end{itemize}
+
+\minisec{Was versteht man unter dem 'Silly Window'-Syndrom? Wie kann es gelöst werden?}
+\begin{itemize}
+    \item Empfangsfenster ist ``voll``, die empfangende Applikation ließt die Zeichen aber nur einzeln aus
+    \item -> Sender würde für jedes einzelne Zeichen ein neues Paket senden
+    \item Lösung (Clark): Empfänger darf neue Fenstergröße erst erneut senden, wenn in seinem Buffer mehr Platz ist (z.B. ein Segment)
+\end{itemize}
+
+\minisec{Wozu dienen die PSH und URG-Flaggen im TCP Header?}
+\begin{itemize}
+    \item Problem: Sender will wichtige Daten ohne Pufferung an die empfangende Applikation weitergeben
+    \item Lösung: \textcolor{blue}{PSH}: Flagge im TCP Header : Daten auf Empfängerseite direkt zustellen (kein Puffern)
+    \item Alternative: \textcolor{blue}{URG}: Flagge im TCP Header: ``Event`` auf Empfängerseite auslösen
+\end{itemize}

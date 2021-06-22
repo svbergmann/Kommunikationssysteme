@@ -1,0 +1,147 @@
+\addsec{Vorlesung 6 - Send and Wait, Sliding Window}
+
+\minisec{Nennen Sie die 2 wichtigen Transportprotokolle im Internet! Wie unterscheiden sie sich?}
+\begin{itemize}
+    \item Transmission Control Protocol (TCP) -> zuverlässig
+    \begin{itemize}
+        \item Kommunikationsprimitive, Sockets, Ports
+        \item Virtuelle Verbindungsorientierung: Modell zweier Streams die die Prozesse miteinander verbinden;
+        „Open“-“Close“ der Streams sind die virtuellen Verbindungen
+        \item Flusskontrolle, Staukontrolle
+    \end{itemize}
+    \item User Datagram Protocol (UDP) -> unzuverlässig
+    \begin{itemize}
+        \item Kommunikationsprimitive, Sockets, Ports
+        \item Postkartenmodell: Ein Empfangspunkt (Port) für alle Nachrichten, versenden ohne Absprache mit dem Empfänger
+    \end{itemize}
+\end{itemize}
+
+\minisec{Was bedeutet eine 'virtuelle Verbindungsorientierung'?}
+\begin{itemize}
+    \item Modell zweier Streams die die Prozesse miteinander verbinden;
+    „Open“-“Close“ der Streams sind die virtuellen Verbindungen
+\end{itemize}
+
+\minisec{Erklären Sie das ARQ-Protokoll und die Randbedingungen, unter denen dieses Protokoll eine sichere Datenübertragung gewährleistet! Wo und warum werden hier Timeouts eingesetzt?}
+\begin{itemize}
+    \item Segmentweises Vorgehen
+    \item Timer zur Fehleridentifikation
+    \begin{itemize}
+        \item Verschicke ein Segment und warte auf den Empfang des ACKs
+        \item Bei Empfang eines ACKs wird das nächste Segment verschickt, andernfalls wird die Übertragung wiederholt
+        \item Jeder Datenstrom wird in Segmente unterteilt, z.B. 1460 Bytes Nutzdaten
+        \item Nach jedem gesendeten Segment wird auf eine Bestätigung gewartet;
+        während der Wartezeit werden keine weiteren Segmente übertragen
+    \end{itemize}
+\end{itemize}
+
+\minisec{Wie ist der Nutzungsgrad einer Verbindung definiert? Warum gibt es bei Verbindungen mit hoher RTT hier Probleme?}
+\begin{itemize}
+    \item \underline{Nutzungsgrad:} Verhältnis von genutzter Übertragungszeit zu gesamter Übertragungsdauer (inkl. der Wartezeit)
+    \item \[\rho = \frac{\textrm{genutzte Uebertragungszeit}}{\textrm{genutzte Uebertragungszeit} + \textrm{Wartezeit}}\]
+\end{itemize}
+
+\minisec{Was bedeutet 'Pipelining' im Kontext der Datenübertragung? Was bedeutet in diesem Zusammenhang 'Fensterbreite'? Welche Schwierigkeiten entstehen bei Fehlerfällen?}
+\begin{itemize}
+    \item Pipelining:
+    \begin{itemize}
+        \item Senden ohne vorheriges ACK
+        \item \underline{Fensterbreite beim Sender:} Anzahl der Segmente, die ohne Bestätigung gesendet werden
+        \item \underline{Fensterbreite beim Empfänger:} Anzahl der Segmente, die auch bei Lücken oder Fehlern zwischengespeichert werden
+    \end{itemize}
+    \item Probleme beim Empfänger:
+    \begin{itemize}
+        \item Empfang eines out-of-order-Segments
+        \begin{itemize}
+            \item Eigentlich wurde ein anderes Segment erwartet
+            \item Je nach Implementierung wird das nicht erwartete Segment einfach ignoriert, es wird dann verworfen
+        \end{itemize}
+        \item Empfang eines fehlerbehafteten Segments
+        \begin{itemize}
+            \item Keine Reaktion (Der Sender wird irgendwann eine erneute Übertragung vornehmen, da ja keine Bestätigung verschickt wurde)
+            \item Falls unterstützt: Verschicken einer „negativen“ Bestätigung oder einer Nachricht, die dies kommuniziert (als Indiz für einen möglichen Paketverlust)
+        \end{itemize}
+        \item Probleme beim Sender:
+        \begin{itemize}
+            \item Timeout -> Worauf bezieht sich dieser?
+            \item Empfang einer nicht erwarteten Bestätigung (out-of-order) ACKs
+            \item Empfang einer negativen Bestätigung (falls es die gibt)
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\minisec{Wie löst das Go-Back-N Verfahren Übertragungsfehler?}
+\begin{itemize}
+    \item Der Empfänger sendet nach dem Fehler kein ACK mehr
+    \item Der Sender läuft dadurch in ein Timeout und fängt wieder ein Segment nach dem letzten bestätigten Segment wieder an
+    \item Alle direkt nach dem Fehler versendeten Segmente werden verworfen
+\end{itemize}
+
+\minisec{Wie groß ist die Fensterbreite beim Sender und Empfänger bei 'Go-Back-N'?}
+\begin{itemize}
+    \item Fensterbreite Sender: > 1
+    \item Fensterbreite Empfänger: 1
+\end{itemize}
+
+\minisec{Warum sollten sich bei 'Sliding-Window' Verfahren Sender und Empfänger bzgl. ihrer Fensterbreiten koordinieren?}
+\begin{itemize}
+    \item \todo A
+\end{itemize}
+
+\minisec{Was passiert, wenn das Sendefenster größer als das Empfangsfenster ist?}
+\begin{itemize}
+    \item \todo A
+\end{itemize}
+
+\minisec{Was passiert, wenn das Empfangsfenster größer als das Sendefenster ist?}
+\begin{itemize}
+    \item \todo A
+\end{itemize}
+
+\minisec{Was passiert, wenn beide Fensterbreiten 1 sind?}
+\begin{itemize}
+    \item \todo A
+\end{itemize}
+
+\minisec{Warum sind große Fensterbreiten häufig schwer zu realisieren?}
+\begin{itemize}
+    \item \todo A
+\end{itemize}
+
+\minisec{Wie kann der Empfänger eine 'Flusskontrolle' bei der Datenübertragung realisieren?}
+\begin{itemize}
+    \item \todo A
+\end{itemize}
+
+\minisec{Leiten Sie die Berechnung der benötigten Fensterbreite aus dem 'Bandwidth-Delay'-Produkt her!}
+\begin{itemize}
+    \item \todo A
+\end{itemize}
+
+\minisec{Wie funktioniert das "Selective Repeat"-Verfahren? Werden hier auf Empfängerseite Segmente verworfen im Fehlerfall?}
+\begin{itemize}
+    \item Mittelbare Kenntnis über etwaig bereits empfangene Segmente, Empfänger puffert nicht erwartete Segmente, so dass sich bei Neuübertragung der „Lücke“ das Fenster ruckartig verschiebt
+    \item \todo Erklärung
+\end{itemize}
+
+\minisec{Wie funktioniert das "Selective Reject"-Verfahren? Werden hier auf Empfängerseite Segmente verworfen im Fehlerfall?}
+\begin{itemize}
+    \item Unmittelbare Kenntnis über unerwartete Ereignisse und sofortige Reaktion zur Behebung
+    \item \todo Erklärung
+\end{itemize}
+
+\minisec{Was bedeutet eine kumulative Bestätigung?}
+\begin{itemize}
+    \item Eine Bestätigung zeigt an, dass alle Daten bis zu der verwendeten Nummer/Byte Position korrekt empfangen wurden
+    \item Kommt ein Out-of-Order-Segment an, so wird demnach eine Bestätigung verschickt, die schon einmal verschickt wurde (“ich warte immer noch auf x“)
+    \item Speichert der Empfänger außerhalb der Reihenfolge empfangene Segmente zwischen, dann bedeutet ein „Lückenschluss“, dass dieser einen „Sprung“ bei den Bestätigungen bedingt
+\end{itemize}
+
+\minisec{Wie können mehrfache ACKs auch als NACK gewertet werden?}
+\begin{itemize}
+    \item Kommt ein Out-of-Order-Segment an, so wird demnach eine Bestätigung verschickt, die schon einmal verschickt wurde (“ich warte immer noch auf x“)
+    \item Wenn ein Segment verloren gegangen ist, dann werden alle weiteren empfangenen Segmente die gleiche Position anzeigen
+    \item Duplicate Acknowledgments: Empfang einer Bestätigung, die eine schon versendetes Feeback erneut gibt: (“ich warte immer noch auf x“)
+    \item Segmente können sich überholen, deshalb ist das nicht sofort als NACK aufzufassen
+    \item \underline{Aber:} Triple Duplicate Acknowledgement wird als NACK aufgefasst!
+\end{itemize}

@@ -1,0 +1,199 @@
+\addsec{Vorlesung 10 - Sicherungsschicht}
+
+\minisec{In welche zwei Sublayer kann der Data-Link Layer (Schicht 2 in ISO/OSI) unterteilt werden? Was sind grob die Aufgaben dieser zwei Sublayer?}
+\begin{itemize}
+    \item LLC Sublayer: \todo Aufgabe des Layers
+    \item MAC Sublayer: \todo Aufgabe des Layers
+\end{itemize}
+
+\minisec{Welche Übertragungsmedien (auf Schicht 1 in ISO/OSI) werden heute typischerweise eingesetzt?}
+\begin{itemize}
+    \item Kupferdoppelader (Twisted Pair)
+    \item Koaxialkabel
+    \item Funk
+    \item Glasfaser
+\end{itemize}
+
+\minisec{Welche physikalischen Größen werden dabei verwendet, und wie können diese moduliert werden?}
+\begin{itemize}
+    \item Spannung
+    \item Elektromagnetische Wellen (Funk, Licht)
+    \item Modellierung über:
+    \begin{itemize}
+        \item Amplitude
+        \item Frequenz
+        \item Phase
+    \end{itemize}
+    \item Die Veränderung dieser Eigenschaften im Rahmen
+    der Datenübertragung nennt man \textcolor{blue}{Modulation}
+    \begin{itemize}
+        \item Amplitudenmodulation (AM)
+        \item Frequenzmodulation (FM)
+        \item Phasenmodulation (PM)
+    \end{itemize}
+\end{itemize}
+
+\minisec{Welche unterschiedlichen Arten von 'twisted pair'-Kabeln kennen Sie?}
+\begin{itemize}
+    \item Unterscheidung nach Kategorie:
+    \begin{itemize}
+        \item \textcolor{blue}{Kategorie 3 :} Gemeinsame Umhüllung für vier Kupferdoppeladern
+        \item \textcolor{blue}{Kategorie 5 :}
+        Wie Kategorie 3, aber mehr Windungen/cm (weitere Reduktion der elektromagnetischen Interferenzen Umhüllung besteht aus Teflon (bessere Isolierung, Qualität der Signale bleibt auf längere Strecken akzeptabel)
+        \item \textcolor{blue}{Kategorie 6,7 :} Die Paare sind zusätzlich einzeln mit Silberfolie umwickelt
+    \end{itemize}
+    \item Unterscheidung nach Abschirmung:
+    \begin{itemize}
+        \item \textcolor{blue}{UTP Kabel (Unshielded Twisted Pair) :} Keine Abschirmung des Kabels
+        \textcolor{blue}{STP Kabel (Shielded Twisted Pair) :} Abschirmung des Kabels, dadurch günstigere Eigenschaften, trotzdem in der Praxis oft UTP
+    \end{itemize}
+    \item Beispiele: S/UTP-Kabel (cat 5), S/STP-Kabel (cat 7)
+\end{itemize}
+
+\minisec{Wie ist ein Glasfaserkabel prinzipiell aufgebaut? Wo findet die 'Übertragung' statt?}
+\begin{itemize}
+    \item Von innen nach außen:
+    \begin{enumerate}
+        \item Faserkern / Kernglas (core)
+        \item Mantelglas (cladding)
+        \item Beschichtung (coating)
+        \item Kunststoffummantelung (buffering)
+        \item Schutzmantel
+    \end{enumerate}
+    \item Im Glaskern findet die Übertragung statt
+\end{itemize}
+
+\minisec{Erklären Sie im Zusammenhang mit Glasfaserkabeln die Begriffe 'Moden' und 'Dispersion'!}
+\begin{itemize}
+    \item Dispersion
+    \begin{itemize}
+        \item Begrenzt Übertragungsstrecke
+        \item Lichtpuls besteht aus mehreren Wellen (Strahlen) -> Einfallswinkel dieser Strahlen unterschiedlich
+        \item Lichtstrahlen kommen im Medium unterschiedlich schnell vorwärts:
+        \begin{itemize}
+            \item Wege (Moden) der Strahlen unterschiedlich lang (abhg. von Einfallswinkel)
+            \item Strahlen eines Impulses kommen zeitversetzt am Ende des Kabels an
+            \item Intensität der Impulse nimmt ab, benachbarte Impulse verschwimmen
+        \end{itemize}
+        \item (Weitere Faktoren können ebenso Dispersion verursachen)
+    \end{itemize}
+\end{itemize}
+
+\minisec{Wie unterscheiden sich Monomode- und Multimode Glasfaserkabel? Welche Eigenschaften resultieren aus dem unterschiedlichen Aufbau?}
+\begin{itemize}
+    \item Monomode-Faser
+    \begin{itemize}
+        \item Kerndurchmesser: 8 - 10 $\mu m$
+        \item Alle Strahlen können nur noch einen Weg nehmen
+        \item Keine Dispersion (homogene Signalverzögerung)
+        \item 50 $\frac{GBit}{s}$ über 100 km
+        \item Teuer wegen geringem Kerndurchmesser
+    \end{itemize}
+    \item Multimode-Faser mit Stufenindex
+    \begin{itemize}
+        \item Kerndurchmesser: 50 $\mu m$
+        \item Unterschiedliche Wege für Lichtwellen, je nach Einfallswinkel
+        \item Starke Dispersion
+        \item Bis zu 1 km
+    \end{itemize}
+    \item Multimode-Faser mit Gradientenindex
+    \begin{itemize}
+        \item Kerndurchmesser: 50 $\mu m$
+        \item Brechungsindex ändert sich fließend
+        \item Leicht unterschiedliche Wege für Lichtwellen
+        \item Geringe Dispersion
+        \item Bis zu 30 km
+    \end{itemize}
+\end{itemize}
+
+\minisec{Bei welcher Netztopologie gibt es ein 'gemeinsames' Medium, auf das alle Teilnehmer zugreifen?}
+\begin{itemize}
+    \item Multi-Access-Netz (gemeinsames Medium)
+    \begin{itemize}
+        \item Nur in lokalen Netzen verwendet
+        \item Alle Stationen sind an ein einziges Medium angeschlossen
+        \item Sendet eine Station Daten, werden sie an alle Stationen ausgeliefert
+        \item Jeder Rechner kontrolliert jedes Paket, ob es für ihn bestimmt ist
+    \end{itemize}
+\end{itemize}
+
+\minisec{Bei welchen Netztopologien gibt es ausschließlich Punkt-zu-Punkt-Verbindungen zwischen den Teilnehmern?}
+\begin{itemize}
+    \item \todo A
+\end{itemize}
+
+\minisec{Vergleichen Sie Ring-, Bus- und Stern-Topologie bzgl. ihrer Vor- und Nachteile!}
+\begin{itemize}
+    \item Ring: Point-to-Point
+    \begin{itemize}
+        \item Reihe von Punkt-zu-Punkt-Verbindungen
+        \item Aktive Knoten: fungieren als Repeater
+        \item Ausfall des gesamten Rings bei Unterbrechung einer Verbindung
+        \item Ausfall des gesamten Rings bei Ausfall eines Knotens (Bypass als Abhilfe)
+        \item Große Ausdehnung möglich (aufgrund der aktiven Knoten)
+        \item Einfaches Einfügen neuer Knoten
+        \item Variante: bidirektionaler Ring: Knoten sind durch zwei gegenläufige Ringe miteinander verbunden
+    \end{itemize}
+    \item Bus: Multi-Access-Netz
+    \begin{itemize}
+        \item + Einfach, preiswert, einfacher Anschluss neuer Knoten
+        \item + Passive Ankopplung der Stationen, der Ausfall eines Knotens ist kein Problem für die anderen Knoten
+        \item – Nur eine Station zu einem Zeitpunkt kann senden; alle anderen Stationen können nur empfangen
+        \item – Begrenzung der Zahl anschließbarer Stationen
+        \item – Passive Ankopplung der Stationen, daher begrenzte Ausdehnung des Busses (aber: Repeater zur Kopplung mehrerer Busse)
+    \end{itemize}
+    \item Stern
+    \begin{itemize}
+        \item Ausgezeichneter Knoten als zentrale Station
+        \begin{itemize}
+            \item Nachricht von Station A wird durch die zentrale Station an Station B weitergeleitet
+            \item Punkt-zu-Punkt-Verbindungen (\textcolor{blue}{Switch}), oder Broadcast (\textcolor{blue}{Hub})
+            \item Verwundbarkeit durch zentralen
+        \end{itemize}
+        \item Knoten (Redundanz möglich)
+    \end{itemize}
+\end{itemize}
+
+\minisec{Wie (und auf welcher Schicht) arbeitet ein Repeater?}
+\begin{itemize}
+    \item Verknüpfung von zwei Netzen zur Vergrößerung der Ausdehnung
+    \item Arbeitet auf der Bitebene
+    \begin{itemize}
+        \item Kann einkommende Signale als „0“ oder „1“ interpretieren
+        \item Empfang und \textcolor{blue}{Auffrischung} des Signals – ein empfangenes Bit wird auf der anderen Seite neu als Stromimpuls codiert
+        \item Kein Verstehen von Adressen höherer Schichten, alle Daten werden weitergeleitet (das Netz bleibt z.B. ein Multi-Access-Netz)
+    \end{itemize}
+\end{itemize}
+
+\minisec{Erklären Sie (im Kontext eines Netzes mit twisted-pair Kabeln) den Unterschied zwischen einem Hub und einem Switch!}
+\begin{itemize}
+    \item Hub = „Repeater mit mehr als zwei Anschlüssen“
+    \begin{itemize}
+        \item Signalauffrischung wie beim Repeater
+        \item An einen Anschluss kann ein einzelner Rechner oder ein ganzer Bus angeschlossen werden
+        \item Multi-Access-Netz: der Hub gibt ein empfangenes Signal auf allen Anschlüssen wieder aus, praktisch wie ein "Bus" mit mehreren Anschlüssen:
+        \item \textcolor{blue}{Gemeinsamer Übertragungskanal}, d.h. Stationen können nicht gleichzeitig senden und empfangen, nur eine Station auf einmal kann senden
+        \item Geringe Sicherheit, da alle Stationen mithören können
+    \end{itemize}
+    \item Switch - Wie Hub, aber:
+    \begin{itemize}
+        \item Punkt-zu-Punkt-Kommunikation zwischen zwei Stationen
+        \begin{itemize}
+            \item Switch kann Layer-2-Adressen (MAC-Adressen) der angeschlossenen Stationen verstehen, lernt sie und kann Daten gezielt weiterleiten
+            \item Stationen können gleichzeitig senden und empfangen
+            \item Nur der adressierte Empfänger erhält die Daten, andere Stationen können nicht mithören
+        \end{itemize}
+        \item Vermeidung von Kollisionen (‚Mikrosegmentierung‘)
+        \item Puffer für jeden Port
+    \end{itemize}
+\end{itemize}
+
+\minisec{Was ist ein 'Layer-3 Switch'?}
+\begin{itemize}
+    \item \todo A
+\end{itemize}
+
+\minisec{Warum gibt es in der Schicht 2 neben dem Header auch einen Trailer? Welche Felder enthält der Ethernet-Header?}
+\begin{itemize}
+    \item \todo A
+\end{itemize}
