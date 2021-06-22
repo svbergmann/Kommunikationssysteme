@@ -2,8 +2,24 @@
 
 \minisec{In welche zwei Sublayer kann der Data-Link Layer (Schicht 2 in ISO/OSI) unterteilt werden? Was sind grob die Aufgaben dieser zwei Sublayer?}
 \begin{itemize}
-    \item LLC Sublayer: \todo Aufgabe des Layers
-    \item MAC Sublayer: \todo Aufgabe des Layers
+    \item LLC Sublayer: Das Protokoll LLC fügt einem gegebenen Datenpaket aus einer übergeordneten Schicht (meist der OSI-Schicht 3 „Vermittlungsschicht“) drei Felder hinzu:
+    \begin{itemize}
+        \item zwei jeweils 8 Bit bzw. 1 Byte große Kennzeichen:
+        \begin{itemize}
+            \item DSAP (Destination Service Access Point: Einsprungadresse des Empfängers)
+            \item SSAP (Source Service Access Point: Einsprungadresse des Absenders)
+        \end{itemize}
+        \item ein 1 oder 2 Byte großes Feld Control mit Steuerinformationen für Hilfsfunktionen wie z. B. die Datenflusssteuerung
+    \end{itemize}
+    \item MAC Sublayer:
+    \begin{itemize}
+        \item Das \textbf{Kanalzugriffsprotokoll} beschreibt, nach welchen Regeln auf ein Übertragungsmedium zugegriffen werden darf, d. h. ein Rahmen auf der Verbindungsleitung übertragen werden darf
+        \item Bei \underline{Punkt-zu-Punkt}-Verbindungen ist das Leitungszugriffsprotokoll einfach.
+        \item Der Sender kann einen Rahmen senden, wann immer die Verbindungsleitung frei ist (bei vollduplex immer)
+        \item Bei \underline{Multi-Access-Netzen} teilen sich mehrere Teilnehmer eine Verbindungsleitung, z.B. nach dem Bus-Prinzip.
+        \item Hier übernimmt der MAC Layer die Koordination der Leitungsnutzung
+        \item Der MAC-Layer liefert eine eindeutige Kennung für jedes Netzwerkgerät bzw. jede Netzwerk-Karte → \textcolor{blue}{MAC} Adresse
+    \end{itemize}
 \end{itemize}
 
 \minisec{Welche Übertragungsmedien (auf Schicht 1 in ISO/OSI) werden heute typischerweise eingesetzt?}
@@ -83,7 +99,7 @@
 \begin{itemize}
     \item Monomode-Faser
     \begin{itemize}
-        \item Kerndurchmesser: 8 - 10 $\mu m$
+        \item Kerndurchmesser: 8--10 $\mu m$
         \item Alle Strahlen können nur noch einen Weg nehmen
         \item Keine Dispersion (homogene Signalverzögerung)
         \item 50 $\frac{GBit}{s}$ über 100 km
@@ -119,7 +135,9 @@
 
 \minisec{Bei welchen Netztopologien gibt es ausschließlich Punkt-zu-Punkt-Verbindungen zwischen den Teilnehmern?}
 \begin{itemize}
-    \item \todo A
+    \item Stern
+    \item Ring
+    \item Baum (mit Stern Verbindungen)
 \end{itemize}
 
 \minisec{Vergleichen Sie Ring-, Bus- und Stern-Topologie bzgl. ihrer Vor- und Nachteile!}
@@ -138,7 +156,8 @@
     \begin{itemize}
         \item + Einfach, preiswert, einfacher Anschluss neuer Knoten
         \item + Passive Ankopplung der Stationen, der Ausfall eines Knotens ist kein Problem für die anderen Knoten
-        \item – Nur eine Station zu einem Zeitpunkt kann senden; alle anderen Stationen können nur empfangen
+        \item – Nur eine Station zu einem Zeitpunkt kann senden;
+        alle anderen Stationen können nur empfangen
         \item – Begrenzung der Zahl anschließbarer Stationen
         \item – Passive Ankopplung der Stationen, daher begrenzte Ausdehnung des Busses (aber: Repeater zur Kopplung mehrerer Busse)
     \end{itemize}
@@ -172,7 +191,7 @@
         \item Signalauffrischung wie beim Repeater
         \item An einen Anschluss kann ein einzelner Rechner oder ein ganzer Bus angeschlossen werden
         \item Multi-Access-Netz: der Hub gibt ein empfangenes Signal auf allen Anschlüssen wieder aus, praktisch wie ein "Bus" mit mehreren Anschlüssen:
-        \item \textcolor{blue}{Gemeinsamer Übertragungskanal}, d.h. Stationen können nicht gleichzeitig senden und empfangen, nur eine Station auf einmal kann senden
+        \item \textcolor{blue}{Gemeinsamer Übertragungskanal}, d. h. Stationen können nicht gleichzeitig senden und empfangen, nur eine Station auf einmal kann senden
         \item Geringe Sicherheit, da alle Stationen mithören können
     \end{itemize}
     \item Switch - Wie Hub, aber:
@@ -190,10 +209,16 @@
 
 \minisec{Was ist ein 'Layer-3 Switch'?}
 \begin{itemize}
-    \item \todo A
+    \item Ein Layer-3-Switch ist eine Kombination aus Router und Switch.
+    \item Er beherrscht nicht nur Switching, sondern auch Routing.
+    \item Da Router und Switche sehr ähnlich funktionieren – sie empfangen, speichern und leiten Datenpakete weiter – ist es nur logisch beide Geräte miteinander zu kombinieren, um daraus ein Multifunktionsgerät zu machen.
 \end{itemize}
 
 \minisec{Warum gibt es in der Schicht 2 neben dem Header auch einen Trailer? Welche Felder enthält der Ethernet-Header?}
 \begin{itemize}
-    \item \todo A
+    \item Der Trailer enthält fehlerprüfende Maßnahmen, wie beispielsweise eine Prüfsumme.
+    \item Felder vom Header:
+    \begin{itemize}
+        \item \todo A
+    \end{itemize}
 \end{itemize}

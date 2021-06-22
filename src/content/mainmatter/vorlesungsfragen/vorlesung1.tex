@@ -75,15 +75,21 @@
 
 \minisec{Ordnen Sie die Begriffe Paketvermittlung und Leitungsvermittlung zu!}
 \begin{itemize}
-    \item \textcolor{blue}{Leitunsgvermittlung (circuit switching} stellt zwischen zwei oder mehr Teilnehmern einen Übertragungskanal über mehrere Vermittlungsstellen für die Dauer der Übertragung her.
+    \item Die \textcolor{blue}{Leitunsgvermittlung (circuit switching} stellt zwischen zwei oder mehr Teilnehmern einen Übertragungskanal über mehrere Vermittlungsstellen für die Dauer der Übertragung her.
     Die Leitungsvermittlung eignet sich in der Regel für zeitkritische Anwendungen bzw. der Übertragung von Daten in Echtzeit.
-    \item Bei der  \textcolor{blue}{Paketvermittlung (store and forward} werden die Daten oder Informationen in Pakete aufgeteilt. Der Dienst bzw. die Anwendung übergibt die einzelnen Pakete an das Kommunikationssystem und versieht sie mit der Zieladresse und weiteren Vermittlungsinformationen. Das Kommunikationssystem vermittelt die Datenpakete vom Sender zum Empfänger. Die Pakete können dabei unterschiedliche Wege zu ihrem Ziel nehmen. Beim Empfänger werden die Datenpakete dann wieder zusammengesetzt.
+    \item Bei der  \textcolor{blue}{Paketvermittlung (store and forward} werden die Daten oder Informationen in Pakete aufgeteilt.
+    Der Dienst bzw. die Anwendung übergibt die einzelnen Pakete an das Kommunikationssystem und versieht sie mit der Zieladresse und weiteren Vermittlungsinformationen.
+    Das Kommunikationssystem vermittelt die Datenpakete vom Sender zum Empfänger.
+    Die Pakete können dabei unterschiedliche Wege zu ihrem Ziel nehmen.
+    Beim Empfänger werden die Datenpakete dann wieder zusammengesetzt.
     Die Paketvermittlung eignet sich für zeitunkritische Übertragungen.
 \end{itemize}
 
 \minisec{Was versteht man unter dem Store-and-Forward-Verfahren, und wo wird es eingesetzt?}
 \begin{itemize}
-    \item Im Netze findet ein Store-and-Forward statt. An der Grenze zwischen zwei Netzen sorgen Router für die Weiterleitung der Daten. Nach dem Empfang findet die Entscheidung über den nächsten Router konzeptionell anhand der Zieladresse statt.
+    \item Im Netze findet ein Store-and-Forward statt.
+    An der Grenze zwischen zwei Netzen sorgen Router für die Weiterleitung der Daten.
+    Nach dem Empfang findet die Entscheidung über den nächsten Router konzeptionell anhand der Zieladresse statt.
     \item Wird in der Interent-Schicht eingesetzt (entspricht ISO/OSI 3) bei statischen Netzen
 \end{itemize}
 
@@ -91,7 +97,7 @@
 \begin{itemize}
     \item \textcolor{blue}{Durchmesser (Diameter)}
     \begin{itemize}
-        \item Maximaler Abstand zweier Knoten, d.h. die Anzahl von Kanten
+        \item Maximaler Abstand zweier Knoten, d. h. die Anzahl von Kanten
         \item → Ziel: Möglichst klein (Zeitbedarf für Übertragung)
     \end{itemize}
     \item \textcolor{blue}{Bisektionsbreite (Connectivity)}
@@ -101,14 +107,15 @@
     \end{itemize}
     \item \textcolor{blue}{Knotengrad}
     \begin{itemize}
-        \item Anzahl von Verbindungen eines Knotens zu seinen Nachbarn. Ist die Anzahl nicht konstant, so wird der das Maximum aller Knoten genommen
+        \item Anzahl von Verbindungen eines Knotens zu seinen Nachbarn.
+        Ist die Anzahl nicht konstant, so wird der das Maximum aller Knoten genommen
         \item → Ziel: Möglichst klein, da die Kosten so mit diesem Grad steigen
     \end{itemize}
 \end{itemize}
 
 \minisec{ Welche räumliche Ausdehnung besitzen typischerweise LANs?}
 \begin{itemize}
-    \item 10m - wenige km
+    \item 10 m – wenige km
 \end{itemize}
 
 \minisec{Was versteht man unter einem Protokoll im Kontext der Datenkommunikation?}
@@ -116,9 +123,9 @@
     \item \textcolor{blue}{Ein Protokoll ist die Gesamtheit aller Vereinbarungen zwischen Computeranwendungen zum Zweck einer gemeinsamen Kommunikation}
 \end{itemize}
 
-\minisec{Nennen Sie 3-4 Problemdomänen, die für eine erfolgreiche Datenkommunikation zu lösen sind!}
+\minisec{Nennen Sie 3--4 Problemdomänen, die für eine erfolgreiche Datenkommunikation zu lösen sind!}
 \begin{itemize}
-    \item \todo 1 3-4 Problemdomänen nennen
+    \item \todo 1 3–4 Problemdomänen nennen
 \end{itemize}
 
 \minisec{Welche Vorteile (und ggf. auch Nachteile) haben Schichten-Architekturen?}
@@ -127,11 +134,13 @@
     \begin{itemize}
         \item Einzelne Schichten sind leicht veränderbar, bei der Einhaltung der Schnittstellen/Interfaces
         \item Bei Veränderung der Schnittstellen/Interfaces sind nur die beiden angrenzenden Schichten betroffen
-        \item Schichtenarchitekturen kapseln Maschinenabhängigkeiten, daher leicht portierbar. Nur die innerste Schicht muss neu implementiert werden
+        \item Schichtenarchitekturen kapseln Maschinenabhängigkeiten, daher leicht portierbar.
+        Nur die innerste Schicht muss neu implementiert werden
     \end{itemize}
     \item Nachteile:
     \begin{itemize}
-        \item Es ist schwierig Systeme sauber in Schichten zu strukturieren. Wenn äußere Schichte Dienste der inneren Schichten benötigen, wird leicht die einfache Abhängigkeit von der nächstunteren Schicht zerstört
+        \item Es ist schwierig Systeme sauber in Schichten zu strukturieren.
+        Wenn äußere Schichte Dienste der inneren Schichten benötigen, wird leicht die einfache Abhängigkeit von der nächstunteren Schicht zerstört
         \item Es kann Performanz-Probleme geben, weil mit dem Zugriff auf die Dienste eine Schicht immer eine gewisser Overhead verbunden ist
     \end{itemize}
 \end{itemize}
@@ -156,8 +165,11 @@
     \end{itemize}
     \item \textcolor{blue}{Schicht 5: Sitzungsschicht (Session Layer)}
     \begin{itemize}
-        \item Dialogkontrolle, d.h. es kann festgelegt werden, welcher Kommunikationspartner wann übertragen darf (wer redet, wer hört zu?). Da wir bei ISO/OSI eigentlich eine Steuerung über einen Header benötigen könnte hierzu ein Token verwendet werden. Bei bestimmten Operationen darf dann nur der Kommunikationspartner, der im Besitz des Tokens ist, diese Operation durchführen
-        \item Wichtiger Ansatz wäre auch die Bereitstellung von Wiederaufsetzpunkten. Wurde beispielsweise eine 2-stündige Dateiübertragung mittendrin durch einen Ausfall unterbrochen, so braucht nicht die gesamt Übertragung wiederholt werden, sondern man geht nur bis zum letzten Aufsetzpunkt zurück
+        \item Dialogkontrolle, d.h. es kann festgelegt werden, welcher Kommunikationspartner wann übertragen darf (wer redet, wer hört zu?).
+        Da wir bei ISO/OSI eigentlich eine Steuerung über einen Header benötigen könnte hierzu ein Token verwendet werden.
+        Bei bestimmten Operationen darf dann nur der Kommunikationspartner, der im Besitz des Tokens ist, diese Operation durchführen
+        \item Wichtiger Ansatz wäre auch die Bereitstellung von Wiederaufsetzpunkten.
+        Wurde beispielsweise eine 2-stündige Dateiübertragung mittendrin durch einen Ausfall unterbrochen, so braucht nicht die gesamt Übertragung wiederholt werden, sondern man geht nur bis zum letzten Aufsetzpunkt zurück
     \end{itemize}
     \item \textcolor{blue}{Schicht 4: Transportschicht (Transport Layer)}
     \begin{itemize}
@@ -188,8 +200,9 @@
         \begin{itemize}
             \item Liefert der Vermittlungsschicht eine fehlerfreie Übertragung der Daten zwischen zwei Rechnern (z.B. innerhalb eines lokalen Netzes)
             \item Dazu werden die ankommenden Daten in sog. Rahmen unterteilt, die einzeln übertragen werden
-            \item Der Empfänger überprüft, ob die Übertragung korrekt war (z.B. mittels einer Prüfsumme). Im Fehlerfall wird der entsprechende Rahmen neu angefordert
-            \item Weiterhin wird versucht, eventuell auftretende Staus durch Flusskontrolle zu vermeiden, z.B. wenn der Empfänger überlastet ist.
+            \item Der Empfänger überprüft, ob die Übertragung korrekt war (z.B. mittels einer Prüfsumme).
+            Im Fehlerfall wird der entsprechende Rahmen neu angefordert
+            \item Weiterhin wird versucht, eventuell auftretende Staus durch Flusskontrolle zu vermeiden, z. B. wenn der Empfänger überlastet ist.
         \end{itemize}
         \item Medium Access Control:
         \begin{itemize}
@@ -207,7 +220,7 @@
         \begin{itemize}
             \item Stecker (Pinbelegungen),
             \item Übertragungsrichtung (uni-/bidirektional) ,
-            \item ...
+            \item \ldots
         \end{itemize}
     \end{itemize}
 \end{itemize}
@@ -219,25 +232,23 @@
 
 \minisec{Welche Unterschiede existieren zwischen dem ISO/OSI-Modell und dem Internet-Referenzmodell?}
 \bigbreak
-\begin{tabularx}{\textwidth}{|c|X|X|}
+\begin{tabularx}{\textwidth}{|X|X|X|}
     \hline
-    & ISO/OSI-Modell                                                                                         & Internet-Referenzmodell                                                                  \\
+    & ISO/OSI-Modell & Internet-Referenzmodell \tabularnewline
     \hline
-    Alias           & Open Systems Interconnection                                                                           & Transmission Controll Protocol (TCP)                                                     \\
+    Alias & Open Systems Interconnection & Transmission Controll Protocol (TCP) \tabularnewline
     \hline
-    \# Schichten    & 7                                                                                                      & 4                                                                                        \\
+    \# Schichten & 7 & 4 \tabularnewline
     \hline
-    Zuverlässigkeit &                                                                                                        & zuverlässiger als ISO/OSI                                                                \\
+    Zuverlässigkeit & & zuverlässiger als ISO/OSI \tabularnewline
     \hline
-    Grenzen         & streng                                                                                                 & nicht sehr streng                                                                        \\
+    Grenzen & streng & nicht sehr streng \tabularnewline
     \hline
-    Ansatz          & vertikal                                                                                               & horizontal                                                                               \\
+    Ansatz & vertikal & horizontal – & verwendet verschiedene Session- und Präsentationsschichten & verwendet in der Anwendungsschicht sowohl die Session- als auch die Präsentationsschicht \tabularnewline
     \hline
-    -               & verwendet verschiedene Session- und Präsentationsschichten                                             & verwendet in der Anwendungsschicht sowohl die Session- als auch die Präsentationsschicht \\
+    Kommunikation & Unterstützt auf der Netzwerkebene sowohl verbindungslose als auch verbindungsorientierte Kommunikation & bietet Unterstützung für die verbindungslose Kommunikation innerhalb der Netzwerkschicht \tabularnewline
     \hline
-    Kommunikation   & Unterstützt auf der Netzwerkebene sowohl verbindungslose als auch verbindungsorientierte Kommunikation & bietet Unterstützung für die verbindungslose Kommunikation innerhalb der Netzwerkschicht                                        \\
-    \hline
-    Abhängigkeit    & protokollunabhängig                                                                                    & protokollabhängig                                                                        \\
+    Abhängigkeit & protokollunabhängig & protokollabhängig \tabularnewline
     \hline
 \end{tabularx}
 
@@ -246,19 +257,19 @@ Beide Protokolle gehören zur Schicht 4, der Transport-Schicht.
 \bigbreak
 \begin{tabularx}{\textwidth}{|X|X|X|}
     \hline
-    & TCP                                   & UDP                                    \\
+    & TCP & UDP \tabularnewline
     \hline
-    Zuverlässigkeit                & hoch                                  & niedriger                              \\
+    Zuverlässigkeit & hoch & niedriger \tabularnewline
     \hline
-    Geschwindigkeit                & Niedriger                             & hoch                                   \\
+    Geschwindigkeit & Niedriger & hoch \tabularnewline
     \hline
-    Transfermethode                & Pakete werden nacheinander zugestellt & Pakete werden im Datenstrom zugestellt \\
+    Transfermethode & Pakete werden nacheinander zugestellt & Pakete werden im Datenstrom zugestellt \tabularnewline
     \hline
-    Fehlererkennung und - behebung & ja                                    & nein                                   \\
+    Fehlererkennung und – behebung & ja & nein \tabularnewline
     \hline
-    Congestion control             & ja                                    & nein                                   \\
+    Congestion control & ja & nein \tabularnewline
     \hline
-    Empfangsbestätigung            & ja                                    & nur die Prüfsumme                      \\
+    Empfangsbestätigung & ja & nur die Prüfsumme \tabularnewline
     \hline
 \end{tabularx}
 

@@ -16,7 +16,20 @@ Broadcast-Medium mit Maximalrate R bps
 
 \minisec{Nennen Sie 3 grundsätzliche Strategien, wie der mehrfache Zugriff auf ein gemeinsames Medium gelöst werden kann!}
 \begin{itemize}
-    \item \todo A
+    \item \textcolor{blue}{Kanalaufteilungsprotokolle (Multiplexing)}
+    \begin{itemize}
+        \item Aufteilung des Übertragungskanals in kleine Übertragungseinheiten (Zeitfenster, Frequenzen, Kodierung)
+        \item Exklusive Nutzung der Übertragungseinheiten für einzelne Knoten
+    \end{itemize}
+    \item \textcolor{blue}{Zufallszugriffsprotokolle}#
+    \begin{itemize}
+        \item Keine Unterteilung des Kanals, jeder überträgt mit der gesamten Leitungskapazität.
+        Allerdings sind \underline{Kollisionen} von Nachrichten möglich und müssen korrekt behandelt werden
+    \end{itemize}
+    \item \textcolor{blue}{Rotationsprotokolle}
+    \begin{itemize}
+        \item Der Zeitpunkt, wann ein Knoten senden kann wird durch eine spezielle Koordinierung nach einem flexiblen Rotationsprinzip im Übertragungsmedium ausgetauscht.
+    \end{itemize}
 \end{itemize}
 
 \minisec{Erklären Sie kurz die Funktionsweise von TDMA, FDMA und CDMA!}
