@@ -1,0 +1,148 @@
+\addsec{Vorlesung 3 - Internet, IP Adressen und CIDR}
+
+\minisec{Was ist ein sog. Autonomes System (AS) im Internet?}
+\begin{itemize}
+    \item In IP-Netzen sind autonome Systeme (AS) ein Verbund von Routern und Netzwerken, die einer einzigen administrativen Instanz unterstehen, einer Organisation oder einem Unternehmen. Das bedeutet, dass sie alle zu einer Organisation oder zu einem Unternehmen gehören.
+\end{itemize}
+
+\minisec{Wodurch sind Tier 1-3 ISPs charakterisiert?}
+\begin{itemize}
+    \item Tier 1 Internet Service Provider (ISPs) (bieten die Basis des Internets)
+    \begin{itemize}
+        \item Treten gleichberechtigt auf
+        \item Anbindungen an bestimmten Orten
+    \end{itemize}
+    \item Tier 2 ISPs: kleinerer (oft nur regional tätiger) ISP
+    \begin{itemize}
+        \item Anbindung an einen oder mehrerer Tier-1 ISPs
+        \item Ggf. Anbindung an weitere Tier-2 ISPs
+    \end{itemize}
+    \item Tier 3 ISPs und lokale ISPs
+    \begin{itemize}
+        \item Binden die Kunden an (“access network”, z.B. über DSL)
+        \item Dienst nahe den Endsystemen
+    \end{itemize}
+\end{itemize}
+
+\minisec{Beschreiben Sie mit eigenen Worten, was ein Router nach dem Empfang eines Paketes mit der IP-Zieladresse X zu tun hat! Welche Informationen werden dabei benötigt?}
+\begin{itemize}
+    \item Informationen zu extrahieren:
+    \begin{itemize}
+        \item In welches \textcolor{green}{Netz} muss das Paket ausgeliefert werden?
+        \item Falls Router das Zielsystem direkt erreichen kann (also eine direkte Verbindung zum Zielnetz besitzt): An welchen \textcolor{green}{Rechner} muss das Paket ausgeliefert werden?
+    \end{itemize}
+    \item Die Adresse muss also Informationen über das Ziel-\textbf{Netz} und den Ziel-\textbf{Rechner} enthalten! (vgl.: Vorwahl/Durchwahl beim Telefonieren)
+\end{itemize}
+
+\minisec{Wie kann im (alten) klassenbasierten System von IP-Adressen erkannt werden, um was für eine Klasse es sich im konkreten Fall handelt?}
+\begin{itemize}
+    \item Über die ersten Bits (Class A: 0, Class B: 10, Class C: 110, Class D: 1110, Class E: 1111)
+\end{itemize}
+
+\minisec{Wie viele Knoten (Hosts) können maximal an ein Class-B Netz angeschlossen werden?}
+IP-Adressklassen:
+\begin{enumerate}
+    \item Class A für Netze mit bis zu 16 Mio. Knoten (0-127)
+    \item Class B für Netze mit bis zu 65.536 Knoten (128-191)
+    \item Class C für Netze mit bis zu 256 Knoten (192-223)
+    \item Class D für Gruppenkommunikation (Multicast) (224)
+    \item Class E, noch reserviert für zukünftige Anwendungen
+\end{enumerate}
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        Class & Start     & Ende            & Anzahl Netze & Rechner / Netz \\
+        \hline
+        A     & 1.0.0.0   & 127.255.255.255 & 127          & 16.777.214     \\
+        \hline
+        B     & 128.0.0.0 & 191.255.255.255 & 16384        & 65534          \\
+        \hline
+        C     & 192.0.0.0 & 223.255.255.255 & 2.097.152    & 254            \\
+        \hline
+        D     & 224.0.0.0 & 239.255.255.255 & Multicast    &                \\
+        \hline
+        E     & 240.0.0.0 & 255.255.255.254 & Reserved     &                \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\minisec{Welche speziellen Werte existieren für den Host-Anteil in einer IP-Adresse, und was bedeuten sie?}
+\begin{itemize}
+    \item Die 0 darf nicht vergeben werden, da der Rechner sonst die selbe IP-Adresse wie die Netzwerkkennung hätte.
+    \item Die 255 darf nicht vergeben werden, da dies die sogenannte Broadcast Adresse darstellt.
+\end{itemize}
+
+\minisec{Was sind sog. private IP Adressen und Netzwerke?}
+\begin{itemize}
+    \item Private IP-Adressen (abgekürzt Private IP) sind IP-Adressen, die von der IANA nicht im Internet vergeben sind.
+    Sie wurden für die private Nutzung aus dem öffentlichen Adressraum ausgespart, damit sie ohne administrativen Mehraufwand (Registrierung der IP-Adressen) in lokalen Netzwerken genutzt werden können.
+\end{itemize}
+
+\minisec{Was ist eine Subnetzmaske (häufig auch einfach nur Netzmaske genannt) und wie ist sie aufgebaut?}
+\begin{itemize}
+    \item Subnetzmasken kennzeichnen den Bereich der IP-Adresse, der das Netzwerk und das Subnetzwerk beschreibt.
+    Dieser Bereich wird dabei durch Einsen („1“) in der binären Form der Subnetzmaske festgestellt.
+    \begin{center}
+        \begin{tabular}{c|c c c c}
+            Beispiel   & 140. & 201. & 10.  & 100 \\
+            & 255. & 255. & 255. & 0   \\
+            Netzwerk:  & 140. & 201. &      &     \\
+            Subnetz:   &      &      & 10.  &     \\
+            Endsystem: &      &      &      & 100 \\
+        \end{tabular}
+    \end{center}
+\end{itemize}
+
+\minisec{Wie kann man aus einer Ziel-IP und einer Netzmaske die Adresse des Ziel-Netzes berechnen?}
+\begin{itemize}
+    \item Indem man beide Adressen mit AND verknüpft
+\end{itemize}
+
+\minisec{Welche Vorteile hat CIDR gegenüber dem alten Ansatz der klassenbasierten IP-Adressen?}
+\begin{itemize}
+    \item Trennung von starrer Klasseneinteilung durch Ersetzen der festen Klassen durch Netzwerk-Präfixe variabler Länge
+    \item Die Längenangabe sagt aus, wie viele Bit als Netzteil der Adresse verwendet werden sollen (Länge der 1-Folge)
+    \item Router merken sich in ihrer Routing-Tabelle zusätzlich zu den IP-Adressen die Präfixlänge, z.B. 194.142.0.x/17 = betrachte die ersten 17 Bit als Netzadresse
+    \item Sehr flexible Gestaltung von Routing-Tabellen möglich
+\end{itemize}
+
+\minisec{Was muss ein Router bei Verwendung von CIDR für jeden Eintrag in der Routing-Tabelle speichern?}
+\begin{itemize}
+    \item Router merken sich in ihrer Routing-Tabelle zusätzlich zu den IP-Adressen die Präfixlänge, z.B. 194.142.0.x/17 = betrachte die ersten 17 Bit als Netzadresse
+\end{itemize}
+
+\minisec{Erklären Sie das Logest-Prefix-Match Verfahren!}
+\begin{itemize}
+    \item Suche nach dem Routing-Eintrag mit der größten Überdeckung der Zieladresse
+\end{itemize}
+\begin{center}
+    \begin{tabular}{c l c}
+        Ziel      & 11.1.2.5    & = 00001011.0000001.00000010.00000101                     \\
+        \hline
+        Route \#1 & 11.1.2.0/24 & = \textcolor{green}{00001011.0000001.00000010}.00000000  \\
+        Route \#2 & 11.1.0.0/16 & = \textcolor{orange}{00001011.0000001}.00000000.00000000 \\
+        Route \#3 & 11.0.0.0/8  & = \textcolor{orange}{00001011}.0000000.00000000.00000000 \\
+    \end{tabular}
+\end{center}
+Es wird der Weg ermittelt, welcher am genausten spezifiziert wird (most specific)
+
+\minisec{Unter welchen Voraussetzungen können bei CIDR Einträge in einer Routing-Tabelle zusammengefasst werden?}
+\begin{itemize}
+    \item Der Longest Prefix Match Algorithmus erlaubt das Zusammenfassen von Routen
+    \begin{itemize}
+        \item Es reicht, wenn die genaue Adresse erst nahe am Ziel bekannt ist
+        \item Signifikante Beitrag zur Reduktion der Größe der Routing-Tabellen im Internet
+    \end{itemize}
+    \item \textbf{Vorsicht:} Durch das Zusammenfassen von Routing-Einträgen dürfen keine fehlerhaften Regeln entstehen
+    \begin{enumerate}
+        \item Ein Zusammenfassen in nur möglich, wenn gleiche Ziele (Next Hop) verwendet werden
+        \item Die relaxierte Interpretation der Netzwerkadresse kann ggf. andere, nicht gewollte Einträge umfassen. Hier hilft aber ggf. die Longest Match Regel. Hierzu muss aber der Präfix der überschriebenen Regel länger sein.
+        \item 0.0.0.0/0 ist ein Default-Route
+    \end{enumerate}
+\end{itemize}
+
+\minisec{Wozu dient der default-Route Eintrag in einer Routingtabelle?}
+\begin{itemize}
+    \item Die Default-Route wird gewählt, wenn keine Route bevorzugt wird.
+\end{itemize}
+    

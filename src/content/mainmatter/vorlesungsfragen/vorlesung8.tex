@@ -1,0 +1,170 @@
+\addsec{Vorlesung 8 - UDP und DNS}
+
+\minisec{Warum hat UDP neben TCP eine Daseinsberechtigung? Wann kann dieses Protokoll sinnvoll eingesetzt werden? Nennen Sie Beispiele für den konkreten Einsatz!}
+\begin{itemize}
+    \item UDP stellt eine „direkte“ Schnittstelle zur Nutzung von IP dar: Anwendungen können Nachrichten direkt verschicken, ohne Verbindungsaufbau
+    \item Unzuverlässig, verbindungslos
+    \item einfacher und schneller als TCP
+    \item Optionale Prüfsumme
+    \item Sehr viele Multimedia-Anwendungen verwenden UDP, da dort keine zuverlässige Verbindung benötigt wird
+\end{itemize}
+Einsatzgebiete:
+\begin{itemize}
+    \item \textcolor{blue}{Multimedia:} Die digitale Übertragung von Audio- und Videodaten besitzt spezifische Anforderungen:
+    \begin{itemize}
+        \item Geringe Verlustraten stören nicht
+        \item Isochrones Abspielen → schwierig mit TCP \ldots
+        \item Latenzzeiten müssen insbesondere bei interaktiven Anwendungen gering sein (Telefonie erfordern eine maximale Latenz von 150ms)
+        \item Jitter: Die Variation der Laufzeit sollte ebenso beschränkt sein
+    \end{itemize}
+    \item \textcolor{blue}{RFC:} Remote Procedure Calls
+    \item \textcolor{blue}{NFS:} Network File System
+    \item \textcolor{blue}{RTP:} Real-Time Transport Protocol
+    \item \textcolor{blue}{DNS:} Domain Name System
+\end{itemize}
+
+\minisec{Welche Felder enthält der UDP-Header?}
+\begin{itemize}
+    \item \textbf{Source Port} Identifiziert den sendenden Prozess, also den Prozess, an den gegebenenfalls Rückmeldungen zu senden sind. Die Angabe ist optional; das Feld soll den Wert null haben, wenn die Option nicht genutzt wird.
+    \item \textbf{Destination Port} Identifiziert den Prozess im Zielsystem, an den die Daten abzuliefern sind.
+    \item \textbf{Length} Gibt die Gesamtlänge des UDP-Datagramms in Bytes an;
+    die Mindestlänge beträgt somit 8 (= Header-Länge)
+    \item \textbf{Checksum} Die Angabe ist optional (0 bedeutet: keine Angabe).
+    Für die Berechnung der Längsparität wird dem UDP-Datagramm ein (nicht mitübertragener) Pseudo-Header von 12 Bytes Länge vorangestellt, der im wesentlichen IP-Source Address, IP-Destination Address und die im IP-Datagramm angegebene Protokoll-Nr. für UDP (17) enthält. Da der Datenteil eines IP-Datagramms nicht durch die IP Header Checksum geschützt ist, bedeutet ein Verzicht auf die UDP-Checksum, dass der Inhalt des UDP-Datagramms (Header und Daten) nicht durch eine Prüfsumme gesichert ist.
+\end{itemize}
+
+\minisec{Welche Schritte sind notwendig, um ein analoges Signal in ein digitales zu wandeln?}
+\begin{itemize}
+    \item Abtasten
+    \item Halten
+    \item Quantisieren
+    \item Kodieren
+\end{itemize}
+
+\minisec{Was besagt das Nyquist-Theorem?}
+Sampling-Frequenz $\ge 2 \cdot$ maximale Frequenz des Signals
+
+\minisec{Nennen Sie unterschiedliche Kategorien von Multimedia-Anwendungen!}
+\begin{itemize}
+    \item Streaming gespeicherter Audio- und Videodaten
+    \item Streaming von live Audio und Video
+    \item Interaktive Audio und Video Nutzung
+\end{itemize}
+
+\minisec{Warum ist beim Streaming von Live-Daten immer eine Pufferung auf Empfängerseite notwendig?}
+\begin{itemize}
+    \item Wegen der Unterschiede in der Netzwerk- und der Wiedergabe-Latenz
+\end{itemize}
+
+\minisec{Welches Anwendungsprotokoll unterstützt die Versendung von Echtzeitdaten über UDP?}
+\begin{itemize}
+    \item Das \textcolor{blue}{RTP-Protokoll}
+\end{itemize}
+
+\minisec{Wozu dient das Domain Name System (DNS) hauptsächlich?}
+DNS handhabt die Abbildung von Rechnernamen auf Adressen (und weitere Dienste).
+
+\minisec{Wie ist ein lesbarer Domänen-Namen aufgebaut? Welche Beschränkungen existieren?}
+\begin{itemize}
+    \item der Name einer Domäne besteht aus der Folge von Labeln (getrennt durch ''.'') beginnend beim ‚Blatt‘ der Domäne und aufsteigend bis zur Wurzel des Gesamtbaums
+    \item In den Blattknoten sind die IP-Adressen der durch die Labelsequenz gegebenen Namen gespeichert
+    \item Eine Darstellung de.fh-aachen.agnm05.www wäre logischer, aber weniger lesbar
+    \item Daher: Auflösung des Namens von hinten!
+\end{itemize}
+
+\minisec{Was ist eine sog. Top-Level Domäne? Welche Kategorien existieren hier?}
+Ein direktes Blatt des DNS. Kategorien:
+\begin{center}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        Domain & Intended use                & Start Date & Restricted? \\
+        \hline
+        com    & Commercial                  & 1985       & No          \\
+        \hline
+        edu    & Educational institutions    & 1985       & Yes         \\
+        \hline
+        gov    & Government                  & 1985       & Yes         \\
+        \hline
+        int    & International organizations & 1988       & Yes         \\
+        \hline
+        mil    & Military                    & 1985       & Yes         \\
+        \hline
+        net    & Network providers           & 1985       & No          \\
+        \hline
+        org    & Non-profit organizations    & 1985       & No          \\
+        \hline
+        aero   & Air transport               & 2001       & Yes         \\
+        \hline
+        biz    & Business                    & 2001       & No          \\
+        \hline
+        coop   & Cooperatives                & 2001       & Yes         \\
+        \hline
+        info   & Informational               & 2002       & No          \\
+        \hline
+        museum & Museums                     & 2002       & Yes         \\
+        \hline
+        name   & People                      & 2002       & No          \\
+        \hline
+        pro    & Professionals               & 2002       & Yes         \\
+        \hline
+        cat    & Catalan                     & 2005       & Yes         \\
+        \hline
+    \end{tabular}
+
+\end{center}
+
+\minisec{Welche Möglichkeiten hat der Resolver auf einem Rechner, einen Domänen-Namen aufzulösen?}
+\begin{itemize}
+    \item \underline{Rekursive Anfragen} Server schickt Anfrage zum nächsten Server weiter (oder Fehlermeldung). -> Client-Server-Anfragen
+    \item \underline{Iterative Anfragen} Server antwortet dem Fragenden direkt mit IP-Adresse des nächsten Servers. -> Server-Server-Anfragen
+\end{itemize}
+
+\minisec{Woher kennt ein Rechner typischerweise die IPs seines zugehörigen DNS-Servers?}
+\begin{itemize}
+    \item In den Blattknoten sind die IP-Adressen der durch die Labelsequenz gegebenen Namen gespeichert
+\end{itemize}
+
+\minisec{Was ist der Unterschied zwischen einer (Sub-) Domäne und einer Zone?}
+\begin{itemize}
+    \item Zonen sind (außer in den ‚tieferen‘ Bereichen des Baumes) meistens nur für ein Namenselement einer Domänen zuständig (dann müssen vom Name Server weniger Informationen verwaltet werden)
+\end{itemize}
+
+\minisec{Was versteht man unter einem Zonen-Transfer?}
+\begin{itemize}
+    \item Zonentransfer bezeichnet beim Domain Name System (DNS) die Übertragung von Zonen auf einen anderen Server. Dieses Verfahren wird AXFR (Asynchronous Full Transfer Zone oder Asynchronous Xfer Full Range) abgekürzt. Da ein DNS-Ausfall für ein Unternehmen meist gravierende Folgen hat, werden die DNS-Daten – also die Zonendateien – fast ausnahmslos identisch auf mehreren Nameservern gehalten. Bei Änderungen muss sichergestellt sein, dass alle Server den gleichen Datenbestand besitzen. Die Synchronisation zwischen den beteiligten Servern wird durch den Zonentransfer realisiert. Der Zonentransfer beinhaltet nicht nur das bloße Übertragen von Dateien oder Sätzen, sondern auch das Erkennen von Abweichungen in den Datenbeständen der beteiligten Server.
+\end{itemize}
+
+\minisec{Löst ein DNS-Server eine Anfrage rekursiv oder iterativ auf? Warum?}
+\begin{itemize}
+    \item Normalerweise arbeiten Nameserver rekursiv, da einige Resolver mit einer iterativen Antwort nichts anfangen können.
+\end{itemize}
+
+\minisec{Woher kennt ein DNS-Server den 'Startpunkt' seiner Suche?}
+\begin{itemize}
+    \item \todo A
+\end{itemize}
+
+\minisec{Welche Verfahren nutzt ein DNS-Server zur Lastreduktion (bzw. zum Vermeiden von erneuten Anfragen)?}
+\begin{itemize}
+    \item Jeder DNS-Server besitzt auch einen Cache.
+    Dieser hält vor kurzem aufgelöste Anfragen vor. Den Zeitraum liefert der Server, der diese Adresse ursprünglich einmal aufgelöst hat
+\end{itemize}
+
+\minisec{Was ist ein MX-Record?}
+
+Hier wird bestimmt, an welchen (Mail-)Server E-Mails geschickt werden.
+
+In der Regel haben Mail-Server bestimmte Domains, unter denen sie erreichbar sind.
+Jeder Anbieter eines Mail-Systems kommuniziert seine MX-Records klar für seine Nutzer.
+
+Wichtig: Damit jede Mail auch am richtigen Mail-Server ankommt, müssen die MX-Records eindeutig sein!
+
+\minisec{Warum ist das DNS ein kritischer Dienst im Internet, und Ziel von Hacking-Attacken?}
+Da er nur UDP verwendet, ist er häufig Angriffsziel:
+\begin{itemize}
+    \item DNS ID Hacking: Anfragen werden über IDs geschützt, d.h. man der Client erwartet nicht nur die Auflösung, sondern auch noch eine spezielle ID. Wenn diese nicht vom Netz abgegriffen werden kann, so muss man sie erraten
+    \item DNS spoofing: Hier beantwortet ein falscher DNS-Server die Anfrage.
+    Hier muss die ID verwendet werden. Auch wird die falsche IP, also die des eigentlich richtigen Servers angegeben (was von den Providern zu unterbinden ist)
+    \item DNS Cache Poisoning: Hier wird versucht, einen eigentlich korrekten DNS-Server zu „verseuchen“.
+    Idee ist, den Cache falsch zu füllen.
+\end{itemize}

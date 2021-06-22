@@ -1,0 +1,50 @@
+\addsec{Vorlesung 3 - Beispielaufgaben}
+
+\minisec{\textbf{Übungsaufgabe 1:}}
+Gehen Sie von der folgenden (vereinfacht dargestellten) Routing-Tabelle aus:
+
+\begin{center}
+    \begin{tabular}{|c | c|}
+        \hline
+        Zieleintrag      & Zu nehmender Router \\
+        \hline
+        139.179.200.0/21 & R1                  \\
+        139.179.128.0/18 & R2                  \\
+        139.179.112.0/20 & R3                  \\
+        139.179.192.0/20 & R4                  \\
+        139.179.0.0/16   & R5                  \\
+        \hline
+    \end{tabular}
+\end{center}
+
+An welchen Router werden die folgenden Ziel-IP-Adressen verschickt?
+
+\begin{enumerate}[(a)]
+    \item 139.179.60.10
+    \item 139.179.210.40
+    \item 139.179.197.55
+    \item 139.179.205.180
+\end{enumerate}
+
+Begründen Sie Ihre Antwort!
+
+\minisec{\textbf{Übungsaufgabe 2:} Gegeben sei die vereinfacht dargestellte Routing-Tabelle:}
+
+\begin{center}
+    \begin{tabular}{|c | c|}
+        \hline
+        Zielnetz (CIDR) & Router \\
+        \hline
+        128.128.0.0/9   & R1     \\
+        128.160.0.0/11  & R2     \\
+        128.176.0.0/12  & R1     \\
+        128.192.0.0/10  & R1     \\
+        default         & R3     \\
+        \hline
+    \end{tabular}
+\end{center}
+
+Können Sie hier Routing-Einträge zusammenfassen?
+Falls ja, welche, und wie sehen die zusammengefassten Einträge aus?
+Zusatzfrage:
+Kann weiter vereinfacht werden, wenn die Präfixe in der Tabelle geändert werden dürfen?

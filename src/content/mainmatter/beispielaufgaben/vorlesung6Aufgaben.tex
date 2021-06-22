@@ -1,0 +1,29 @@
+\addsec{Vorlesung 6 - Beispielaufgaben}
+
+\minisec{Beispiel: FastEthernet im LAN:}
+
+\begin{equation}
+    R = 100 \frac{Mbit}{s},\ L = 1460\ Byte,\ \frac{L}{R}=116.8\mu s,\ RTT = 3ms
+    \label{eq:equation}
+\end{equation}
+\begin{equation}
+    \rho = \frac {\frac{L}{R}} {\frac{L}{R} + RTT} = 0.03747 = 3.74\%
+    \label{eq:equation2}
+\end{equation}
+
+\minisec{Beispiel: Kommunikation mit Kalifornien:}
+
+\begin{equation}
+    R = 100 \frac{Mbit}{s},\ L = 1460\ Byte,\ \frac{L}{R}=116.8\mu s,\ RTT = 200ms
+    \label{eq:equation3}
+\end{equation}
+\begin{equation}
+    \rho = \frac {\frac{L}{R}} {\frac{L}{R} + RTT} = 0.05837\%
+    \label{eq:equation4}
+\end{equation}
+
+\minisec{Übungsaufgabe 1:}
+Wir streben eine Kommunikation mit einer Mondstation an und möchten eine TCP-Anwendung unterstützen, die eine Datenrate von 100Mbit/s erzielen soll. Die Round-Trip-Zeit sei 2,4 Sekunden.
+
+Wir groß (in Bytes) sollte das Übertragungsfenster (Sliding Window) mindestens sein, um diese Rate überhaupt erzielen zu können?
+Welche Rate könnte maximal erreicht werden, wenn die Größe des Übertragungsfensters 64KByte wäre (65536 Byte)?

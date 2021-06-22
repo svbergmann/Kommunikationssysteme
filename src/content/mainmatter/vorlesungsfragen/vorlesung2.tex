@@ -1,0 +1,216 @@
+\addsec{Vorlesung 2 - Sockets und Darstellungsschicht}
+
+\minisec{ Wer kommuniziert beim Internet-Referenzmodell letztendlich miteinander?}
+\begin{itemize}
+    \item Die Schichten untereinander und die Schicht 1 mit der Schicht 1
+\end{itemize}
+
+\minisec{Welche 3 Arten von 'Adressen' werden im Internet-Referenzmodell für die Kommunikation benötigt?}
+\begin{itemize}
+    \item Portnummern
+    \item IP-Adressen
+    \item MAC-Adressen
+\end{itemize}
+
+\minisec{Was abstrahiert aus Programmiersicht ein sog. 'Socket'?}
+\begin{itemize}
+    \item Einen TCP Clienten
+\end{itemize}
+
+\minisec{Warum haben Client- und Serversockets eine unterschiedliche Anzahl von Konstruktorparametern?}
+\begin{itemize}
+    \item Der Clientsocket muss den Zielrechner und den eigenen Port mitgeben, um Daten senden und empfangen zu können, während der Serversocket nur den Port mitgeben muss umd Verbindungen zu akzeptieren.
+\end{itemize}
+
+\minisec{Was bewirkt auf Serverseite der Aufruf von accept()?}
+\begin{itemize}
+    \item Damit wartet der Server auf eingehende Verbindungswünsche.
+\end{itemize}
+
+\minisec{Was ist bei der Programmierung von Servern zu beachten, wenn eine hohe Zahl an Anfragen erwartet wird?}
+\begin{itemize}
+    \item Jeden Clienten in einem eigenen Thread bearbeiten.
+\end{itemize}
+
+\minisec{Wodurch unterscheiden sich Little- und Big-Endian-CPUs, und warum kann das zu Problemen bei der Datenkommunikation führen?}
+\begin{itemize}
+    \item Bei \textbf{Big-Endian} wird das 'große Ende' (also der signifikanteste Wert in der Sequenz) zuerst abgelegt (also in niedrigsten Speicheradresse)
+    \item Bei \textbf{Little-Endian} wir der „kleinste Ende“ (also der am wenigsten signifikante Wert) zuerst gespeichert
+\end{itemize}
+
+\minisec{Definieren Sie die Begriffe ``Abstrakte Syntax`` und ``Transfersyntax``}
+\begin{itemize}
+    \item Abstrakte Syntax
+    \begin{itemize}
+        \item Übertragung der grundsätzlichen Struktur der Daten \[Serialisierung \:- Deserialisierung\]
+    \end{itemize}
+    \item Transfersyntax
+    \begin{itemize}
+        \item Übertragung des konkreten Datenstroms mit einer vereinbarten Kodierung \[Marshalling \:- Unmarshalling\]
+    \end{itemize}
+\end{itemize}
+
+\minisec{Was versteht man unter (De-) Serialisierung?}
+\begin{itemize}
+    \item Deserialisierung ist die Wiederherstellung eines Objektes ohne Vorwissen über die Typen der Objekte
+\end{itemize}
+
+\minisec{Nennen Sie 3 Technologien oder APIs, die das Übertragen von abstrakten/strukturierten Daten über ein Rechnernetz ermöglichen!}
+\begin{itemize}
+    \item ISO:
+    \begin{itemize}
+        \item ASN.1 (Abstract Syntax Notation)
+    \end{itemize}
+    \item Sun ONC (Open Network Computing)-RPC:
+    \begin{itemize}
+        \item XDR (eXternal Data Representation)
+    \end{itemize}
+    \item OSF (Open System Foundation)-RPC:
+    \begin{itemize}
+        \item IDL (Interface Definition Language)
+    \end{itemize}
+    \item Corba:
+    \begin{itemize}
+        \item IDL und CDR (Common Data Representation):
+        \item CDR bildet IDL-Datentypen in Bytefolgen ab.
+    \end{itemize}
+    \item W3C:
+    \begin{itemize}
+        \item XML/SOAP
+        \item Darstellung aller Datentypen als (Maschinen-)lesbarer Text. Zu klären: Zeichenkodierung
+    \end{itemize}
+    \item Java:
+    \begin{itemize}
+        \item Objektserialisierung, d.h. Abflachung eines (oder mehrerer) Objektes zu einem seriellen Format inkl. Informationen über die Klassen. Deserialisierung ist die Wiederherstellung eines Objektes ohne Vorwissen über die Typen der Objekte
+    \end{itemize}
+    \item JavaScript:
+    \begin{itemize}
+        \item JSON (JavaScript Object Notation)
+    \end{itemize}
+\end{itemize}
+
+\minisec{Erklären Sie den Aufbau und die syntaktischen Elemente eines XML-Dokumentes!}
+\begin{itemize}
+    \item XML-Dokumente: Zeichendaten und Auszeichnungen
+    \begin{itemize}
+        \item XML- und Dokumenttyp-Deklarationen
+        \lstset{language=XML}
+        \begin{lstlisting}[label={lst:lstlisting}]
+            <?xml version=``1.0`` encoding=``UTF-8``?>
+        \end{lstlisting}
+        \item Elemente mit möglichem Inhalt \lstset{language=XML}
+        \begin{lstlisting}[label={lst:lstlisting2}]
+            <name>Volker Sander</name>
+        \end{lstlisting}
+        \item Attributen in Elementen
+        \lstset{language=XML}
+        \begin{lstlisting}[label={lst:lstlisting3}]
+            <name attribute=``Wert``>
+        \end{lstlisting}
+        \item Entity-Referenzen (\&lt; statt <)
+        \item Kommentare \linebreak
+        <!– Das ist ein Kommentar -->
+        \item Processing Instructions – werden an die aufrufende Instanz weitergeleitet \linebreak
+        <?name pidata?>
+        \item Jedes Dokument entspricht einer Baumstruktur (DOM – Document Object Model)
+        \item Die Baumknoten werden Elemente genannt
+        \item Es kann nur ein Element an der Wurzel geben
+        \item Syntaxregeln müssen strikt eingehalten werden
+        \begin{itemize}
+            \item Jedes Starttag muss ein Endtag haben
+            \lstset{language=XML}
+            \begin{lstlisting}[label={lst:lstlisting4}]
+                <BOOK>...</BOOK>
+                <BOOK />
+            \end{lstlisting}
+            \item Verschachtelung nur mit vollständigen Tags möglich:
+            \lstset{language=XML, breaklines=true}
+            \begin{lstlisting}[label={lst:lstlisting5}]
+                <BOOK> <LINE> This is OK </LINE> </BOOK>
+            \end{lstlisting}
+            \lstset{language=XML, breaklines=true}
+            \begin{lstlisting}[label={lst:lstlisting6}]
+                <LINE> <BOOK> This is </LINE> definitely NOT </BOOK> OK
+            \end{lstlisting}
+            \item Attributwerte müssen mit ‘ oder “ abgegrenzt werden
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\minisec{Was ist der Unterschied zwischen Wohlgeformtheit und Validität bei einem XML-Dokument?}
+\begin{itemize}
+    \item Wohlgeformtheit:
+    \begin{itemize}
+        \item Dokument entspricht den syntaktischen Regeln
+        \begin{itemize}
+            \item Genau ein Dokument-Element
+            \item Jedes öffnende Tag hat ein schließendes Tag.
+            \item Die Verschachtelung ist balanciert.
+        \end{itemize}
+    \end{itemize}
+    \item Validät:
+    \begin{itemize}
+        \item Dokument ist:
+        \begin{itemize}
+            \item wohlgeformt
+            \item konform zu einer fest vorgegebenen \underline{Dokumentenstruktur}
+            \item Document Type Description (DTD)
+            \item XML Schema Definition (XSD)
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\minisec{Wozu dient ein XML-Schema?}
+\begin{itemize}
+    \item Ein XML Schema enthält in XML notierte Regeln, die erlaubte Elementbezeichner, Reihenfolgen, Inhalte und Attribute mit Wertebereichen aufzählen
+\end{itemize}
+
+\minisec{Nennen Sie 3 Kompositoren (und deren Ergänzungen), die in XML-Schemas verwendet werden können!}
+\begin{itemize}
+    \item
+    \lstset{language=XML, breaklines=true}
+    \begin{lstlisting}[label={lst:lstlisting7}]
+    <xsd:sequence>
+        [Inhalt 1]
+        ...
+        [Inhalt n]
+    </xsd:sequence>
+    \end{lstlisting}
+    \item
+    \lstset{language=XML, breaklines=true}
+    \begin{lstlisting}[label={lst:lstlisting8}]
+    <xsd:all>
+        [Elementdeklarationen]
+    </xsd:all>
+    \end{lstlisting}
+    \item
+    \lstset{language=XML, breaklines=true}
+    \begin{lstlisting}[label={lst:lstlisting9}]
+    <xsd:choice>
+        [Inhalt a]
+        ...
+        [Inhalt x]
+    </xsd:choice>
+    \end{lstlisting}
+\end{itemize}
+
+\minisec{Wozu dient das SOAP-Protokoll, und wie ist es grundlegend aufgebaut?}
+\begin{itemize}
+    \item SOAP (ursprünglich für Simple Object Access Protocol) ist ein Netzwerkprotokoll, mit dessen Hilfe Daten zwischen Systemen ausgetauscht und Remote Procedure Calls durchgeführt werden können.
+    \item SOAP regelt, wie Daten in der Nachricht abzubilden und zu interpretieren sind
+    \item SOAP stellt so eine Konvention für entfernte Prozedur-/Methodenaufrufe dar
+    \item Eine SOAP-Nachricht besteht zunächst auf der obersten Ebene aus einem Envelope
+    \item Der Envelope enthält einen optionalen Header sowie die eigentliche Nachricht im SOAP Body
+\end{itemize}
+
+\minisec{Wie ist eine JSON-Datei grundsätzlich aufgebaut?}
+\begin{itemize}
+    \item Beispiel:
+    \begin{lstlisting}[label={lst:lstlisting10}]
+        {
+            "id" : 564146,
+            "Name" : "Mustermann",
+            "Vorname" : "Max"
+        }
+    \end{lstlisting}
+\end{itemize}
