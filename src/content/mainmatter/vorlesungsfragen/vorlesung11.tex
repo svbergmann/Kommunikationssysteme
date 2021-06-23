@@ -94,10 +94,10 @@ Parteien zu schaffen.
 Basiert auf IEEE 802.3 „CSMA/CD“
 4 Klassen von Ethernet-Varianten:
 \begin{itemize}
-    \item Standard Ethernet -> 10 $\frac{Mb}{s}$
-    \item Fast Ethernet -> 100 $\frac{Mb}{s}$
-    \item Gigabit Ethernet -> 1000 $\frac{Mb}{s}$
-    \item 10Gigabit-Ethernet -> 10000 $\frac{Mb}{s}$
+    \item Standard Ethernet → 10 $\frac{Mb}{s}$
+    \item Fast Ethernet → 100 $\frac{Mb}{s}$
+    \item Gigabit Ethernet → 1000 $\frac{Mb}{s}$
+    \item 10Gigabit-Ethernet → 10000 $\frac{Mb}{s}$
 \end{itemize}
 
 \minisec{Warum wurde bei Gigabit-Ethernet die minimale Rahmenlänge von 64 auf 520 Bytes erhöht?}
@@ -105,8 +105,9 @@ Basiert auf IEEE 802.3 „CSMA/CD“
     \item  \todo A
 \end{itemize}
 
-\minisec{Warum wurde bei Fast-Ethernet die Segmentlänge von 2500m (10MBit Ethernet) auf 200-250m verkleinert?}
-Die minimale Rahmenlänge zur Kollisionserkennung bei Ethernet beträgt 64 Byte. Bei 100 Mb/s wird der Rahmen aber ca. 10 Mal so schnell abgesendet, so dass eine Kollisionserkennung nicht mehr gewährleistet ist.
+\minisec{Warum wurde bei Fast-Ethernet die Segmentlänge von 2500m (10MBit Ethernet) auf 200--250m verkleinert?}
+Die minimale Rahmenlänge zur Kollisionserkennung bei Ethernet beträgt 64 Byte.
+Bei 100 Mb/s wird der Rahmen aber ca. 10 Mal so schnell abgesendet, so dass eine Kollisionserkennung nicht mehr gewährleistet ist.
 
 \minisec{Wie ist die Rahmen-Struktur eines Ethernet-Paketes aufgebaut? Welche Daten (-Felder) werden im Header und Trailer auf Schicht 2 übertragen?}
 Ethernet-Rahmen:
@@ -163,7 +164,7 @@ Felder in Schicht 2:
     \item Addition und Subtraktion führen so zu dem gleichen Ergebnis.
     \item Wir können einfach mit XOR arbeiten!
     \item Digitaltechnik, hier Halbaddierer: Eine Addition ist logisch ein XOR, das Carry ein UND
-    \item Es gibt eine Bitkombination n, so dass gilt: $(D \cdot 2^r) XOR \ R = n G$
+    \item Es gibt eine Bitkombination n, sodass gilt: $(D \cdot 2^r) XOR \ R = n G$
     \item D.h., R soll so gewählt werden, dass G in $D \cdot 2^r$ ohne Rest teilbar ist
     \item $D \cdot 2^r = nG \ XOR \ R$
     \item Damit kann man R berechnen, denn wenn man $D \cdot 2^r$ durch G teilt, ist der Rest des Wertes genau R
