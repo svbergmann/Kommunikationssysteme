@@ -77,37 +77,37 @@ Ein direktes Blatt des DNS. Kategorien:
 \begin{center}
     \begin{tabular}{|c|c|c|c|}
         \hline
-        Domain & Intended use                & Start Date & Restricted? \\
+        Domain & Intended use & Start Date & Restricted? \tabularnewline
         \hline
-        com    & Commercial                  & 1985       & No          \\
+        com & Commercial & 1985 & No \tabularnewline
         \hline
-        edu    & Educational institutions    & 1985       & Yes         \\
+        edu & Educational institutions & 1985 & Yes \tabularnewline
         \hline
-        gov    & Government                  & 1985       & Yes         \\
+        gov & Government & 1985 & Yes \tabularnewline
         \hline
-        int    & International organizations & 1988       & Yes         \\
+        int & International organizations & 1988 & Yes \tabularnewline
         \hline
-        mil    & Military                    & 1985       & Yes         \\
+        mil & Military & 1985 & Yes \tabularnewline
         \hline
-        net    & Network providers           & 1985       & No          \\
+        net & Network providers & 1985 & No \tabularnewline
         \hline
-        org    & Non-profit organizations    & 1985       & No          \\
+        org & Non-profit organizations & 1985 & No \tabularnewline
         \hline
-        aero   & Air transport               & 2001       & Yes         \\
+        aero & Air transport & 2001 & Yes \tabularnewline
         \hline
-        biz    & Business                    & 2001       & No          \\
+        biz & Business & 2001 & No \tabularnewline
         \hline
-        coop   & Cooperatives                & 2001       & Yes         \\
+        coop & Cooperatives & 2001 & Yes \tabularnewline
         \hline
-        info   & Informational               & 2002       & No          \\
+        info & Informational & 2002 & No \tabularnewline
         \hline
-        museum & Museums                     & 2002       & Yes         \\
+        museum & Museums & 2002 & Yes \tabularnewline
         \hline
-        name   & People                      & 2002       & No          \\
+        name & People & 2002 & No \tabularnewline
         \hline
-        pro    & Professionals               & 2002       & Yes         \\
+        pro & Professionals & 2002 & Yes \tabularnewline
         \hline
-        cat    & Catalan                     & 2005       & Yes         \\
+        cat & Catalan & 2005 & Yes \tabularnewline
         \hline
     \end{tabular}
 
@@ -131,7 +131,12 @@ Ein direktes Blatt des DNS. Kategorien:
 
 \minisec{Was versteht man unter einem Zonen-Transfer?}
 \begin{itemize}
-    \item Zonentransfer bezeichnet beim Domain Name System (DNS) die Übertragung von Zonen auf einen anderen Server. Dieses Verfahren wird AXFR (Asynchronous Full Transfer Zone oder Asynchronous Xfer Full Range) abgekürzt. Da ein DNS-Ausfall für ein Unternehmen meist gravierende Folgen hat, werden die DNS-Daten – also die Zonendateien – fast ausnahmslos identisch auf mehreren Nameservern gehalten. Bei Änderungen muss sichergestellt sein, dass alle Server den gleichen Datenbestand besitzen. Die Synchronisation zwischen den beteiligten Servern wird durch den Zonentransfer realisiert. Der Zonentransfer beinhaltet nicht nur das bloße Übertragen von Dateien oder Sätzen, sondern auch das Erkennen von Abweichungen in den Datenbeständen der beteiligten Server.
+    \item Zonentransfer bezeichnet beim Domain Name System (DNS) die Übertragung von Zonen auf einen anderen Server.
+    Dieses Verfahren wird AXFR (Asynchronous Full Transfer Zone oder Asynchronous Xfer Full Range) abgekürzt.
+    Da ein DNS-Ausfall für ein Unternehmen meist gravierende Folgen hat, werden die DNS-Daten – also die Zonendateien – fast ausnahmslos identisch auf mehreren Nameservern gehalten.
+    Bei Änderungen muss sichergestellt sein, dass alle Server den gleichen Datenbestand besitzen.
+    Die Synchronisation zwischen den beteiligten Servern wird durch den Zonentransfer realisiert.
+    Der Zonentransfer beinhaltet nicht nur das bloße Übertragen von Dateien oder Sätzen, sondern auch das Erkennen von Abweichungen in den Datenbeständen der beteiligten Server.
 \end{itemize}
 
 \minisec{Löst ein DNS-Server eine Anfrage rekursiv oder iterativ auf? Warum?}
@@ -147,7 +152,8 @@ Ein direktes Blatt des DNS. Kategorien:
 \minisec{Welche Verfahren nutzt ein DNS-Server zur Lastreduktion (bzw. zum Vermeiden von erneuten Anfragen)?}
 \begin{itemize}
     \item Jeder DNS-Server besitzt auch einen Cache.
-    Dieser hält vor kurzem aufgelöste Anfragen vor. Den Zeitraum liefert der Server, der diese Adresse ursprünglich einmal aufgelöst hat
+    Dieser hält vor kurzem aufgelöste Anfragen vor.
+    Den Zeitraum liefert der Server, der diese Adresse ursprünglich einmal aufgelöst hat
 \end{itemize}
 
 \minisec{Was ist ein MX-Record?}
@@ -162,9 +168,10 @@ Wichtig: Damit jede Mail auch am richtigen Mail-Server ankommt, müssen die MX-R
 \minisec{Warum ist das DNS ein kritischer Dienst im Internet, und Ziel von Hacking-Attacken?}
 Da er nur UDP verwendet, ist er häufig Angriffsziel:
 \begin{itemize}
-    \item DNS ID Hacking: Anfragen werden über IDs geschützt, d.h. man der Client erwartet nicht nur die Auflösung, sondern auch noch eine spezielle ID. Wenn diese nicht vom Netz abgegriffen werden kann, so muss man sie erraten
+    \item DNS ID Hacking: Anfragen werden über IDs geschützt, d. h. man der Client erwartet nicht nur die Auflösung, sondern auch noch eine spezielle ID. Wenn diese nicht vom Netz abgegriffen werden kann, so muss man sie erraten
     \item DNS spoofing: Hier beantwortet ein falscher DNS-Server die Anfrage.
-    Hier muss die ID verwendet werden. Auch wird die falsche IP, also die des eigentlich richtigen Servers angegeben (was von den Providern zu unterbinden ist)
+    Hier muss die ID verwendet werden.
+    Auch wird die falsche IP, also die des eigentlich richtigen Servers angegeben (was von den Providern zu unterbinden ist)
     \item DNS Cache Poisoning: Hier wird versucht, einen eigentlich korrekten DNS-Server zu „verseuchen“.
     Idee ist, den Cache falsch zu füllen.
 \end{itemize}

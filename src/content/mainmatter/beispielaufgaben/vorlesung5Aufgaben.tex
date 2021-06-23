@@ -6,25 +6,23 @@ Für die Strecke von \textbf{A} zum Router gelte \textbf{MTU=2000}, für die Str
 Es soll ein Datenpaket der Länge \textbf{3600} Byte übertragen werden (ohne IP-Header!).
 Skizzieren Sie den Prozess der Fragmentierung, indem sie die folgenden Tabellen ausfüllen:
 
-\begin{flushleft}
-    \fbox{%
-        \begin{minipage}[c]{0.5\textwidth}
-            A → MTU 2000 → R
-            \centering
-            \begin{tabular}{c|c|c|c}
-                \hline
-                ID & MF & Total Length & Offset \\
-                \hline
-            \end{tabular}
-        \end{minipage}}
-\end{flushleft}
-\fbox{%
-    \begin{minipage}[c]{0.5\textwidth}
-        R → MTU 1500 → B
-        \centering
-        \begin{tabular}{c|c|c|c}
-            \hline
-            ID & MF & Total Length & Offset \\
-            \hline
-        \end{tabular}
-    \end{minipage}}
+\medskip
+
+\begin{minipage}{0.45\textwidth}
+    A → MTU 2000 → R
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        ID & MF & Total Length & Offset \\
+        \hline
+    \end{tabular}
+\end{minipage}
+\begin{minipage}{0.45\textwidth}
+    R → MTU 1500 → B
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        ID & MF & Total Length & Offset \\
+        \hline
+    \end{tabular}
+\end{minipage}

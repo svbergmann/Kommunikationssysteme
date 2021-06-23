@@ -159,7 +159,8 @@
         \item Beispielsweise codieren manche Rechner einen String mit ASCII-Zeichen, andere benutzen Unicode, manche benutzen bei Integern das 1-, andere das 2-Komplement. Problematisch ist auch die Byteordnung des Prozessors (Big/Little-Endian)
         \item Formal wird hier das verwendete Format beschrieben werden
         \begin{itemize}
-            \item Anstatt für jede Anwendung eine eigene Übertragungssyntax und -semantik zu definieren, stellt man hier eine allgemeingültige Lösung bereit
+            \item Anstatt für jede Anwendung eine eigene Übertragungssyntax und -semantik zu definieren,
+            stellt man hier eine allgemeingültige Lösung bereit
             \item Die spezifische Daten eines Rechners werden hier eindeutig beschrieben
         \end{itemize}
     \end{itemize}
@@ -277,8 +278,9 @@ Beide Protokolle gehören zur Schicht 4, der Transport-Schicht.
 \begin{itemize}
     \item Idee: die faktische Datenübertragung wird von der Netzwerkkarte des Rechners erledigt
     \begin{itemize}
-        \item Vorteil bei Multi-Access-Netzen: Die Netzwerkkarte kann selber entscheiden, ob die Daten für den eigenen Rechner sind -> Entlastung des Betriebssystems (da kein Interrupt notwendig)
-        \item Starke Entkopplung vom Betriebssystem: IP teilt dem Treiber der Netzwerkkarte mit, dass diese Daten (zuverlässig) an eine gegeben Zieladresse (MAC-Adresse) übertragen soll
+        \item Vorteil bei Multi-Access-Netzen: Die Netzwerkkarte kann selber entscheiden, ob die Daten für den eigenen Rechner sind
+        → Entlastung des Betriebssystems (da kein Interrupt notwendig)
+        \item Starke Entkopplung vom Betriebssystem: IP teilt dem Treiber der Netzwerkkarte mit, dass diese Daten (zuverlässig) an eine gegebene Zieladresse (MAC-Adresse) übertragen soll
         \item Übertrage das IP-Datagramm der Länger 1500 Byte an die MACAdresse
         \item Direkte Anbindung des Zielrechners erforderlich
     \end{itemize}

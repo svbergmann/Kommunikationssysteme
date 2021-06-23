@@ -3,41 +3,40 @@
 \minisec{Übungsaufgabe 1:}
 Die IDs können frei gewählt werden, müssen sich nur unterscheiden:
 
-\begin{flushleft}
-    \fbox{%
-        \begin{minipage}[c]{0.5\textwidth}
-            A -> MTU 2000 -> R
-            \centering
-            \begin{tabular}{|c|c|c|c|}
-                \hline
-                ID         & MF         & Total Length  & Offset       \\
-                \hline
-                \textbf{1} & \textbf{1} & \textbf{1996} & \textbf{0}   \\
-                \hline
-                \textbf{2} & \textbf{0} & \textbf{1644} & \textbf{247} \\
-                \hline
-            \end{tabular}
-        \end{minipage}}
-\end{flushleft}
-\fbox{%
-    \begin{minipage}[c]{0.5\textwidth}
-        R → MTU 1500 → B
-        \centering
-        \begin{tabular}{|c|c|c|c|}
-            \hline
-            ID          & MF         & Total Length  & Offset       \\
-            \hline
-            \textbf{11} & \textbf{1} & \textbf{1500} & \textbf{0}   \\
-            \hline
-            \textbf{12} & \textbf{1} & \textbf{516}  & \textbf{185} \\
-            \hline
-            \textbf{21} & \textbf{1} & \textbf{1500} & \textbf{247} \\
-            \hline
-            \textbf{22} & \textbf{0} & \textbf{164}  & \textbf{432} \\
-            \hline
-        \end{tabular}
-    \end{minipage}}
-\bigbreak
+\bigskip
+
+\begin{minipage}[c]{0.45\textwidth}
+    A → MTU 2000 → R
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        ID & MF & Total Length & Offset \tabularnewline
+        \hline
+        \textbf{1} & \textbf{1} & \textbf{1996} & \textbf{0} \tabularnewline
+        \hline
+        \textbf{2} & \textbf{0} & \textbf{1644} & \textbf{247} \tabularnewline
+        \hline
+    \end{tabular}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+    R → MTU 1500 → B
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        ID & MF & Total Length & Offset \tabularnewline
+        \hline
+        \textbf{11} & \textbf{1} & \textbf{1500} & \textbf{0} \tabularnewline
+        \hline
+        \textbf{12} & \textbf{1} & \textbf{516}  & \textbf{185} \tabularnewline
+        \hline
+        \textbf{21} & \textbf{1} & \textbf{1500} & \textbf{247} \tabularnewline
+        \hline
+        \textbf{22} & \textbf{0} & \textbf{164}  & \textbf{432} \tabularnewline
+        \hline
+    \end{tabular}
+\end{minipage}
+
+\medskip
 
 Auf der ersten Strecke (A → R) wird das Paket in zwei Unterpakete mit einer Payload-Größe von 1976 + 1624 = 3600 Bytes zerlegt.
 1976 muss dabei durch 8 teilbar sein!

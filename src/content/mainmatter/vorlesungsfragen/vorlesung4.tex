@@ -2,7 +2,7 @@
 
 \minisec{Erklären Sie den Unterschied zwischen Routing und Forwarding. Ordnen Sie den beiden Begriffen die Begriffe Control Plane und Data Plane zu.}
 \begin{itemize}
-    \item Das eigentliche Routing (die Control-Plane) ist verantwortlich fürWegewahl, mit der die Ende-zu-Ende-Kommunikation erreicht wird
+    \item Das eigentliche Routing (die Control-Plane) ist verantwortlich für Wegewahl, mit der die Ende-zu-Ende-Kommunikation erreicht wird
     \item Das Weiterleiten (engl. forwarding) der Pakete (die Data-Plane) gemäß den Vorgaben der Control-Plane
 \end{itemize}
 
@@ -19,7 +19,7 @@
 
 \minisec{Erklären Sie den Bellmann-Ford Algorithus mit eigenen Worten}
 \begin{itemize}
-    \item Definiere
+    \item Definiere:
     \begin{itemize}
         \item \(c_x(v)\) := Kosten zum Nachbarn v von x aus
         \item \(d_x(y)\) := Kosten des günstigsten Weges von x nach y
@@ -32,8 +32,9 @@
 
 \minisec{Erklären Sie wie es zum sog. Count to Infinity-Problem kommen kann!}
 \begin{itemize}
-    \item Der Ausfall von Routen/Routern führt zum ``Count-to-Infinity`` Problem: \[A -\: B -\: C\]
-    \item Betrachte B: Router A fällt aus, bekommt aber von C gesagt, dass er einen Weg nach A kennt (der allerdings über B führt, was B nicht weiß…) → Die Kosten zum Weg nach A schaukeln sich langsam auf...
+    \item Der Ausfall von Routen/Routern führt zum „Count-to-Infinity“ Problem: \[A -\: B -\: C\]
+    \item Betrachte B: Router A fällt aus, bekommt aber von C gesagt, dass er einen Weg nach A kennt (der allerdings über B führt, was B nicht weiß \ldots)
+    → Die Kosten zum Weg nach A schaukeln sich langsam auf \ldots
 \end{itemize}
 
 \minisec{Wie funktioniert das Link-State Routing?}
@@ -42,7 +43,7 @@
     \begin{enumerate}
         \item Die Nachbarn und deren Netzadressen ermitteln
         \item Die Kosten zu jedem seiner Nachbarn festlegen
-        \item Ein Paket zusammenstellen, in dem alles steht was bisher gelernt wurde
+        \item Ein Paket zusammenstellen, in dem alles steht, was bisher gelernt wurde
         \item Dieses Paket an alle anderen Router senden und von allen anderen Routern derartige Pakete empfangen
         \item Den kürzesten Pfad zu allen anderen Routern berechnen
     \end{enumerate}
@@ -77,12 +78,12 @@
 
 \minisec{Wie werden solche Adressen im Zusammenhang mit NAT eingesetzt?}
 \begin{itemize}
-    \item Der NAT-Router ersetzt die Source-IP (z.B. 10.0.0.3) mit der öffentlichen Adresse
+    \item Der NAT-Router ersetzt die Source-IP (z. B. 10.0.0.3) mit der öffentlichen Adresse
 \end{itemize}
 
 \minisec{Was passiert beim Verschicken eines IP-Paketes über einen NAT-Router?}
 \begin{itemize}
-    \item Der NAT-Router ersetzt die Source-IP (z.B. 10.0.0.3) mit der öffentlichen Adresse
+    \item Der NAT-Router ersetzt die Source-IP (z. B. 10.0.0.3) mit der öffentlichen Adresse
 \end{itemize}
 
 \minisec{Was passiert anschließend beim Empfangen eines Antwortpaketes (von einem Server außerhalb des privaten Netzes)?}
@@ -101,7 +102,7 @@
     \begin{itemize}
         \item \todo A Begründung:
     \end{itemize}
-    \item Übergeordnete Protokolle übertragen die IP als Paload (z.B. ftp)
+    \item Übergeordnete Protokolle übertragen die IP als Payload (z. B. ftp)
     \begin{itemize}
         \item \todo A Begründung:
     \end{itemize}

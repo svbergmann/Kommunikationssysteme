@@ -124,7 +124,9 @@
         \item Versenden von eMails über TCP-Verbindung (Port 25)
         \item SMTP ist ein einfaches ASCII-Protokoll
         \item Ohne Prüfsummen, ohne Verschlüsselung
-        \item Ist der Server zum Empfangen bereit, signalisiert er dies dem Client. Dieser sendet die Information, von wem die eMail kommt und wer der Empfänger ist. Ist der Empfänger dem Server bekannt, sendet der Client die Nachricht, der Server bestätigt den Empfang.
+        \item Ist der Server zum Empfangen bereit, signalisiert er dies dem Client.
+        Dieser sendet die Information, von wem die eMail kommt und wer der Empfänger ist.
+        Ist der Empfänger dem Server bekannt, sendet der Client die Nachricht, der Server bestätigt den Empfang.
     \end{itemize}
     \item \textcolor{blue}{Post Office Protocol Version 3 (POP3):}
     \begin{itemize}
@@ -158,8 +160,10 @@
     Alle während der Verbindung gesendeten und empfangenen Daten werden mit einer 128 Bit-Verschlüsselung verschlüsselt.
     \item \textcolor{blue}{ssh} unterstützt verschiedene Authentisierungsarten:
     \begin{itemize}
-        \item Bei der so genannten hostbased-Authentifizierung akzeptiert ein Rechner ohne eigene account-spezifische Tests die Vorgaben eines fremden Rechners. Es wird höchstens die Identität des fremden Rechners überprüft.
-        \item Die Authentifikation mit einem Passwort ist derzeit die "übliche" Methode, um sich an einem Rechner anzumelden. Die Sicherheit dieses Mechanismus beruht auf der Geheimhaltung des Passwortes, dessen Übertragung allerdings verschlüsselt wird
+        \item Bei der so genannten hostbased-Authentifizierung akzeptiert ein Rechner ohne eigene account-spezifische Tests die Vorgaben eines fremden Rechners.
+        Es wird höchstens die Identität des fremden Rechners überprüft.
+        \item Die Authentifikation mit einem Passwort ist derzeit die "übliche" Methode, um sich an einem Rechner anzumelden.
+        Die Sicherheit dieses Mechanismus beruht auf der Geheimhaltung des Passwortes, dessen Übertragung allerdings verschlüsselt wird
         \item Um auch das Übertragen eines verschlüsselten Passwortes zu vermeiden, werden die so genannten public-key-Verfahren eingesetzt
     \end{itemize}
 \end{itemize}

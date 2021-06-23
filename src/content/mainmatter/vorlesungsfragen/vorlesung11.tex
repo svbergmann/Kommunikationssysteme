@@ -21,7 +21,7 @@ Broadcast-Medium mit Maximalrate R bps
         \item Aufteilung des Übertragungskanals in kleine Übertragungseinheiten (Zeitfenster, Frequenzen, Kodierung)
         \item Exklusive Nutzung der Übertragungseinheiten für einzelne Knoten
     \end{itemize}
-    \item \textcolor{blue}{Zufallszugriffsprotokolle}#
+    \item \textcolor{blue}{Zufallszugriffsprotokolle}
     \begin{itemize}
         \item Keine Unterteilung des Kanals, jeder überträgt mit der gesamten Leitungskapazität.
         Allerdings sind \underline{Kollisionen} von Nachrichten möglich und müssen korrekt behandelt werden
@@ -113,7 +113,7 @@ Ethernet-Rahmen:
 \begin{itemize}
     \item \textcolor{blue}{\textit{Präambel :}} kennzeichnet eine folgende Übertragung und synchronisiert den Empfänger mit dem Sender.
     \item Der \textcolor{blue}{\textit{Start-of-Frame-Delimiter :}} (bzw. die beiden aufeinanderfolgenden Einsen) zeigen an, dass endlich Daten folgen.
-    \item \textcolor{blue}{\textit{Destination Address :}} das erste Bit kennzeichnet den Empfänger: entweder eine einzelne Station (1. Bit = 0) oder eine Gruppenadresse (1. Bit = 1; Broadcast ist auch hier durch 11...1 gegeben).
+    \item \textcolor{blue}{\textit{Destination Address :}} das erste Bit kennzeichnet den Empfänger: entweder eine einzelne Station (1. Bit = 0) oder eine Gruppenadresse (1. Bit = 1; Broadcast ist auch hier durch 11 \ldots 1 gegeben).
     \item \textcolor{blue}{\textit{Length/Type :}} Bei einem Wert bis 1500 wird die Angabe als Länge des Datenteils aufgefasst (dies ist der Fall beim so genannten CSMA/CD), bei einem Wert ab 1536 wird hier angegeben, an welches Schicht-3- Protokoll die Daten weitergegeben werden sollen (verwendet bei Ethernet).
     \item \textcolor{blue}{\textit{FCS :}} Checksumme, 32-Bit CRC. Diese erstreckt sich über die Felder DA, SA, Length/Type, Data/Padding.
 \end{itemize}
@@ -136,7 +136,7 @@ Felder in Schicht 2:
 
 \minisec{Was ist ein Hamming-Abstand bei einem Code C mit den Wörtern $c_1$ bis $c_n$?}
 \begin{itemize}
-    \item Anzahl unterschiedlicher Bits zweier Codewörter $c_1$ und $c_2$, d.h. Anzahl der 1-Bits von $c_1$ XOR $c_2$.
+    \item Anzahl unterschiedlicher Bits zweier Codewörter $c_1$ und $c_2$, d. h. Anzahl der 1-Bits von $c_1$ XOR $c_2$.
     \item Beispiel: d(10001001, 10110001) = 3
     \item Hamming-Abstand D von vollständigem Code C : \[ D(c)\coloneqq \min\{d(c_1 ,c_2)\ |\ c_1 ,c_2\ \epsilon \ C; \ c_1 \neq c_2\}\]
 \end{itemize}

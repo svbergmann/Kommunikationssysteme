@@ -2,21 +2,28 @@
 
 \minisec{Übungsaufgabe 1:}
 \begin{enumerate}
-    \item Es wird kein einfacher Handshake verwendet, weil dann nicht jede Nachricht mit Verbindungswunsch (SYN Pakete) quittiert wurde. Nach der 3. Nachricht ist jede der beiden SYN-Nachrichten quittiert worden!
-    \item Nein, nach der 3. Nachricht weiß der Initiator des Verbindungsaufbaus nicht, ob die 3. Nachricht nicht verloren gegangen ist (Stichwort: 2 army problem). Man geht aber davon aus, dass die 3. Nachricht genauso wie die 1. Nachricht (gleiche Richtung) erfolgreich zugestellt wurde.
-    \item Durch die bei TCP folgende Datenübertragung wird der Verbinungsaufbau indirekt mit bestätigt. Mit dem Verbindungsaufbau wird eine 'Bestätigungskette' über die ACKs aufgebaut, die am Anfang der Datenübertragung auch den Verbindungsaufbau bestätigt, also die 4. Nachricht die 3. Nachricht bestätigt, u.s.w.
+    \item Es wird kein einfacher Handshake verwendet, weil dann nicht jede Nachricht mit Verbindungswunsch (SYN Pakete) quittiert wurde.
+    Nach der 3. Nachricht ist jede der beiden SYN-Nachrichten quittiert worden!
+    \item Nein, nach der 3. Nachricht weiß der Initiator des Verbindungsaufbaus nicht, ob die 3. Nachricht nicht verloren gegangen ist (Stichwort: 2 army problem).
+    Man geht aber davon aus, dass die 3. Nachricht genauso wie die 1. Nachricht (gleiche Richtung) erfolgreich zugestellt wurde.
+    \item Durch die bei TCP folgende Datenübertragung wird der Verbindungsaufbau indirekt mit bestätigt.
+    Mit dem Verbindungsaufbau wird eine 'Bestätigungskette' über die ACKs aufgebaut, die am Anfang der Datenübertragung auch den Verbindungsaufbau bestätigt, also die 4. Nachricht die 3. Nachricht bestätigt, u.s.w.
 \end{enumerate}
 
 \minisec{Übungsaufgabe 2:}
 \begin{enumerate}
-    \item Das Silly-Window-Syndrom besteht, wenn TCP-Segmente/Pakete mit einer sehr geringen ('silly') Anzahl an Nutzdaten (z.B. nur einem Byte) gesendet werden. Man kann das Problem beheben, wenn man erst auf mehr Daten wartet, und dann ein größeres Datenpaket schickt. Manchmal muss man das Versenden der Daten erzwingen (Stichwort 'flush').
+    \item Das Silly-Window-Syndrom besteht, wenn TCP-Segmente/Pakete mit einer sehr geringen ('silly') Anzahl an Nutzdaten (z.B. nur einem Byte) gesendet werden.
+    Man kann das Problem beheben, wenn man erst auf mehr Daten wartet, und dann ein größeres Datenpaket schickt.
+    Manchmal muss man das Versenden der Daten erzwingen (Stichwort 'flush').
     \item Durch den Keepalive-Mechanismus bleibt die Verbindung im Normalfall bestehen.
-    Nach einer definierten Zeit würden Keep-Alive-Nachrichten ausgetauscht, die sicherstellen, dass die andere Seite noch 'lebt'. Wenn eine der beiden Seiten abstürzen würde, würde das die Gegenseite durch fehlende Quittierungen der Keep-Alive-Nachrichten mitbekommen, und die Verbindung abbauen.
+    Nach einer definierten Zeit würden Keep-Alive-Nachrichten ausgetauscht, die sicherstellen, dass die andere Seite noch 'lebt'.
+    Wenn eine der beiden Seiten abstürzen würde, würde das die Gegenseite durch fehlende Quittierungen der Keep-Alive-Nachrichten mitbekommen, und die Verbindung abbauen.
 \end{enumerate}
 
 \minisec{Übungsaufgabe 3:}
 Im TCP-Header existiert kein Feld zur Längenangabe der übermittelten Nutzdaten.
-TCP muss hierzu auf das 'Total Length' Feld im IP Header zurückgreifen, und die Größe des IP- und TCP-Headers (ggf. mit Optionen) abziehen. Daraus ergibt sich dann die Größe der übermittelten Nutzdaten.
+TCP muss hierzu auf das 'Total Length' Feld im IP Header zurückgreifen, und die Größe des IP- und TCP-Headers (ggf. mit Optionen) abziehen.
+Daraus ergibt sich dann die Größe der übermittelten Nutzdaten.
 
 \minisec{Übungsaufgabe 4:}
 Das erforderliche Sendefenster ergibt sich aus dem Bandwidth-Delay Produkt:

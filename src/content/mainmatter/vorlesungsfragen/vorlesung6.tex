@@ -2,14 +2,14 @@
 
 \minisec{Nennen Sie die 2 wichtigen Transportprotokolle im Internet! Wie unterscheiden sie sich?}
 \begin{itemize}
-    \item Transmission Control Protocol (TCP) -> zuverlässig
+    \item Transmission Control Protocol (TCP) → zuverlässig
     \begin{itemize}
         \item Kommunikationsprimitive, Sockets, Ports
         \item Virtuelle Verbindungsorientierung: Modell zweier Streams die die Prozesse miteinander verbinden;
         „Open“-“Close“ der Streams sind die virtuellen Verbindungen
         \item Flusskontrolle, Staukontrolle
     \end{itemize}
-    \item User Datagram Protocol (UDP) -> unzuverlässig
+    \item User Datagram Protocol (UDP) → unzuverlässig
     \begin{itemize}
         \item Kommunikationsprimitive, Sockets, Ports
         \item Postkartenmodell: Ein Empfangspunkt (Port) für alle Nachrichten, versenden ohne Absprache mit dem Empfänger
@@ -38,7 +38,7 @@
 \minisec{Wie ist der Nutzungsgrad einer Verbindung definiert? Warum gibt es bei Verbindungen mit hoher RTT hier Probleme?}
 \begin{itemize}
     \item \underline{Nutzungsgrad:} Verhältnis von genutzter Übertragungszeit zu gesamter Übertragungsdauer (inkl. der Wartezeit)
-    \item \[\rho = \frac{\textrm{genutzte Uebertragungszeit}}{\textrm{genutzte Uebertragungszeit} + \textrm{Wartezeit}}\]
+    \item \[\rho = \frac{\textrm{genutzte Übertragungszeit}}{\textrm{genutzte Übertragungszeit} + \textrm{Wartezeit}}\]
 \end{itemize}
 
 \minisec{Was bedeutet 'Pipelining' im Kontext der Datenübertragung? Was bedeutet in diesem Zusammenhang 'Fensterbreite'? Welche Schwierigkeiten entstehen bei Fehlerfällen?}
@@ -63,7 +63,7 @@
         \end{itemize}
         \item Probleme beim Sender:
         \begin{itemize}
-            \item Timeout -> Worauf bezieht sich dieser?
+            \item Timeout → Worauf bezieht sich dieser?
             \item Empfang einer nicht erwarteten Bestätigung (out-of-order) ACKs
             \item Empfang einer negativen Bestätigung (falls es die gibt)
         \end{itemize}

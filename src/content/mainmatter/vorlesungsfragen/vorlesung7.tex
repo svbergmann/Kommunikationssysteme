@@ -101,13 +101,16 @@ doch verschickt
         \item CONNECT sendet ein SYN
         \item Ist der Destination Port der CONNECTAnfrage identisch zu der Port-Nummer, auf der der Server wartet, wird die Verbindung akzeptiert, andernfalls mit RST abgelehnt
         \item Der Server schickt seinerseits das SYN zum Client und bestätigt zugleich den Erhalt des ersten SYN-Segments
-        \item Der Client schickt eine Bestätigung des SYNSegments des Servers. Damit ist die Verbindung aufgebaut
+        \item Der Client schickt eine Bestätigung des SYNSegments des Servers.
+        Damit ist die Verbindung aufgebaut
     \end{enumerate}
 \end{itemize}
 
 \minisec{Wozu dient der Keepalive-Timer? Wann ist dieser Timer wichtig?}
 \begin{itemize}
-    \item Rel. lange Wartezeit. Wir bei jeder Transaktion rückgesetzt. Nach Ablauf → Abbau der Verbindung
+    \item Relativ lange Wartezeit.
+    Wird bei jeder Transaktion rückgesetzt.
+    Nach Ablauf → Abbau der Verbindung
 \end{itemize}
 
 \minisec{Welche Datenfelder enthält der TCP-Header? Wozu werden sie jeweils verwendet?}
@@ -134,7 +137,8 @@ doch verschickt
 
 \minisec{Wozu dient der Persistence-Timer in TCP? Was passiert nach seinem Ablauf?}
 \begin{itemize}
-    \item Timer wird nach Empfang einer Fenstergröße von 0 gestartet. Nach Ablauf Anfrage nach neuem Fenster (>0)
+    \item Timer wird nach Empfang einer Fenstergröße von 0 gestartet.
+    Nach Ablauf Anfrage nach neuem Fenster (>0)
 \end{itemize}
 
 \minisec{Wie funktioniert die (häufig eingesetzte) Window-Scale Option in TCP? Wann wird sie benötigt?}
@@ -143,7 +147,7 @@ doch verschickt
     \item Der Skalierungsfaktor wird als neue TCP-Option eingeführt: Window Scale ist 3 Byte lang – Das letzte Byte gibt die Skalierung LOGARITHMISCH an (shift count: Das Fenster wird shift count bits nach links veschieben – hierbei ist der maximale Wert 14!)
     \item Die Option wird nur in einem SYN-Segement beim Verbindungsaufbau übertragen.
     Danach wird der Wert für die Ganze Verbindung angenommen
-    \item Beide Seiten müssen eine Window-Scale-Option verschicken Null bedeutet "keine Skalierung"
+    \item Beide Seiten müssen eine Window-Scale-Option verschicken Null bedeutet „keine Skalierung“
     \item Die neue maximale Fenstergröße in Bytes errechnet sich wie folgt: \[65536 * 214 = 65535 * 16384 = 1.073.725.440\]
     \item TCP-intern wird die Fenstergröße jetzt als 32-Bit-Zahl verwaltet
 \end{itemize}
@@ -152,12 +156,12 @@ doch verschickt
 \begin{itemize}
     \item Empfangsfenster ist ``voll``, die empfangende Applikation ließt die Zeichen aber nur einzeln aus
     \item -> Sender würde für jedes einzelne Zeichen ein neues Paket senden
-    \item Lösung (Clark): Empfänger darf neue Fenstergröße erst erneut senden, wenn in seinem Buffer mehr Platz ist (z.B. ein Segment)
+    \item Lösung (Clark): Empfänger darf neue Fenstergröße erst erneut senden, wenn in seinem Buffer mehr Platz ist (z. B. ein Segment)
 \end{itemize}
 
 \minisec{Wozu dienen die PSH und URG-Flaggen im TCP Header?}
 \begin{itemize}
     \item Problem: Sender will wichtige Daten ohne Pufferung an die empfangende Applikation weitergeben
-    \item Lösung: \textcolor{blue}{PSH}: Flagge im TCP Header : Daten auf Empfängerseite direkt zustellen (kein Puffern)
-    \item Alternative: \textcolor{blue}{URG}: Flagge im TCP Header: ``Event`` auf Empfängerseite auslösen
+    \item Lösung: \textcolor{blue}{PSH}: Flagge im TCP Header: Daten auf Empfängerseite direkt zustellen (kein Puffern)
+    \item Alternative: \textcolor{blue}{URG}: Flagge im TCP Header: „Event“ auf Empfängerseite auslösen
 \end{itemize}
