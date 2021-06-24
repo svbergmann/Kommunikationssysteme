@@ -1,7 +1,7 @@
 \addsec{Vorlesung 3 - Lösungen}
 
 \minisec{\textbf{Übungsaufgabe 1:}}
-Um diese Aufgabe zu lösen, muss der sog. longest prefix match verwendet werden.
+Um diese Aufgabe zu lösen, muss der sog.\ longest prefix match verwendet werden.
 Dazu müssen die Routing-Tabellen-Einträge in eine binäre Darstellung überführt werden (die Netzwerk-Bits sind hier unterstrichen dargestellt):
 
 \begin{center}
@@ -32,8 +32,8 @@ Bei scharfem Hinschauen sieht man, dass die ersten 2 Bytes in allen Routing-Eint
 \begin{enumerate}[(a)]
     \item Die ersten 4 Einträge passen alle nicht → R5 wird genommen
     \item Die ersten 4 Einträge passen alle nicht → R5 wird genommen
-    \item Der 4. Eintrag passt → R4 wird genommen
-    \item Der 1. und der 4. Eintrag passen.
+    \item Der 4.\ Eintrag passt → R4 wird genommen
+    \item Der 1.\ und der 4.\ Eintrag passen.
     Weil der Netzanteil des ersten Eintrags länger ist, wird dieser verwendet!
 \end{enumerate}
 
@@ -55,7 +55,7 @@ Zunächst schreiben wir die Tabelle in Binärform (Netzwerk Bits sind unterstric
 \end{center}
 
 Wir können nur Routing-Einträge zusammen fassen, die zu dem gleichen Ziel gehen!
-Eintrag 1 ist der allgemeinste Eintrag, und Einträge 4, 2 und 3 immer feinere Spezialisierungen des 1. Eintrages.
+Eintrag 1 ist der allgemeinste Eintrag, und Einträge 4, 2 und 3 immer feinere Spezialisierungen des 1.\ Eintrages.
 Eintrag 4 ist eine Spezialisierung von Eintrag 1, und beide Einträge haben das gleiche Ziel.
 Da es keine weiteren Einträge gibt, die durch eine Zusammenlegung überschrieben würden, können diese Einträge zusammengefasst werden.
 Dazu kann der spezialisiertere Eintrag gelöscht werden, also:
@@ -72,9 +72,9 @@ Dazu kann der spezialisiertere Eintrag gelöscht werden, also:
 \end{center}
 
 Zusatzfrage:
-Eintrag 2 spezialisiert Eintrag 1 und leitet nach R2, wobei allerdings die weitere Spezialisierung im 3. Eintrag wieder nach R1 leitet.
-Diese Situation könnte man auch lösen, in dem man beim 2. Eintrag einen Präfix von 12 verwendet,
-und dadurch den 3. Eintrag überflüssig macht, weil nun Regel 1 die IPs, die vorher von Regel 3 erfasst wurden, auch nach R1 routet, also:
+Eintrag 2 spezialisiert Eintrag 1 und leitet nach R2, wobei allerdings die weitere Spezialisierung im 3.\ Eintrag wieder nach R1 leitet.
+Diese Situation könnte man auch lösen, in dem man beim 2.\ Eintrag einen Präfix von 12 verwendet,
+und dadurch den 3.\ Eintrag überflüssig macht, weil nun Regel 1 die IPs, die vorher von Regel 3 erfasst wurden, auch nach R1 routet, also:
 
 \begin{center}
     \begin{tabular}{|c|c|}

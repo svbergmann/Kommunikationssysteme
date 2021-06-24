@@ -5,7 +5,8 @@
     \item \textcolor{blue}{Client-Server}
     \begin{itemize}
         \item Server-Prozess: Langlebige Anwendung, die kontinuierlich auf Anfragen wartet, diese verarbeitet und beantwortet
-        \item Client-Prozess: Zumeist kurzlebige Anwendung die Anfragen an den Server-Prozess stellt und auf die Antwort wartet. Die Rolle ist damit zumeist beendet
+        \item Client-Prozess: Zumeist kurzlebige Anwendung die Anfragen an den Server-Prozess stellt und auf die Antwort wartet.
+        Die Rolle ist damit zumeist beendet
     \end{itemize}
     \item \textcolor{blue}{Peer-to-Peer}
     \begin{itemize}
@@ -22,7 +23,7 @@
     \item Aufgaben:
     \begin{itemize}
         \item Proxy zum Zwischenspeichern/Anonymisieren
-        \item Proxy zum Lastbalanzieren von Webseiten
+        \item Proxy zum Lastbalancieren von Webseiten
     \end{itemize}
 \end{itemize}
 
@@ -75,10 +76,10 @@
 
 \minisec{Ordnen Sie die Begriffe Paketvermittlung und Leitungsvermittlung zu!}
 \begin{itemize}
-    \item Die \textcolor{blue}{Leitunsgvermittlung (circuit switching} stellt zwischen zwei oder mehr Teilnehmern einen Übertragungskanal über mehrere Vermittlungsstellen für die Dauer der Übertragung her.
-    Die Leitungsvermittlung eignet sich in der Regel für zeitkritische Anwendungen bzw. der Übertragung von Daten in Echtzeit.
+    \item Die \textcolor{blue}{Leitungsvermittlung (circuit switching} stellt zwischen zwei oder mehr Teilnehmern einen Übertragungskanal über mehrere Vermittlungsstellen für die Dauer der Übertragung her.
+    Die Leitungsvermittlung eignet sich in der Regel für zeitkritische Anwendungen bzw.\ der Übertragung von Daten in Echtzeit.
     \item Bei der  \textcolor{blue}{Paketvermittlung (store and forward} werden die Daten oder Informationen in Pakete aufgeteilt.
-    Der Dienst bzw. die Anwendung übergibt die einzelnen Pakete an das Kommunikationssystem und versieht sie mit der Zieladresse und weiteren Vermittlungsinformationen.
+    Der Dienst bzw.\ die Anwendung übergibt die einzelnen Pakete an das Kommunikationssystem und versieht sie mit der Zieladresse und weiteren Vermittlungsinformationen.
     Das Kommunikationssystem vermittelt die Datenpakete vom Sender zum Empfänger.
     Die Pakete können dabei unterschiedliche Wege zu ihrem Ziel nehmen.
     Beim Empfänger werden die Datenpakete dann wieder zusammengesetzt.
@@ -90,14 +91,14 @@
     \item Im Netze findet ein Store-and-Forward statt.
     An der Grenze zwischen zwei Netzen sorgen Router für die Weiterleitung der Daten.
     Nach dem Empfang findet die Entscheidung über den nächsten Router konzeptionell anhand der Zieladresse statt.
-    \item Wird in der Interent-Schicht eingesetzt (entspricht ISO/OSI 3) bei statischen Netzen
+    \item Wird in der Internet-Schicht eingesetzt (entspricht ISO/OSI 3) bei statischen Netzen
 \end{itemize}
 
 \minisec{Welche Metriken kennen Sie, um Topologien von Rechnernetzen zu charakterisieren?}
 \begin{itemize}
     \item \textcolor{blue}{Durchmesser (Diameter)}
     \begin{itemize}
-        \item Maximaler Abstand zweier Knoten, d. h. die Anzahl von Kanten
+        \item Maximaler Abstand zweier Knoten, d.\ h. die Anzahl von Kanten
         \item → Ziel: Möglichst klein (Zeitbedarf für Übertragung)
     \end{itemize}
     \item \textcolor{blue}{Bisektionsbreite (Connectivity)}
@@ -140,7 +141,7 @@
     \item Nachteile:
     \begin{itemize}
         \item Es ist schwierig Systeme sauber in Schichten zu strukturieren.
-        Wenn äußere Schichte Dienste der inneren Schichten benötigen, wird leicht die einfache Abhängigkeit von der nächstunteren Schicht zerstört
+        Wenn äußere Schichte Dienste der inneren Schichten benötigen, wird leicht die einfache Abhängigkeit von der nächst unteren Schicht zerstört
         \item Es kann Performanz-Probleme geben, weil mit dem Zugriff auf die Dienste eine Schicht immer eine gewisser Overhead verbunden ist
     \end{itemize}
 \end{itemize}
@@ -150,27 +151,29 @@
     \item \textcolor{blue}{Schicht 7: Anwendungsschicht (Application Layer)}
     \begin{itemize}
         \item In dieser Ebene werden (Standard-)Schnittstellen zur Verfügung gestellt, die bestimmten Anwendungstypen ganze Kommunikationsdienste bereitstellen
-        \item Ein Beispiel hierfür ein allgemeingültiges Protokoll zur Übertragung von Webseiten samt fest definierter Schnittstelle (GET, POST, DELETE, …) sein. Wer einen Webbrowser oder einen Webserver implementieren will, könnte dann diese Schnittstelle zur Kommunikation mit den Produkten anderer verwenden
+        \item Ein Beispiel hierfür ein allgemeingültiges Protokoll zur Übertragung von Webseiten samt fest definierter Schnittstelle (GET, POST, DELETE, …) sein.
+        Wer einen Webbrowser oder einen Webserver implementieren will, könnte dann diese Schnittstelle zur Kommunikation mit den Produkten anderer verwenden
         \item \textbf{Merke:} Das Internet realisiert das anders.
     \end{itemize}
     \item \textcolor{blue}{Schicht 6: Darstellungsschicht (Presentation Layer)}
     \begin{itemize}
         \item Beschäftigt sich damit, die zu übertragenden Daten so darzustellen, dass sie von vielen unterschiedlichen Systemen gehandhabt werden können
-        \item Beispielsweise codieren manche Rechner einen String mit ASCII-Zeichen, andere benutzen Unicode, manche benutzen bei Integern das 1-, andere das 2-Komplement. Problematisch ist auch die Byteordnung des Prozessors (Big/Little-Endian)
+        \item Beispielsweise codieren manche Rechner einen String mit ASCII-Zeichen, andere benutzen Unicode, manche benutzen bei Integern das 1-, andere das 2-Komplement.
+        Problematisch ist auch die Byteordnung des Prozessors (Big/Little-Endian)
         \item Formal wird hier das verwendete Format beschrieben werden
         \begin{itemize}
             \item Anstatt für jede Anwendung eine eigene Übertragungssyntax und -semantik zu definieren,
             stellt man hier eine allgemeingültige Lösung bereit
-            \item Die spezifische Daten eines Rechners werden hier eindeutig beschrieben
+            \item Die spezifischen Daten eines Rechners werden hier eindeutig beschrieben
         \end{itemize}
     \end{itemize}
     \item \textcolor{blue}{Schicht 5: Sitzungsschicht (Session Layer)}
     \begin{itemize}
-        \item Dialogkontrolle, d.h. es kann festgelegt werden, welcher Kommunikationspartner wann übertragen darf (wer redet, wer hört zu?).
+        \item Dialogkontrolle, d.\ h. es kann festgelegt werden, welcher Kommunikationspartner wann übertragen darf (wer redet, wer hört zu?).
         Da wir bei ISO/OSI eigentlich eine Steuerung über einen Header benötigen könnte hierzu ein Token verwendet werden.
         Bei bestimmten Operationen darf dann nur der Kommunikationspartner, der im Besitz des Tokens ist, diese Operation durchführen
         \item Wichtiger Ansatz wäre auch die Bereitstellung von Wiederaufsetzpunkten.
-        Wurde beispielsweise eine 2-stündige Dateiübertragung mittendrin durch einen Ausfall unterbrochen, so braucht nicht die gesamt Übertragung wiederholt werden, sondern man geht nur bis zum letzten Aufsetzpunkt zurück
+        Wurde beispielsweise eine 2-stündige Dateiübertragung mittendrin durch einen Ausfall unterbrochen, so braucht nicht die gesamte Übertragung wiederholt werden, sondern man geht nur bis zum letzten Aufsetzpunkt zurück
     \end{itemize}
     \item \textcolor{blue}{Schicht 4: Transportschicht (Transport Layer)}
     \begin{itemize}
@@ -190,8 +193,9 @@
     \begin{itemize}
         \item Übertragung der Daten zwischen Rechnern in einem Netz aus Netzen
         \item Hauptaufgabe ist dabei, eine geeignete Wegewahl (Routing) zu treffen
-        \item Eine notwendige Voraussetzung sind dazu u.a. ein gemeinsamer Adressraum für Rechner und eine Einigung auf eine maximale PDU-Größe (Datagramm-Größe)
-        \item Statisches Netzkonzept: Zwischenknoten speichern ankommende Nachrichten zwischen und ermitteln (über Tabellen) den Teilnehmer, der die Daten als nächstes erhält. Hierbei muss man mit diesem direkt kommunizieren können.
+        \item Eine notwendige Voraussetzung sind dazu u.\ a. ein gemeinsamer Adressraum für Rechner und eine Einigung auf eine maximale PDU-Größe (Datagramm-Größe)
+        \item Statisches Netzkonzept: Zwischenknoten speichern ankommende Nachrichten zwischen und ermitteln (über Tabellen) den Teilnehmer, der die Daten als nächstes erhält.
+        Hierbei muss man mit diesem direkt kommunizieren können.
         \item Weiterhin: Multiplexing mehrerer logischer Verbindungen über eine physikalische Verbindung
     \end{itemize}
     \item \textcolor{blue}{Schicht 2: Sicherungsschicht (Data Link Layer)}
@@ -199,28 +203,28 @@
         \item Kommunikation zwischen Rechnern in einem einzelnen Netz
         \item Logical Link Control (LLC):
         \begin{itemize}
-            \item Liefert der Vermittlungsschicht eine fehlerfreie Übertragung der Daten zwischen zwei Rechnern (z.B. innerhalb eines lokalen Netzes)
-            \item Dazu werden die ankommenden Daten in sog. Rahmen unterteilt, die einzeln übertragen werden
-            \item Der Empfänger überprüft, ob die Übertragung korrekt war (z.B. mittels einer Prüfsumme).
+            \item Liefert der Vermittlungsschicht eine fehlerfreie Übertragung der Daten zwischen zwei Rechnern (z.\ B. innerhalb eines lokalen Netzes)
+            \item Dazu werden die ankommenden Daten in sog.\ Rahmen unterteilt, die einzeln übertragen werden
+            \item Der Empfänger überprüft, ob die Übertragung korrekt war (z.\ B. mittels einer Prüfsumme).
             Im Fehlerfall wird der entsprechende Rahmen neu angefordert
-            \item Weiterhin wird versucht, eventuell auftretende Staus durch Flusskontrolle zu vermeiden, z. B. wenn der Empfänger überlastet ist.
+            \item Weiterhin wird versucht, eventuell auftretende Staus durch Flusskontrolle zu vermeiden, z.\ B. wenn der Empfänger überlastet ist.
         \end{itemize}
         \item Medium Access Control:
         \begin{itemize}
-            \item Bei lokalen Netzen wird außerdem der konfliktfreie Zugriff auf das Netz geregelt, es können ja ggf. nicht mehrere Teilnehmer gleichzeitig senden
+            \item Bei lokalen Netzen wird außerdem der konfliktfreie Zugriff auf das Netz geregelt, es können ja ggf.\ nicht mehrere Teilnehmer gleichzeitig senden
         \end{itemize}
     \end{itemize}
     \item \textcolor{blue}{Schicht 1: Bitübertragungsschicht (Physical Layer)}
     \begin{itemize}
         \item Transportiert die einzelnen Bits über eine bestimmte physikalische Leitung (Medium)
-        \item D.h. es muss festgelegt werden, welchen Leitungstyp man benutzt und wie eine “1” bzw. eine “0” auf der Leitung kodiert werden
+        \item D.\ h. es muss festgelegt werden, welchen Leitungstyp man benutzt und wie eine “1” bzw.\ eine “0” auf der Leitung kodiert werden
         \begin{itemize}
-            \item Dazu legt man z.B. bei Verwendung von Kupferkabel als Leitung fest, dass Bits als Spannungspulse übertragen werden (z.B. „Übertrage für eine Millisekunde +1 Volt, um eine 1 zu transportieren“)
+            \item Dazu legt man z.\ B. bei Verwendung von Kupferkabel als Leitung fest, dass Bits als Spannungspulse übertragen werden (z.\ B. „Übertrage für eine Millisekunde +1 Volt, um eine 1 zu transportieren“)
         \end{itemize}
         \item Weiterhin wird definiert:
         \begin{itemize}
             \item Stecker (Pinbelegungen),
-            \item Übertragungsrichtung (uni-/bidirektional) ,
+            \item Übertragungsrichtung (uni-/bidirektional),
             \item \ldots
         \end{itemize}
     \end{itemize}
@@ -237,7 +241,7 @@
     \hline
     & ISO/OSI-Modell & Internet-Referenzmodell \tabularnewline
     \hline
-    Alias & Open Systems Interconnection & Transmission Controll Protocol (TCP) \tabularnewline
+    Alias & Open Systems Interconnection & Transmission Control Protocol (TCP) \tabularnewline
     \hline
     \# Schichten & 7 & 4 \tabularnewline
     \hline
@@ -283,7 +287,7 @@ Beide Protokolle gehören zur Schicht 4, der Transport-Schicht.
         \item Vorteil bei Multi-Access-Netzen: Die Netzwerkkarte kann selber entscheiden, ob die Daten für den eigenen Rechner sind
         → Entlastung des Betriebssystems (da kein Interrupt notwendig)
         \item Starke Entkopplung vom Betriebssystem: IP teilt dem Treiber der Netzwerkkarte mit, dass diese Daten (zuverlässig) an eine gegebene Zieladresse (MAC-Adresse) übertragen soll
-        \item Übertrage das IP-Datagramm der Länger 1500 Byte an die MACAdresse
+        \item Übertrage das IP-Datagramm der Länge 1500 Byte an die MACAdresse
         \item Direkte Anbindung des Zielrechners erforderlich
     \end{itemize}
 \end{itemize}

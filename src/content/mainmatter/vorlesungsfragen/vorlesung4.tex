@@ -3,7 +3,7 @@
 \minisec{Erklären Sie den Unterschied zwischen Routing und Forwarding. Ordnen Sie den beiden Begriffen die Begriffe Control Plane und Data Plane zu.}
 \begin{itemize}
     \item Das eigentliche Routing (die Control-Plane) ist verantwortlich für Wegewahl, mit der die Ende-zu-Ende-Kommunikation erreicht wird
-    \item Das Weiterleiten (engl. forwarding) der Pakete (die Data-Plane) gemäß den Vorgaben der Control-Plane
+    \item Das Weiterleiten (engl.\ forwarding) der Pakete (die Data-Plane) gemäß den Vorgaben der Control-Plane
 \end{itemize}
 
 \minisec{Mit welchem Algorithmus kann ein optimaler Quelle-Senke Baum berechnet werden?}
@@ -17,12 +17,12 @@
     \item Link-State Routing: mit Kenntnis der gesamten (zumindest im AS) vorhandenen Netztopologie
 \end{itemize}
 
-\minisec{Erklären Sie den Bellmann-Ford Algorithus mit eigenen Worten}
+\minisec{Erklären Sie den Bellmann-Ford Algorithmus mit eigenen Worten}
 \begin{itemize}
     \item Definiere:
     \begin{itemize}
-        \item \(c_x(v)\) := Kosten zum Nachbarn v von x aus
-        \item \(d_x(y)\) := Kosten des günstigsten Weges von x nach y
+        \item \(c_x(v) \coloneqq\) Kosten zum Nachbarn v von x aus
+        \item \(d_x(y) \coloneqq\) Kosten des günstigsten Weges von x nach y
     \end{itemize}
     \item Gibt es einen Weg zwischen x und y und sind x und y nicht direkt verbunden, dann muss es einen Nachbarn v von x geben für den gilt:
     \[d_x(y) = \min \{c_x(v) + d_v(y) \}\]
@@ -67,7 +67,7 @@
 
 \minisec{Was sind ''private'' IP-Netze und -Adressen?}
 \begin{itemize}
-    \item Jeder Endkunde (jede kleinere Firma etc.) bekommt lediglich nur eine eindeutige öffentliche IPv4 Adresse vom ISP, d.h. es existiert auch nur ein Zugangspunkt (Gateway) zu diesem Netz
+    \item Jeder Endkunde (jede kleinere Firma etc.) bekommt lediglich nur eine eindeutige öffentliche IPv4 Adresse vom ISP, d.\ h. es existiert auch nur ein Zugangspunkt (Gateway) zu diesem Netz
     \item Innerhalb des Hauses/der Firma wird ein ``privates`` Netz betrieben, was die spezifizierten privaten IP-Adressblöcke benutzt:
     \begin{itemize}
         \item \( 10.0.0.0 -\: 10.255.255.255 \)

@@ -10,7 +10,7 @@ Broadcast-Medium mit Maximalrate R bps
 \begin{itemize}
     \item Ein einzelner Knoten kann mit der Rate R übertragen
     \item M Knoten können mit einer mittleren Rate von $\frac{R}{M}$ übertragen
-    \item Das Protokoll ist dezentral, d.h. es gibt keine Master-Knoten, die ausfallen und das ganze System zum Absturz bringen können
+    \item Das Protokoll ist dezentral, d.\ h. es gibt keine Master-Knoten, die ausfallen und das ganze System zum Absturz bringen können
     \item Das Protokoll ist einfach und kann somit kostengünstig implementiert werden
 \end{itemize}
 
@@ -73,7 +73,8 @@ Broadcast-Medium mit Maximalrate R bps
     \end{itemize}
 \end{itemize}
 
-\minisec{Erklären Sie, warum bei CSMA/CD ein Sender eine Mindestzeit senden muss (und parallel per "CD" das Medium abhören muss)! Wie lässt sich diese Mindestzeit berechnen und ggf. in eine Mindest-Rahmengröße umrechnen?}
+\minisec{Erklären Sie, warum bei CSMA/CD ein Sender eine Mindestzeit senden muss (und parallel per "CD" das Medium abhören muss)!
+Wie lässt sich diese Mindestzeit berechnen und ggf. in eine Mindest-Rahmengröße umrechnen?}
 \begin{itemize}
     \item
 \end{itemize}
@@ -107,15 +108,15 @@ Basiert auf IEEE 802.3 „CSMA/CD“
 
 \minisec{Warum wurde bei Fast-Ethernet die Segmentlänge von 2500m (10MBit Ethernet) auf 200--250m verkleinert?}
 Die minimale Rahmenlänge zur Kollisionserkennung bei Ethernet beträgt 64 Byte.
-Bei 100 Mb/s wird der Rahmen aber ca. 10 Mal so schnell abgesendet, so dass eine Kollisionserkennung nicht mehr gewährleistet ist.
+Bei 100 Mb/s wird der Rahmen aber ca.\ 10 Mal so schnell abgesendet, sodass eine Kollisionserkennung nicht mehr gewährleistet ist.
 
 \minisec{Wie ist die Rahmen-Struktur eines Ethernet-Paketes aufgebaut? Welche Daten (-Felder) werden im Header und Trailer auf Schicht 2 übertragen?}
 Ethernet-Rahmen:
 \begin{itemize}
     \item \textcolor{blue}{\textit{Präambel :}} kennzeichnet eine folgende Übertragung und synchronisiert den Empfänger mit dem Sender.
     \item Der \textcolor{blue}{\textit{Start-of-Frame-Delimiter :}} (bzw. die beiden aufeinanderfolgenden Einsen) zeigen an, dass endlich Daten folgen.
-    \item \textcolor{blue}{\textit{Destination Address :}} das erste Bit kennzeichnet den Empfänger: entweder eine einzelne Station (1. Bit = 0) oder eine Gruppenadresse (1. Bit = 1; Broadcast ist auch hier durch 11 \ldots 1 gegeben).
-    \item \textcolor{blue}{\textit{Length/Type :}} Bei einem Wert bis 1500 wird die Angabe als Länge des Datenteils aufgefasst (dies ist der Fall beim so genannten CSMA/CD), bei einem Wert ab 1536 wird hier angegeben, an welches Schicht-3- Protokoll die Daten weitergegeben werden sollen (verwendet bei Ethernet).
+    \item \textcolor{blue}{\textit{Destination Address :}} das erste Bit kennzeichnet den Empfänger: entweder eine einzelne Station (1. Bit = 0) oder eine Gruppenadresse (1.\ Bit = 1; \ Broadcast ist auch hier durch 11 \ldots 1 gegeben).
+    \item \textcolor{blue}{\textit{Length/Type :}} Bei einem Wert bis 1500 wird die Angabe als Länge des Datenteils aufgefasst (dies ist der Fall beim sogenannten CSMA/CD), bei einem Wert ab 1536 wird hier angegeben, an welches Schicht-3-Protokoll die Daten weitergegeben werden sollen (verwendet bei Ethernet).
     \item \textcolor{blue}{\textit{FCS :}} Checksumme, 32-Bit CRC. Diese erstreckt sich über die Felder DA, SA, Length/Type, Data/Padding.
 \end{itemize}
 Felder in Schicht 2:
@@ -131,13 +132,13 @@ Felder in Schicht 2:
 \minisec{Erklären Sie die grundsätzliche Vorgehensweise des Medienzugriffes beim Token-Ring Netz!}
 \begin{itemize}
     \item “Token“-Verfahren, nur wer ein bestimmtes Token ( = Bitfolge) besitzt, darf senden
-    \item Die Rechner teilen sich einen Ring aus Punkt-zu-Punkt- Verbindungen
+    \item Die Rechner teilen sich einen Ring aus Punkt-zu-Punkt-Verbindungen
     \item Das Token wird zyklisch weitergegeben
 \end{itemize}
 
 \minisec{Was ist ein Hamming-Abstand bei einem Code C mit den Wörtern $c_1$ bis $c_n$?}
 \begin{itemize}
-    \item Anzahl unterschiedlicher Bits zweier Codewörter $c_1$ und $c_2$, d. h. Anzahl der 1-Bits von $c_1$ XOR $c_2$.
+    \item Anzahl unterschiedlicher Bits zweier Codewörter $c_1$ und $c_2$, d.\ h. Anzahl der 1-Bits von $c_1$ XOR $c_2$.
     \item Beispiel: d(10001001, 10110001) = 3
     \item Hamming-Abstand D von vollständigem Code C : \[ D(c)\coloneqq \min\{d(c_1 ,c_2)\ |\ c_1 ,c_2\ \epsilon \ C; \ c_1 \neq c_2\}\]
 \end{itemize}
@@ -174,7 +175,7 @@ Felder in Schicht 2:
 \minisec{Was leistet bzw. wie funktioniert das CRC-Verfahren? Wozu dient das Generator-Polynom?
 Wo wird das Verfahren im Kontext von Ethernet eingesetzt?}
 \begin{itemize}
-    \item Polynom-Codes: Interpretiere Datenbits D als Bitkette eines Polynoms, dessen Koeffizienten die 0-1-Werte der Bitkette sind
+    \item Polynom-Codes: Interpretiere Datenbits D als Bitkette eines Polynoms, dessen Koeffizienten d0--10-1-Werte der Bitkette sind
     \item Prüfung basiert auf Polynom-Arithmetik
     \item Sender und Empfänger einigen sich auf ein gemeinsam verwendetes Bitmuster der Länge r+1 Bit, das als Generator G bezeichnet wird. Das höchstwertige Bit hiervon ist 1
     \item Konzept: Berechne die r CRC-bits R so, dass die d + r Bits (als Binärzahl interpretiert) mit der Modulo-2-Arithmetik genau durch G teilbar sind

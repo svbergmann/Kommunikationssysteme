@@ -13,7 +13,7 @@
         \item Ermöglicht das Herausfinden einer MAC-Adresse auf Basis einer versendeten IP-Adresse
         \item Funktioniert über Broadcast-Paket an MAC FF:FF:FF:FF:FF:FF
         \item Der Host mit der angefragten IP-Adresse antwortet mit seiner MAC-Adresse
-        \item Der empfangende Knoten ‚cached‘ i.d.R. die MAC-Adressen
+        \item Der empfangende Knoten ‚cached‘ i.\ d.\ R. die MAC-Adressen
     \end{itemize}
 \end{itemize}
 
@@ -38,7 +38,7 @@
         \item Realisiert als Application Protokoll über UDP Port 67
         \item Ermöglicht die Konfiguration über Subsystemgrenzen (DHCP Relay Agents) und mit Szenarien mit mehreren DHCP-Servern
         \item Erlaubt das Konfigurieren aller wichtigen Parameter (IP/Mask/default Gateway/DNS Server)
-        \item Erlaubt das zeitlich u.A. beschränkte Vergeben von IPKonfigurationen (leases) und das Steuern der Vergabe
+        \item Erlaubt das zeitlich u.\ A. beschränkte Vergeben von IPKonfigurationen (leases) und das Steuern der Vergabe
         \item Sicherheitsprobleme: MAC-Spoofing, DHCP Starvation etc.
     \end{itemize}
 \end{itemize}
@@ -46,7 +46,10 @@
 \minisec{Erklären Sie die Funktion der Felder ``Time to live`` und ``Fragment offset`` im IPv4 Header!}
 \begin{itemize}
     \item \textbf{TTL (Time-to-Live): } Mit TTL gibt der Sender die Lebensdauer des Pakets in Sekunden an.
-    Jede Station, die ein IP-Paket weiterleiten muss, zieht von diesem Wert mindestens 1 ab. Hat der TTL-Wert 0 erreicht, wird das IP-Paket verworfen. Dieser Mechanismus verhindert, dass Pakete ewig Leben, wenn sie nicht zustellbar sind. TTL-Werte zwischen 30 und 64 sind typisch.
+    Jede Station, die ein IP-Paket weiterleiten muss, zieht von diesem Wert mindestens 1 ab.
+    Hat der TTL-Wert 0 erreicht, wird das IP-Paket verworfen.
+    Dieser Mechanismus verhindert, dass Pakete ewig Leben, wenn sie nicht zustellbar sind.
+    TTL-Werte zwischen 30 und 64 sind typisch.
     \item \textbf{Fragment-Offset:} Enthält ein IP-Paket fragmentierte Nutzdaten, steht in diesem Feld die Position der Daten im ursprünglichen IP-Paket.
 \end{itemize}
 
@@ -61,17 +64,18 @@
     \item Das Quell-System schickt die Pakete mit der Flagge DF (don‘t fragment)
     \item Wenn ein Router eine zu kleine MTU erkennt, wird das Paket verworfen und eine \textcolor{blue}{ICMP}-Nachricht zurück gesendet
     \item Das Quell-System kann jetzt kleinere Pakete erzeugen, die weiter geleitet werden können
-    \item Der Prozess muss ggf. mehrmals wiederholt werden!
+    \item Der Prozess muss ggf.\ mehrmals wiederholt werden!
 \end{itemize}
 
 \minisec{Welche Aufgaben hat das ICMP-Protokoll?}
 \begin{itemize}
-    \item Das \textcolor{blue}{I}nternet \textcolor{blue}{C}ontrol \textcolor{blue}{M}essage \textcolor{blue}{P}rotocol ist ein Steuerprotokoll der Schicht 3, welches auf IP aufbaut! Dieses Protokoll wird z.B. von Routern verwendet, wenn etwas Unerwartetes passiert.
+    \item Das \textcolor{blue}{I}nternet \textcolor{blue}{C}ontrol \textcolor{blue}{M}essage \textcolor{blue}{P}rotocol ist ein Steuerprotokoll der Schicht 3, welches auf IP aufbaut!
+    Dieses Protokoll wird z.\ B. von Routern verwendet, wenn etwas Unerwartetes passiert.
     \item Aufgaben:
     \begin{itemize}
         \item Mitteilung von Problemen beim Paketversand
         \item Echo-Anfragen (existiert der Zielknoten?)
-        \item Unterstützung von höheren Protokollen und Anwendungen (z. B. Path MTU discovery, traceroute, \ldots)
+        \item Unterstützung von höheren Protokollen und Anwendungen (z.\ B. Path MTU discovery, traceroute, \ldots)
     \end{itemize}
 \end{itemize}
 

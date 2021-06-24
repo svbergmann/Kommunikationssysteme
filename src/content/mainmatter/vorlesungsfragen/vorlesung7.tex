@@ -117,9 +117,11 @@ doch verschickt
 \begin{itemize}
     \item \textcolor{blue}{Source Port :} Identifiziert die Anwendung auf der Senderseite.
     \item \textcolor{blue}{Destination Port :} Identifiziert die Anwendung auf der Empfängerseite.
-    \item \textcolor{blue}{Sequence Number :} TCP betrachtet die zu übertragenden Daten als nummerierten Byte-Strom. Die Sequence Number ist die Nummer des ersten im Segment enthaltenen Datenbytes.
-    \item \textcolor{blue}{Acknowledgement Number :} Dieses Feld bezieht sich auf einen Datenfluss in Gegenrichtung, d.h. hiermit werden Daten bestätigt, die die Station, die das Segment absendet, zuvor von der Zielstation empfangen hat.
-    \item \textcolor{blue}{Data Offset :} Da der Segment-Header Optionen enthalten kann, ist seine Länge nicht fix. Im Data Offset-Feld wird die Länge (d.h. der Beginn des Datenteils) in 32-Bit-Einheiten angegeben.
+    \item \textcolor{blue}{Sequence Number :} TCP betrachtet die zu übertragenden Daten als nummerierten Byte-Strom.
+    Die Sequence Number ist die Nummer des ersten im Segment enthaltenen Datenbytes.
+    \item \textcolor{blue}{Acknowledgement Number :} Dieses Feld bezieht sich auf einen Datenfluss in Gegenrichtung, d.\ h. hiermit werden Daten bestätigt, die die Station, die das Segment absendet, zuvor von der Zielstation empfangen hat.
+    \item \textcolor{blue}{Data Offset :} Da der Segment-Header Optionen enthalten kann, ist seine Länge nicht fix.
+    Im Data Offset-Feld wird die Länge (d.\ h. der Beginn des Datenteils) in 32-Bit-Einheiten angegeben.
     \item \textcolor{blue}{Res. :} Reserviert für zukünftige Nutzung.
     \item \textcolor{blue}{Code :} Die Bits des Code-Feldes steuern besondere Funktionen des Segments.
     \begin{itemize}
@@ -154,9 +156,9 @@ doch verschickt
 
 \minisec{Was versteht man unter dem 'Silly Window'-Syndrom? Wie kann es gelöst werden?}
 \begin{itemize}
-    \item Empfangsfenster ist ``voll``, die empfangende Applikation ließt die Zeichen aber nur einzeln aus
+    \item Empfangsfenster ist ``voll``, die empfangende Applikation liest die Zeichen aber nur einzeln aus
     \item -> Sender würde für jedes einzelne Zeichen ein neues Paket senden
-    \item Lösung (Clark): Empfänger darf neue Fenstergröße erst erneut senden, wenn in seinem Buffer mehr Platz ist (z. B. ein Segment)
+    \item Lösung (Clark): Empfänger darf neue Fenstergröße erst erneut senden, wenn in seinem Buffer mehr Platz ist (z.\ B. ein Segment)
 \end{itemize}
 
 \minisec{Wozu dienen die PSH und URG-Flaggen im TCP Header?}
