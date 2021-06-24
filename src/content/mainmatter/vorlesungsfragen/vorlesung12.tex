@@ -7,7 +7,7 @@
 
 \minisec{Welche Anforderungen kennen Sie, die ein guter Leitungscode erfüllen sollte?}
 \begin{itemize}
-    \item Möglichst hohe \textcolor{blue}{Widerstandsfähigkeit gegen Dämpfung}\
+    \item Möglichst hohe \textcolor{blue}{Widerstandsfähigkeit gegen Dämpfung}
     \item \textcolor{blue}{Effizienz:} möglichst hohe Übertragungsraten durch Codewörter
     \begin{itemize}
         \item binärer Code: +5V / -5V?
@@ -16,10 +16,8 @@
     \end{itemize}
     \item \textcolor{blue}{Taktrückgewinnung} beim Empfänger (\textcolor{blue}{Synchronisation}), dazu möglichst
     häufige/regelmäßige Pegelwechsel
-    \item Gleichstromfreiheit: positive und negative Signale treten ungefähr gleich oft
-    auf → kein nennenswerter elektrischer Gleichstrom-Fluss
-    \item Robustheit: Können längere Sequenzen von 0 und 1 noch als solche noch
-    erkannt werden?
+    \item Gleichstromfreiheit: positive und negative Signale treten ungefähr gleich oft auf → kein nennenswerter elektrischer Gleichstrom-Fluss
+    \item Robustheit: Können längere Sequenzen von 0 und 1 noch als solche noch erkannt werden?
     Können fehlerhafte Bits erkannt werden?
 \end{itemize}
 
@@ -46,7 +44,6 @@
 \end{itemize}
 Bei binären Codeelementen stimmen somit \textcolor{blue}{Bitrate} und \textcolor{blue}{Baudrate} (Schrittgeschwindigkeit) überein, falls nur Codeelemente für Daten übermittelt werden (es gibt auch Codeelemente für z.\ B. die Rahmenstruktur)
 
-
 \minisec{Was ist der Unterschied zwischen einem NRZ- und einem RZ-Code?}
 \begin{itemize}
     \item \textbf{NRZ / NRZ-L: Non-Return\_to\_Zero:}
@@ -55,10 +52,10 @@ Bei binären Codeelementen stimmen somit \textcolor{blue}{Bitrate} und \textcolo
         Hier z.\ B.:
         \item 0 = negative Spannung (konstant 0V), Pegel 1
         \item 1 = positive Spannung (konstant +5V), Pegel 2
-        \item \underline{Nachteil:} bei langen 0- oder 1-Folgen \underline{Taktverlust} und \underline{keine Gleichstromfreiheit}
+        \item \underline{Nachteil:} bei langen 0 oder 1 Folgen \underline{Taktverlust} und \underline{keine Gleichstromfreiheit}
         \item \underline{Beispiel:} UART, RS232 (serielle Schnittstellen)
     \end{itemize}
-    \includegraphics[width=\textwidth]{img/NRZ-L-Code}
+    \includegraphics[width=0.8\textwidth]{img/NRZ-L-Code}
     \item \textbf{RZ: Return to Zero (hier unipolar)}
     \begin{itemize}
         \item 0 = 0V
@@ -67,7 +64,7 @@ Bei binären Codeelementen stimmen somit \textcolor{blue}{Bitrate} und \textcolo
         \item \underline{Nachteil:} Keine Gleichstromfreiheit, kein Takt bei langen 0-Folgen
         \item \underline{Beispiel:} IrDA – Fernbedienung
     \end{itemize}
-    \includegraphics[width=\textwidth]{img/RZ-Code}
+    \includegraphics[width=0.8\textwidth]{img/RZ-Code}
 \end{itemize}
 
 \minisec{Welche Eigenschaften besitzt der Manchester-Code? Was bedeutet 1B2B?
@@ -159,13 +156,22 @@ Wie unterscheiden sich die Standards nach G.E. Thomas und IEEE 802.3?}
 \minisec{Wie groß sind typische Übertragungsraten beim WLAN?
 Welche Frequenzbänder werden benutzt?}
 \begin{itemize}
-    \item \todo A
+    \item Datenraten:
+    \begin{itemize}
+        \item 1, 2, 5.5, 11, 6, 9, 12, 18, 24, 36, 48, 54, \ldots MBit/s Bruttodatenrate
+        \item Abhängig von Signalqualität wird die bestmögliche Datenrate gewählt
+        \item Nutzdatenrate wenig mehr als die Hälfte der jeweiligen Bruttodatenrate
+    \end{itemize}
+    \item Frequenzbereich:
+    \begin{itemize}
+        \item Freies 2.4 GHz-Band (2.4 - 2.4835 GHz) ISM = Industrial – Scientific – Medical
+        \item Optional 5 GHz-Band
+    \end{itemize}
 \end{itemize}
 
 \minisec{Warum ist das CSMA/CD-Verfahren bei WLAN nur schwer anwendbar?}
-\begin{itemize}
-    \item \todo A
-\end{itemize}
+Zentral hierbei ist das Hidden-Station-Problem.
+Dies tritt auf, wenn zwei Stationen sich gegenseitig nicht wahrnehmen, aber gleichzeitig mit einer dritten Station in der Mitte kommunizieren – was unweigerlich zu Kollisionen führt.
 
 \minisec{Erklären Sie das 'Hidden Station'-Problem bei WLAN!}
 \begin{itemize}

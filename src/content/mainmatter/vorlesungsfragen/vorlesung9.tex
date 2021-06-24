@@ -58,23 +58,35 @@
 
 \minisec{Erklären Sie die Unterschiede/Vorteile/Nachteile von symmetrischer und asymmetrischer Verschlüsselung!}
 \begin{itemize}
-    \item \todo A
+    \item Symmetrische Verschlüsselung:
+    \begin{itemize}
+        \item schneller
+        \item braucht weniger Rechenleistung
+        \item Schlüssel muss allerdings an jeden verteilt werden, der die Daten entschlüsseln muss
+    \end{itemize}
+    \item Asymmetrische Verschlüsselung:
+    \begin{itemize}
+        \item sicherer
+        \item langsamer, da mehr Rechenleistung zum Entschlüsseln gebraucht wird
+        \item Schlüssel müssen nicht an alle verteilt werden (private und public Key)
+    \end{itemize}
 \end{itemize}
 
 \minisec{Was ist ein Zertifikat? Wer stellt es aus, und welche Informationen enthält es?}
-\begin{itemize}
-    \item \todo A
-\end{itemize}
+Ein digitales Zertifikat ist ein digitaler Datensatz, der bestimmte Eigenschaften von Personen oder Objekten bestätigt und dessen Authentizität und Integrität durch kryptografische Verfahren geprüft werden kann.
+Das digitale Zertifikat enthält insbesondere die zu seiner Prüfung erforderlichen Daten.
+Die Ausstellung des Zertifikats erfolgt durch eine offizielle Zertifizierungsstelle, die Certification Authority (CA).
 
 \minisec{Welche Eigenschaften hat eine Hash-Funktion? Wo wird Sie im Kontext der Verschlüsselung eingesetzt?}
 \begin{itemize}
-    \item \todo A
+    \item \textcolor{blue}{Surjektivität} – Kein Ergebniswert (Hashwert) soll unmöglich sein, jedes Ergebnis (jeder Hashwert im definierten Wertebereich) soll tatsächlich vorkommen können.
+    \item \textcolor{blue}{Effizienz} – Die Funktion muss schnell berechenbar sein, ohne großen Speicherverbrauch auskommen (der Speicherbedarf des Hashwertes soll deutlich kleiner sein als jener des Schlüssels / Eingabewertes) und sollte die Quelldaten (Eingabewerte) möglichst nur einmal lesen müssen.
+    \item Hash-Funktion wird verwendet, um die private Keys zu verschlüsseln
 \end{itemize}
 
 \minisec{Wie kann man bei 2 Kommunikationspartnern ein 'Geheimnis' (z.B. einen Schlüssel zur symmetrischen Verschlüsselung) erzeugen, ohne dieses Geheimnis über das Netzwerk oder einen anderen Kanal auszutauschen?}
-\begin{itemize}
-    \item \todo A
-\end{itemize}
+\medskip
+\includegraphics[width=\textwidth]{img/Diffie-Hellman-Schlüsselaustausch}
 
 \minisec{Welche Aufgaben hat das SSL Handshake Protokoll und das SSL Record Protokoll?}
 \begin{itemize}
@@ -109,23 +121,40 @@
 
 \minisec{Wie funktionieren SFTP und TFTP?}
 \begin{itemize}
-    \item \todo A
+    \item \underline{SFTP:} FTP über SSH Session
+    \item \underline{TFTP:}
+    \begin{itemize}
+        \item sehr einfaches Protokoll für den File-Transfer
+        \item die Kommunikation läuft über Port 69 und benutzt UDP, nicht TCP
+        \item hat keine Authentifizierung
+        \item benutzt immer 512-Byte-Blöcke
+    \end{itemize}
 \end{itemize}
 
 \minisec{Welches Protokoll wird zum Versenden von Emails verwendet? Was passiert konkret bei Versenden, und wie ist das DNS beteiligt?}
 \begin{itemize}
-    \item \todo A
+    \item Simple Mail Transfer Protokoll (SMTP)
+    \item Email-Übertragung:
+    \begin{enumerate}
+        \item User Agent erstellt E-Mail
+        \item Aufteilen der E-Mail in Header und Body
+        \item Überprüfen und Zwischenspeichern der E-Mail vom Message Transfer Agent
+        \item MTA sucht Mailserver des Empfängers im DNS
+        \item Mail wird an Mailserver verschickt
+        \item Mail wird vom Ziel-MTA überprüft
+        \item Mail wird vom Empfänger Mailserver gespeichert
+    \end{enumerate}
 \end{itemize}
 
 \minisec{Welche Protokolle werden zum Abrufen von Emails verwendet, und wie unterscheiden sie sich?}
 \begin{itemize}
     \item \textcolor{blue}{Simple Mail Transfer Protocol (SMTP):}
     \begin{itemize}
-        \item Versenden von eMails über TCP-Verbindung (Port 25)
+        \item Versenden von E-Mails über TCP-Verbindung (Port 25)
         \item SMTP ist ein einfaches ASCII-Protokoll
         \item Ohne Prüfsummen, ohne Verschlüsselung
         \item Ist der Server zum Empfangen bereit, signalisiert er dies dem Client.
-        Dieser sendet die Information, von wem die eMail kommt und wer der Empfänger ist.
+        Dieser sendet die Information, von wem die E-Mail kommt und wer der Empfänger ist.
         Ist der Empfänger dem Server bekannt, sendet der Client die Nachricht, der Server bestätigt den Empfang.
     \end{itemize}
     \item \textcolor{blue}{Post Office Protocol Version 3 (POP3):}
