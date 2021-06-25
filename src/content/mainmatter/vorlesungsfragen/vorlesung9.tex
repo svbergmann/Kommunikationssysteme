@@ -2,9 +2,9 @@
 
 \minisec{Was bedeuten die Abkürzungen HTTP und HTML? Was ist ein 'HT' ?}
 \begin{itemize}
-    \item \underline{HTML:} Sprache zur Beschreibung der Seiten
-    \item \underline{HTTP:} Protokoll zur Übertragung der Seiten
-    \item \underline{'HT':} \todo A
+    \item \underline{HTML:} Hypertext Markup Language
+    \item \underline{HTTP:} Hypertext Transfer Protocol
+    \item \underline{'HT':} Hypertext
 \end{itemize}
 
 \minisec{Erklären Sie den Zusammenhang zwischen URI, URL und URN!}
@@ -17,12 +17,22 @@
 
 \minisec{Wie ist ein HTTP-Request-Header aufgebaut? Wie wird der Header von den Daten getrennt, und woher weiß man die Länge der Daten?}
 \begin{itemize}
-    \item \todo A
+    \item Aufbau:
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{img/HTTP_RequestHeader}
+    \end{center}
+    \item Trennung: Leerzeile
+    \item Länge: Als Attribut im Header (content-length)
 \end{itemize}
 
 \minisec{Welche Gruppen von HTTP Status-Codes kennen Sie?}
 \begin{itemize}
-    \item
+    \item 1xx – Informationen
+    \item 2xx – Erfolgreiche Operation
+    \item 3xx – Umleitung
+    \item 4xx – Client-Fehler
+    \item 5xx – Server-Fehler
+    \item 9xx – Proprietäre Fehler
 \end{itemize}
 
 \minisec{Welche HTTP-Methoden existieren neben 'GET'?}
@@ -52,9 +62,7 @@
 \end{itemize}
 
 \minisec{Wo ist der SSL-Layer im ISO/OSI oder Internet-Schichtenmodell angesiedelt?}
-\begin{itemize}
-    \item In der Darstellungsschicht (Schicht 6)
-\end{itemize}
+In der Darstellungsschicht (Schicht 6)
 
 \minisec{Erklären Sie die Unterschiede/Vorteile/Nachteile von symmetrischer und asymmetrischer Verschlüsselung!}
 \begin{itemize}
@@ -105,18 +113,17 @@ Die Ausstellung des Zertifikats erfolgt durch eine offizielle Zertifizierungsste
 \end{itemize}
 
 \minisec{Warum sollte 'einfaches' FTP heute nicht mehr verwendet werden?}
-\begin{itemize}
-    \item \todo A
-\end{itemize}
+Zu unsicher, Übertragung der Login-Daten als Klartext \ldots
 
 \minisec{Warum gibt es in einem typischen Heimnetzwerk Probleme mit dem FTP 'Active' Mode?}
-\begin{itemize}
-    \item \todo A
-\end{itemize}
+In Heimnetzen wird typischerweise NAT verwendet, und beim 'Active' Mode horcht der Client für die Datenverbindung auf einem zufälligen Port und teilt diesen dem Server über die Kontrollverbindung mit.
+Diese Daten (IP in einem privaten Netz und Portnummer) sind aber für den NAT-Router nicht sichtbar (weil auf Anwendungsebene übertragen), und können daher vom NAT-Router nicht 'übersetzt' werden.
 
 \minisec{Informieren Sie sich über die Entstehungsgeschichte und Funktionalität von SSL und SSH!}
 \begin{itemize}
-    \item \todo A
+    \item \url{https://de.wikipedia.org/wiki/Secure_Shell}
+    \item \url{https://de.wikipedia.org/wiki/Transport_Layer_Security}
+    \item \url{https://www.kreitiv.de/ssl-tls-und-ssh-verschluesselungsprotokolle/}
 \end{itemize}
 
 \minisec{Wie funktionieren SFTP und TFTP?}
@@ -170,7 +177,8 @@ Die Ausstellung des Zertifikats erfolgt durch eine offizielle Zertifizierungsste
 
 \minisec{Warum ist einfaches SMTP unsicher?}
 \begin{itemize}
-    \item \todo A
+    \item Unverschlüsseltes, ASCII-basiertes Protokoll, Passwörter im Klartext.
+    \item Einfache Möglichkeit zur Manipulation von E-Mails
 \end{itemize}
 
 \minisec{Wozu dient das (veraltete) TELNET-Protokoll? Wozu kann es (z.B. im Praktikum) sinnvoll eingesetzt werden?}
@@ -178,7 +186,7 @@ Die Ausstellung des Zertifikats erfolgt durch eine offizielle Zertifizierungsste
     \item TCP ermöglicht den transparenten, interaktiven Gebrauch von „entfernten“ Maschinen
     \item verbreitetes Protokoll: TELNET, welches auf einer Client/Server-Kommunikation basiert
     \item Ein „Pseudo-Terminal“ des Servers interpretiert Zeichen, als kämen sie von der eigenen Tastatur
-    \item bei Antwort des Servers umgekehrter Weg (Pseudo-Teminal fängt Antwort ab, leitet sie über TCP an den Client weiter, der die Ausgabe am Bildschirm macht
+    \item bei Antwort des Servers umgekehrter Weg (Pseudo-Terminal fängt Antwort ab, leitet sie über TCP an den Client weiter, der die Ausgabe am Bildschirm macht
     \item \textbf{Benutzername und Passwort werden unverschlüsselt übertragen}
 \end{itemize}
 
@@ -189,22 +197,20 @@ Die Ausstellung des Zertifikats erfolgt durch eine offizielle Zertifizierungsste
     Alle während der Verbindung gesendeten und empfangenen Daten werden mit einer 128 Bit-Verschlüsselung verschlüsselt.
     \item \textcolor{blue}{ssh} unterstützt verschiedene Authentisierungsarten:
     \begin{itemize}
-        \item Bei der so genannten hostbased-Authentifizierung akzeptiert ein Rechner ohne eigene account-spezifische Tests die Vorgaben eines fremden Rechners.
+        \item Bei der sogenannten hostbased-Authentifizierung akzeptiert ein Rechner ohne eigene account-spezifische Tests die Vorgaben eines fremden Rechners.
         Es wird höchstens die Identität des fremden Rechners überprüft.
         \item Die Authentifikation mit einem Passwort ist derzeit die "übliche" Methode, um sich an einem Rechner anzumelden.
         Die Sicherheit dieses Mechanismus beruht auf der Geheimhaltung des Passwortes, dessen Übertragung allerdings verschlüsselt wird
-        \item Um auch das Übertragen eines verschlüsselten Passwortes zu vermeiden, werden die so genannten public-key-Verfahren eingesetzt
+        \item Um auch das Übertragen eines verschlüsselten Passwortes zu vermeiden, werden die sogenannten public-key-Verfahren eingesetzt
     \end{itemize}
 \end{itemize}
 
 \minisec{Wie kann mein einen sicheren 'Tunnel' zu/von einem beliebigen (TCP-) Port einrichten?}
+Mit \textcolor{blue}{SSH: Port-Forwarding:}
 \begin{itemize}
-    \item Mit \textcolor{blue}{SSH: Port-Forwarding:}
-    \begin{itemize}
-        \item verschlüsselte Verbindung zwischen zwei beliebigen Ports
-        \item kann auch ohne Shell genutzt werden
-        \item lokaler Port führt direkt auf den Zielport, als wäre dieser lokal
-    \end{itemize}
+    \item verschlüsselte Verbindung zwischen zwei beliebigen Ports
+    \item kann auch ohne Shell genutzt werden
+    \item lokaler Port führt direkt auf den Zielport, als wäre dieser lokal
 \end{itemize}
 
 \minisec{Wozu wird SNMP verwendet? Welches Transportprotokoll verwendet es? Was ist ein SNMP-Agent und eine MIB?}
@@ -212,5 +218,5 @@ Die Ausstellung des Zertifikats erfolgt durch eine offizielle Zertifizierungsste
     \item Transportprotokoll: UDP
     \item SNMP: Protokoll, das festlegt, wie Management-Information kommuniziert wird (Formate und Bedeutung von SNMP-Nachrichten)
     \item MIB (Management Information Base): Die MIB spezifiziert die Informationseinheiten (items), die vorgehalten werden müssen, und welche Operationen darauf erlaubt sind.
-    \item \todo 9 Wofür wird SNMP verwendet?
+    \item SNMP wird zum Management von Geräten im Netz verwendet (Fehlerstatus etc.)
 \end{itemize}

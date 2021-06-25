@@ -1,9 +1,7 @@
 \addsec{Vorlesung 2 - Sockets und Darstellungsschicht}
 
 \minisec{ Wer kommuniziert beim Internet-Referenzmodell letztendlich miteinander?}
-\begin{itemize}
-    \item Die Schichten untereinander und die Schicht 1 mit der Schicht 1
-\end{itemize}
+Die Schichten untereinander und die Schicht 1 mit der Schicht 1
 
 \minisec{Welche 3 Arten von 'Adressen' werden im Internet-Referenzmodell für die Kommunikation benötigt?}
 \begin{itemize}
@@ -13,24 +11,17 @@
 \end{itemize}
 
 \minisec{Was abstrahiert aus Programmiersicht ein sog. 'Socket'?}
-\begin{itemize}
-    \item Einen TCP Clienten
-\end{itemize}
+Einen TCP Clienten
 
 \minisec{Warum haben Client- und Serversockets eine unterschiedliche Anzahl von Konstruktorparametern?}
-\begin{itemize}
-    \item Der Clientsocket muss den Zielrechner und den eigenen Port mitgeben, um Daten senden und empfangen zu können, während der Serversocket nur den Port mitgeben muss umd Verbindungen zu akzeptieren.
-\end{itemize}
+Der Clientsocket muss den Zielrechner und den eigenen Port mitgeben, um Daten senden und empfangen zu können, während der Serversocket nur den Port mitgeben muss umd Verbindungen zu akzeptieren.
+
 
 \minisec{Was bewirkt auf Serverseite der Aufruf von accept()?}
-\begin{itemize}
-    \item Damit wartet der Server auf eingehende Verbindungswünsche.
-\end{itemize}
+Damit wartet der Server auf eingehende Verbindungswünsche.
 
 \minisec{Was ist bei der Programmierung von Servern zu beachten, wenn eine hohe Zahl an Anfragen erwartet wird?}
-\begin{itemize}
-    \item Jeden Clienten in einem eigenen Thread bearbeiten.
-\end{itemize}
+Jeden Clienten in einem eigenen Thread bearbeiten.
 
 \minisec{Wodurch unterscheiden sich Little- und Big-Endian-CPUs, und warum kann das zu Problemen bei der Datenkommunikation führen?}
 \begin{itemize}
@@ -51,9 +42,7 @@
 \end{itemize}
 
 \minisec{Was versteht man unter (De-) Serialisierung?}
-\begin{itemize}
-    \item Deserialisierung ist die Wiederherstellung eines Objektes ohne Vorwissen über die Typen der Objekte
-\end{itemize}
+Deserialisierung ist die Wiederherstellung eines Objektes ohne Vorwissen über die Typen der Objekte
 
 \minisec{Nennen Sie 3 Technologien oder APIs, die das Übertragen von abstrakten/strukturierten Daten über ein Rechnernetz ermöglichen!}
 \begin{itemize}
@@ -163,9 +152,7 @@
 \end{itemize}
 
 \minisec{Wozu dient ein XML-Schema?}
-\begin{itemize}
-    \item Ein XML Schema enthält in XML notierte Regeln, die erlaubte Elementbezeichner, Reihenfolgen, Inhalte und Attribute mit Wertebereichen aufzählen
-\end{itemize}
+Ein XML Schema enthält in XML notierte Regeln, die erlaubte Elementbezeichner, Reihenfolgen, Inhalte und Attribute mit Wertebereichen aufzählen
 
 \minisec{Nennen Sie 3 Kompositoren (und deren Ergänzungen), die in XML-Schemas verwendet werden können!}
 \begin{itemize}
@@ -206,8 +193,7 @@
 \end{itemize}
 
 \minisec{Wie ist eine JSON-Datei grundsätzlich aufgebaut?}
-\begin{itemize}
-    \item Beispiel:
+Beispiel:
     \begin{lstlisting}[label={lst:lstlisting10}]
         {
             "id" : 564146,
@@ -215,4 +201,3 @@
             "Vorname" : "Max"
         }
     \end{lstlisting}
-\end{itemize}

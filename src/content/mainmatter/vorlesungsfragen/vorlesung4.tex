@@ -7,9 +7,7 @@
 \end{itemize}
 
 \minisec{Mit welchem Algorithmus kann ein optimaler Quelle-Senke Baum berechnet werden?}
-\begin{itemize}
-    \item Mit dem Dijkstra Algorithmus
-\end{itemize}
+Mit dem Dijkstra Algorithmus
 
 \minisec{Welche 2 Arten von Routingverfahren kennen Sie, und welche Unterschiede existieren zwischen den Verfahren?}
 \begin{itemize}
@@ -77,42 +75,35 @@
 \end{itemize}
 
 \minisec{Wie werden solche Adressen im Zusammenhang mit NAT eingesetzt?}
-\begin{itemize}
-    \item Der NAT-Router ersetzt die Source-IP (z. B. 10.0.0.3) mit der öffentlichen Adresse
-\end{itemize}
+Der NAT-Router ersetzt die Source-IP (z. B. 10.0.0.3) mit der öffentlichen Adresse
 
 \minisec{Was passiert beim Verschicken eines IP-Paketes über einen NAT-Router?}
-\begin{itemize}
-    \item Der NAT-Router ersetzt die Source-IP (z. B. 10.0.0.3) mit der öffentlichen Adresse
-\end{itemize}
+Der NAT-Router ersetzt die Source-IP (z. B. 10.0.0.3) mit der öffentlichen Adresse
 
 \minisec{Was passiert anschließend beim Empfangen eines Antwortpaketes (von einem Server außerhalb des privaten Netzes)?}
-\begin{itemize}
-    \item \todo A
-\end{itemize}
+Der Server adressiert in seiner Antwort ein Ziel-Port, das der NAT-Router dann wieder in die interne IP und die interne Port-Nummer zurück übersetzt.
 
 \minisec{Warum verletzt das NAT-Verfahren die Schichtenarchitektur?}
-\begin{itemize}
-    \item Layer 3 kennt Details des Layer 4, was eigentlich nicht sein darf.
-\end{itemize}
+Layer 3 kennt Details des Layer 4, was eigentlich nicht sein darf.
 
 \minisec{Nennen Sie 2 Szenarien, wo der Einsatz von NAT zu Problemen führen würde. Begründen Sie jeweils ihre Antwort!}
 \begin{itemize}
     \item Es wird nicht TCP/UTP verwendet
     \begin{itemize}
-        \item \todo A Begründung:
+        \item Begründung: Wenn TCP/UDP nicht verwendet wird, existiert ggf.\ das Konzept der Portnummern überhaupt nicht mehr.
+        Diese Portnummern sind aber elementare Voraussetzung für die internen „Übersetzungen“ eines NAT-Routers.
     \end{itemize}
-    \item Übergeordnete Protokolle übertragen die IP als Payload (z. B. ftp)
+    \item Übergeordnete Protokolle übertragen die IP als Payload (z.\ B. ftp)
     \begin{itemize}
-        \item \todo A Begründung:
+        \item Begründung: Wenn in den Payload-Daten eine IP übertragen wird, kann der NAT-Übersetzungsprozess nicht stattfinden.
+        Ein Rechner in einem privaten Netz würde z.\ B. als Ziel IP 192.168.178.20 in die Payload-Daten kodieren, die auf Empfängerseite (bei einem entfernten Server) nicht verwendet werden kann (weil privat).
     \end{itemize}
     \item Verschlüsselte Verbindungen werden genutzt
     \begin{itemize}
-        \item \todo A Begründung:
+        \item Begründung: Wenn der NAT-Router bereits verschlüsselte IP-Pakete erhält, kann er ggf.\ nicht mehr IP und Portnummer aus den Paketen lesen.
     \end{itemize}
 \end{itemize}
 
 \minisec{Was wird bei Port Restricted Cone NAT bei Antwortpaketen überprüft? Was muss sich der NAT-Router dazu merken?}
-\begin{itemize}
-    \item Dieser Fall erweitert den restricted cone NAT in der Art, dass auch nur der entfernte Port mit dem internen Rechner kommunizieren kann. Der Router merkt sich Ziel-IP und Ziel-Port.
-\end{itemize}
+Dieser Fall erweitert den restricted cone NAT in der Art, dass auch nur der entfernte Port mit dem internen Rechner kommunizieren kann.
+Der Router merkt sich Ziel-IP und Ziel-Port.

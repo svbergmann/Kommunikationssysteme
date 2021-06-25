@@ -52,14 +52,10 @@ Sampling-Frequenz $\ge 2 \cdot$ maximale Frequenz des Signals
 \end{itemize}
 
 \minisec{Warum ist beim Streaming von Live-Daten immer eine Pufferung auf Empfängerseite notwendig?}
-\begin{itemize}
-    \item Wegen der Unterschiede in der Netzwerk- und der Wiedergabe-Latenz
-\end{itemize}
+Wegen der Unterschiede in der Netzwerk- und der Wiedergabe-Latenz
 
 \minisec{Welches Anwendungsprotokoll unterstützt die Versendung von Echtzeitdaten über UDP?}
-\begin{itemize}
-    \item Das \textcolor{blue}{RTP-Protokoll}
-\end{itemize}
+Das \textcolor{blue}{RTP-Protokoll}
 
 \minisec{Wozu dient das Domain Name System (DNS) hauptsächlich?}
 DNS handhabt die Abbildung von Rechnernamen auf Adressen (und weitere Dienste).
@@ -110,56 +106,45 @@ Ein direktes Blatt des DNS. Kategorien:
         cat & Catalan & 2005 & Yes \tabularnewline
         \hline
     \end{tabular}
-
 \end{center}
 
 \minisec{Welche Möglichkeiten hat der Resolver auf einem Rechner, einen Domänen-Namen aufzulösen?}
 \begin{itemize}
-    \item \underline{Rekursive Anfragen} Server schickt Anfrage zum nächsten Server weiter (oder Fehlermeldung). -> Client-Server-Anfragen
-    \item \underline{Iterative Anfragen} Server antwortet dem Fragenden direkt mit IP-Adresse des nächsten Servers. -> Server-Server-Anfragen
+    \item \underline{Rekursive Anfragen} Server schickt Anfrage zum nächsten Server weiter (oder Fehlermeldung).
+    → Client-Server-Anfragen
+    \item \underline{Iterative Anfragen} Server antwortet dem Fragenden direkt mit IP-Adresse des nächsten Servers.
+    → Server-Server-Anfragen
 \end{itemize}
 
 \minisec{Woher kennt ein Rechner typischerweise die IPs seines zugehörigen DNS-Servers?}
-\begin{itemize}
-    \item In den Blattknoten sind die IP-Adressen der durch die Labelsequenz gegebenen Namen gespeichert
-\end{itemize}
+In den Blattknoten sind die IP-Adressen der durch die Labelsequenz gegebenen Namen gespeichert
 
 \minisec{Was ist der Unterschied zwischen einer (Sub-) Domäne und einer Zone?}
-\begin{itemize}
-    \item Zonen sind (außer in den ‚tieferen‘ Bereichen des Baumes) meistens nur für ein Namenselement einer Domänen zuständig (dann müssen vom Name Server weniger Informationen verwaltet werden)
-\end{itemize}
+Zonen sind (außer in den ‚tieferen‘ Bereichen des Baumes) meistens nur für ein Namenselement einer Domänen zuständig (dann müssen vom Name Server weniger Informationen verwaltet werden)
 
 \minisec{Was versteht man unter einem Zonen-Transfer?}
-\begin{itemize}
-    \item Zonentransfer bezeichnet beim Domain Name System (DNS) die Übertragung von Zonen auf einen anderen Server.
-    Dieses Verfahren wird AXFR (Asynchronous Full Transfer Zone oder Asynchronous Xfer Full Range) abgekürzt.
-    Da ein DNS-Ausfall für ein Unternehmen meist gravierende Folgen hat, werden die DNS-Daten – also die Zonendateien – fast ausnahmslos identisch auf mehreren Nameservern gehalten.
-    Bei Änderungen muss sichergestellt sein, dass alle Server den gleichen Datenbestand besitzen.
-    Die Synchronisation zwischen den beteiligten Servern wird durch den Zonentransfer realisiert.
-    Der Zonentransfer beinhaltet nicht nur das bloße Übertragen von Dateien oder Sätzen, sondern auch das Erkennen von Abweichungen in den Datenbeständen der beteiligten Server.
-\end{itemize}
+Zonentransfer bezeichnet beim Domain Name System (DNS) die Übertragung von Zonen auf einen anderen Server.
+Dieses Verfahren wird AXFR (Asynchronous Full Transfer Zone oder Asynchronous Xfer Full Range) abgekürzt.
+Da ein DNS-Ausfall für ein Unternehmen meist gravierende Folgen hat, werden die DNS-Daten – also die Zonendateien – fast ausnahmslos identisch auf mehreren Nameservern gehalten.
+Bei Änderungen muss sichergestellt sein, dass alle Server den gleichen Datenbestand besitzen.
+Die Synchronisation zwischen den beteiligten Servern wird durch den Zonentransfer realisiert.
+Der Zonentransfer beinhaltet nicht nur das bloße Übertragen von Dateien oder Sätzen, sondern auch das Erkennen von Abweichungen in den Datenbeständen der beteiligten Server.
+
 
 \minisec{Löst ein DNS-Server eine Anfrage rekursiv oder iterativ auf? Warum?}
-\begin{itemize}
-    \item Normalerweise arbeiten Nameserver rekursiv, da einige Resolver mit einer iterativen Antwort nichts anfangen können.
-\end{itemize}
+Normalerweise arbeiten Nameserver rekursiv, da einige Resolver mit einer iterativen Antwort nichts anfangen können.
 
 \minisec{Woher kennt ein DNS-Server den 'Startpunkt' seiner Suche?}
-\begin{itemize}
-    \item \todo A
-\end{itemize}
+Ein DNS-Server kann natürlich nicht den Startpunkt deiner Suche in Form eines Domain-Namens auflösen (das wäre ein Henne-Ei-Problem).
+Es existieren well-known IPs (siehe KS\_14, Seite 15), die als feste IPs zum Ansprechen des Root-Nameservers verwendet werden.
 
 \minisec{Welche Verfahren nutzt ein DNS-Server zur Lastreduktion (bzw. zum Vermeiden von erneuten Anfragen)?}
-\begin{itemize}
-    \item Jeder DNS-Server besitzt auch einen Cache.
-    Dieser hält vor kurzem aufgelöste Anfragen vor.
-    Den Zeitraum liefert der Server, der diese Adresse ursprünglich einmal aufgelöst hat
-\end{itemize}
+Jeder DNS-Server besitzt auch einen Cache.
+Dieser hält vor kurzem aufgelöste Anfragen vor.
+Den Zeitraum liefert der Server, der diese Adresse ursprünglich einmal aufgelöst hat
 
 \minisec{Was ist ein MX-Record?}
-
 Hier wird bestimmt, an welchen (Mail-)Server E-Mails geschickt werden.
-
 In der Regel haben Mail-Server bestimmte Domains, unter denen sie erreichbar sind.
 Jeder Anbieter eines Mail-Systems kommuniziert seine MX-Records klar für seine Nutzer.
 
@@ -168,7 +153,7 @@ Wichtig: Damit jede Mail auch am richtigen Mail-Server ankommt, müssen die MX-R
 \minisec{Warum ist das DNS ein kritischer Dienst im Internet, und Ziel von Hacking-Attacken?}
 Da er nur UDP verwendet, ist er häufig Angriffsziel:
 \begin{itemize}
-    \item DNS ID Hacking: Anfragen werden über IDs geschützt, d. h. man der Client erwartet nicht nur die Auflösung, sondern auch noch eine spezielle ID. Wenn diese nicht vom Netz abgegriffen werden kann, so muss man sie erraten
+    \item DNS ID Hacking: Anfragen werden über IDs geschützt, d.\ h. man der Client erwartet nicht nur die Auflösung, sondern auch noch eine spezielle ID. Wenn diese nicht vom Netz abgegriffen werden kann, so muss man sie erraten
     \item DNS spoofing: Hier beantwortet ein falscher DNS-Server die Anfrage.
     Hier muss die ID verwendet werden.
     Auch wird die falsche IP, also die des eigentlich richtigen Servers angegeben (was von den Providern zu unterbinden ist)

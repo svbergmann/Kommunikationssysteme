@@ -115,18 +115,20 @@
 \end{itemize}
 
 \minisec{ Welche räumliche Ausdehnung besitzen typischerweise LANs?}
-\begin{itemize}
-    \item 10 m – wenige km
-\end{itemize}
+10 m – wenige km
 
 \minisec{Was versteht man unter einem Protokoll im Kontext der Datenkommunikation?}
-\begin{itemize}
-    \item \textcolor{blue}{Ein Protokoll ist die Gesamtheit aller Vereinbarungen zwischen Computeranwendungen zum Zweck einer gemeinsamen Kommunikation}
-\end{itemize}
+\textcolor{blue}{Ein Protokoll ist die Gesamtheit aller Vereinbarungen zwischen Computeranwendungen zum Zweck einer gemeinsamen Kommunikation}
 
 \minisec{Nennen Sie 3--4 Problemdomänen, die für eine erfolgreiche Datenkommunikation zu lösen sind!}
 \begin{itemize}
-    \item \todo 1 3–4 Problemdomänen nennen
+    \item Kodierungsregeln und Semantiken der Nutzdaten
+    \item Regelung der Übertragungsrichtung (wer redet, wer hört zu?)\
+    \item Adressierung des Zielsystems für die Datenübertragung
+    \item Wegefindung der Daten in komplexen, hierarchischen Netzen
+    \item Erkennung und Korrektur von Übertragungsfehlern
+    \item Regelung des Zugriffs auf das Übertragungsmedium
+    \item Darstellung der Nutzdaten als physikalisches Signal
 \end{itemize}
 
 \minisec{Welche Vorteile (und ggf. auch Nachteile) haben Schichten-Architekturen?}
@@ -231,9 +233,8 @@
 \end{itemize}
 
 \minisec{Wie überträgt jede Schicht die für sie relevanten Informationen?}
-\begin{itemize}
-    \item \todo 1 Wie überträgt jede Schicht die für sie relevanten Informationen?
-\end{itemize}
+Schicht n versieht ihre Nachricht mit Kontrollinformationen (z.\ B. in Form eines Headers) und versendet alles zusammen (oftmals Protocol Data Unit (PDU) genannt).
+Dazu nutzt sie die Dienste der nächsttieferen Schicht (n-1).
 
 \minisec{Welche Unterschiede existieren zwischen dem ISO/OSI-Modell und dem Internet-Referenzmodell?}
 \bigbreak
@@ -285,13 +286,11 @@ Beide Protokolle gehören zur Schicht 4, der Transport-Schicht.
 \end{center}
 
 \minisec{Welche Vorteile hat es (bzw. warum ist es notwendig), die Host-to-Network-Schicht komplett in Hardware zu realisieren?}
+Idee: Die faktische Datenübertragung wird von der Netzwerkkarte des Rechners erledigt
 \begin{itemize}
-    \item Idee: Die faktische Datenübertragung wird von der Netzwerkkarte des Rechners erledigt
-    \begin{itemize}
-        \item Vorteil bei Multi-Access-Netzen: Die Netzwerkkarte kann selber entscheiden, ob die Daten für den eigenen Rechner sind
-        → Entlastung des Betriebssystems (da kein Interrupt notwendig)
-        \item Starke Entkopplung vom Betriebssystem: IP teilt dem Treiber der Netzwerkkarte mit, dass diese Daten (zuverlässig) an eine gegebene Zieladresse (MAC-Adresse) übertragen soll
-        \item Übertrage das IP-Datagramm der Länge 1500 Byte an die MACAdresse
-        \item Direkte Anbindung des Zielrechners erforderlich
-    \end{itemize}
+    \item Vorteil bei Multi-Access-Netzen: Die Netzwerkkarte kann selber entscheiden, ob die Daten für den eigenen Rechner sind
+    → Entlastung des Betriebssystems (da kein Interrupt notwendig)
+    \item Starke Entkopplung vom Betriebssystem: IP teilt dem Treiber der Netzwerkkarte mit, dass diese Daten (zuverlässig) an eine gegebene Zieladresse (MAC-Adresse) übertragen soll
+    \item Übertrage das IP-Datagramm der Länge 1500 Byte an die MACAdresse
+    \item Direkte Anbindung des Zielrechners erforderlich
 \end{itemize}

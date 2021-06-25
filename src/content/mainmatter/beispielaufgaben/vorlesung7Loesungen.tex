@@ -22,15 +22,15 @@
 
 \minisec{Übungsaufgabe 3:}
 Im TCP-Header existiert kein Feld zur Längenangabe der übermittelten Nutzdaten.
-TCP muss hierzu auf das 'Total Length' Feld im IP Header zurückgreifen, und die Größe des IP- und TCP-Headers (ggf. mit Optionen) abziehen.
+TCP muss hierzu auf das 'Total Length' Feld im IP Header zurückgreifen, und die Größe des IP- und TCP-Headers (ggf.\ mit Optionen) abziehen.
 Daraus ergibt sich dann die Größe der übermittelten Nutzdaten.
 
 \minisec{Übungsaufgabe 4:}
 Das erforderliche Sendefenster ergibt sich aus dem Bandwidth-Delay Produkt:
-\[40.000.000 \frac{Bit}{s} * 0,1s = 4.000.000 Bit = 500.000 Byte\]
-Diese Fenstergröße kann im Original-TCP Header nicht abgebildet werden (maximal 64kB).
+\[40.000.000 \ \frac{Bit}{s} * 0,1s = 4.000.000 \ Bit = 500.000 \ Byte\]
+Diese Fenstergröße kann im Original-TCP Header nicht abgebildet werden (maximal 64 kB).
 Daher muss die Window-Scale Option eingesetzt werden.
-Damit die erforderliche Fensterbreite verwendet werden kann, muss der ursprüngliche Maximalwert (64kB) mindestens mit Faktor 8 multipliziert werden (524288 Bytes).
+Damit die erforderliche Fensterbreite verwendet werden kann, muss der ursprüngliche Maximalwert (64 kB) mindestens mit Faktor 8 multipliziert werden (524288 Bytes).
 D.\ h. im 3.\ Byte der Window-Scale Option muss mindestens eine 3 stehen ($2^3$ = Faktor 8).
 Dadurch können nun allerdings Fenstergrößen nur noch in Vielfachen
 von 8 Byte kommuniziert werden!

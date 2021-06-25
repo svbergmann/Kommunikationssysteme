@@ -88,7 +88,7 @@
         \item Lichtpuls besteht aus mehreren Wellen (Strahlen) → Einfallswinkel dieser Strahlen unterschiedlich
         \item Lichtstrahlen kommen im Medium unterschiedlich schnell vorwärts:
         \begin{itemize}
-            \item Wege (Moden) der Strahlen unterschiedlich lang (abhg.\ von Einfallswinkel)
+            \item Wege (\textbf{Moden}) der Strahlen unterschiedlich lang (abhg.\ von Einfallswinkel)
             \item Strahlen eines Impulses kommen zeitversetzt am Ende des Kabels an
             \item Intensität der Impulse nimmt ab, benachbarte Impulse verschwimmen
         \end{itemize}
@@ -124,14 +124,12 @@
 \end{itemize}
 
 \minisec{Bei welcher Netztopologie gibt es ein 'gemeinsames' Medium, auf das alle Teilnehmer zugreifen?}
+Multi-Access-Netz (gemeinsames Medium)
 \begin{itemize}
-    \item Multi-Access-Netz (gemeinsames Medium)
-    \begin{itemize}
-        \item Nur in lokalen Netzen verwendet
-        \item Alle Stationen sind an ein einziges Medium angeschlossen
-        \item Sendet eine Station Daten, werden sie an alle Stationen ausgeliefert
-        \item Jeder Rechner kontrolliert jedes Paket, ob es für ihn bestimmt ist
-    \end{itemize}
+    \item Nur in lokalen Netzen verwendet
+    \item Alle Stationen sind an ein einziges Medium angeschlossen
+    \item Sendet eine Station Daten, werden sie an alle Stationen ausgeliefert
+    \item Jeder Rechner kontrolliert jedes Paket, ob es für ihn bestimmt ist
 \end{itemize}
 
 \minisec{Bei welchen Netztopologien gibt es ausschließlich Punkt-zu-Punkt-Verbindungen zwischen den Teilnehmern?}
@@ -217,9 +215,14 @@
 
 \minisec{Warum gibt es in der Schicht 2 neben dem Header auch einen Trailer? Welche Felder enthält der Ethernet-Header?}
 \begin{itemize}
-    \item Der Trailer enthält fehlerprüfende Maßnahmen, wie beispielsweise eine Prüfsumme.
-    \item Felder vom Header:
+    \item Trailer:
     \begin{itemize}
-        \item \todo A
+        \item Frame Check Sequence (CRC Prüfsumme)
+    \end{itemize}
+    \item Header:
+    \begin{itemize}
+        \item MAC Empfänger
+        \item Absender
+        \item Ethernet Typ
     \end{itemize}
 \end{itemize}

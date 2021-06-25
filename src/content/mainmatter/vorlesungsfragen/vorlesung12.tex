@@ -1,9 +1,8 @@
 \addsec{Vorlesung 12 - Leitungscodes, WLAN}
 
 \minisec{Erklären Sie den Begriff Signalbildung (bzw. Leitungskodierung)!}
-\begin{itemize}
-    \item \todo A
-\end{itemize}
+Signalbildung ist die Umwandlung der binären Sendedaten (nach eventueller Kompression und/oder Kodierung mit Prüfsummen etc.) in physikalische Signale.
+Die Signale müssen dabei nicht unbedingt binär sein, sondern können auch mehr als 2 Zustände annehmen.
 
 \minisec{Welche Anforderungen kennen Sie, die ein guter Leitungscode erfüllen sollte?}
 \begin{itemize}
@@ -23,12 +22,13 @@
 
 \minisec{Welche Vor- und Nachteile hat ein binärer gegenüber einem quaternären Code?}
 \begin{itemize}
-    \item \todo A
+    \item Vorteil: Ein quaternärer Code kann 2 Nutzdatenbits in einem Code-Symbol abbilden
+    \item Nachteil: Die Unterscheidung von 4 verschiedenen Signalzuständen kann anfälliger gegenüber Störungen bei der Übertragung sein.
 \end{itemize}
 
 \minisec{Erklären Sie den Unterschied zwischen Basisband- und Breitband-Übertragung!}
 \begin{itemize}
-    \item \textcolor{blue}{Basisband:} Das Basisband ist der natürliche Frequenzbereich des Nutzsignals (untere Grenzfrequenz $f_{min}$ gleich oder nahe bei 0 Hz).
+    \item \textcolor{blue}{Basisband:} Das Basisband ist der natürliche Frequenzbereich des Nutzsignals (untere Grenzfrequenz $f_{\min}$ gleich oder nahe bei 0 Hz).
     Die digitalen Informationen werden ‚direkt‘ in physikalische Größen übersetzt und so über die Leitung übertragen.
     Hierzu sind Kodierungsverfahren notwendig, die festlegen, wie bei der Übertragung eine 0 bzw.\ eine 1 repräsentiert werden.
     Es kann nur je ein Signal übertragen werden
@@ -115,12 +115,15 @@ Wie unterscheiden sich die Standards nach G.E. Thomas und IEEE 802.3?}
 
 \minisec{Welche Möglichkeiten kennen Sie, um bei einer Breitbandübertragung die Datenrate zu erhöhen?}
 \begin{itemize}
-    \item \todo A
+    \item Erhöhung der Bandbreite (des Frequenzbandes, auf dem übertragen wird).
+    Das ist bei höheren Trägerfrequenzen i.\ d.\ R. einfacher
+    \item Steigerung der in einem Abtastvorgang modulierten binären Informationen (Verwendung eines Codes mit z.\ B. 4/8/16 Bits pro Abtastung)
 \end{itemize}
 
-\minisec{Warum ist PSK weniger störanfällig als z.B. ASK?}
+\minisec{Warum ist PSK weniger störanfällig als z.\ B. ASK?}
 \begin{itemize}
-    \item \todo A
+    \item Die Amplitude unterliegt Schwächung/Dämpfung, und ist daher störanfällig
+    \item Die Phase einer Schwingung ist auch bei stärkeren Störungen unverändert
 \end{itemize}
 
 \minisec{Wie unterscheiden sich QPSK und QAM?}
@@ -149,9 +152,8 @@ Wie unterscheiden sich die Standards nach G.E. Thomas und IEEE 802.3?}
 \end{itemize}
 
 \minisec{Worin unterscheidet sich ein kabelgebundenes gemeinsames Medium (z.B. ein Bus bei 10Base2) von einem funkbasierten 'gemeinsamen' Medium (Luftraum bei WLAN)?}
-\begin{itemize}
-    \item \todo A
-\end{itemize}
+Bei einem Kabelgebundenen Medium werden Daten an alle angeschlossenen Teilnehmer weitergeleitet.
+Bei funkbasierten Techniken teilen sich auch alle Teilnehmer das gleiche Medium ('Luft'), aber je nach Abstand können entfernte Stationen sich nicht mehr 'hören' -- das Medium zwischen diesen Stationen ist praktisch unterbrochen.
 
 \minisec{Wie groß sind typische Übertragungsraten beim WLAN?
 Welche Frequenzbänder werden benutzt?}

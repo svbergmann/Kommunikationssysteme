@@ -2,7 +2,9 @@
 
 \minisec{Wie identifiziert TCP ein Segment bzw. ein ACK? In welcher Einheit wird 'gemessen'?}
 \begin{itemize}
-    \item \todo A
+    \item Segmente werden durch ihren Byte-Offset im Stream identifiziert (Sequence Number), wobei die Startposition beim Verbindungsaufbau zufällig festgelegt wird.
+    Der Offset selbst ist dabei ein 32-Bit Integer.
+    \item TCP verwendet kumulative ACKs: ACK $n+1$ sagt aus, dass alle Daten von der vorigen logischen Position bis zur Position $n$ korrekt empfangen wurden und nun das Segment $n+1$erwartet wird
 \end{itemize}
 
 \minisec{Wird bei jedem TCP-Paket ein ACK mitgesendet?}
@@ -37,7 +39,9 @@ Nein, aber:
 
 \minisec{Erklären Sie auf Empfängerseite den Unterschied zwischen Empfangspuffer-Größe und aktueller Fenster-Größe!}
 \begin{itemize}
-    \item \todo A
+    \item Die Empfangspuffer-Größe ist die Gesamtgröße des zur Verfügung stehenden Puffers auf Empfangsseite, unabhängig von dessen Füllungsgrad.
+    \item Die aktuelle Fenstergröße gibt den freien Speicher in diesem Puffer an.
+    Dieser Wert kann z.\ B. auf 0 abfallen, falls die Applikation auf Empfängerseite die Daten nicht abholt.
 \end{itemize}
 
 \minisec{Unter welchen Bedingungen wird in TCP ein ACK versendet?}
@@ -53,65 +57,63 @@ doch verschickt
 
 \minisec{Welche Strategien zur Fehlerbehebung verwendet TCP? (Go-Back-N? Selective Repeat? Selective Reject?)}
 \begin{itemize}
-    \item \todo A
+    \item TCP verwendet heute i.\ d.\ R. Selective Reject, in dem 3 gleiche ACKs als NACK interpretiert werden.
+    \item \textbf{Go-Back-N/Selective Repeat Protokoll:} TCP-Sender verwaltet lediglich einen Timer für das Segment, welches als nächstes bestätigt werden muss.
+    Kommt es zu einem Time-Out, so wird, bedingt durch das Zwischenspeichern auf Empfängerseite, hier zu einem \textbf{Selective Repeat} durchgeführt.
+    \item \textbf{Selective Reject:} Empfänger speichert nicht nur out-of-Order Segmente im Empfangspuffer.
+    Die meisten Versionen von TCP \textbf{emulieren} NAK-Mechanismen mittels dreifachem ACK mit gleicher Sequenznummer
 \end{itemize}
 
 \minisec{Wozu dient der Retransmission Timer? Wie wird seine Länge bestimmt?}
+Timer wird beim Senden eines Segmentes (auf Senderseite) gestartet.
 \begin{itemize}
-    \item \todo A
+    \item Bei Ablauf: Erneutes Versenden des Segmentes.
+    \item Bei Empfang eines ACKs: Rücksetzen des Timers, bzw.\ Neustart mit beim Versenden des nächsten Segmentes.
 \end{itemize}
 
 \minisec{Was ist ein 'Congestion Collapse'? Wie wird er hervorgerufen?}
+Verstärkung der Überlastsituation durch unnütze Übertragung
+Durch viele Verbindungen können Router überlastet \textcolor{blue}{werden}
 \begin{itemize}
-    \item Verstärkung der Überlastsituation durch unnütze Übertragung
-    Durch viele Verbindungen können Router überlastet \textcolor{blue}{werden}
-    \begin{itemize}
-        \item Überlast/Verstopfung: engl.: \textcolor{blue}{Congestion}
-        \item Pakete werden verworfen, auf TCP-Ebene gehen keine Quittungen ein
-        \item TCP wiederholt die Daten und belastet das Netz damit noch stärker
-    \end{itemize}
+    \item Überlast/Verstopfung: engl.: \textcolor{blue}{Congestion}
+    \item Pakete werden verworfen, auf TCP-Ebene gehen keine Quittungen ein
+    \item TCP wiederholt die Daten und belastet das Netz damit noch stärker
 \end{itemize}
 
 \minisec{Welche Einflussgrößen steuern die Bandbreite des Senders bei TCP?}
-\begin{itemize}
-    \item \todo A
-\end{itemize}
+Neben der von Empfänger mitgeteilten Empfangsfenstergröße wird das Sendefenster auch vom sog.\ congestion-window gesteuert (siehe KS12, Seite 19).
+Das Minimum dieser beiden Fenstergrößen wird verwendet.
+Über das congestion-Window wird z.\ B. der slow-start realisiert und das Verhalten bei Paketverlusten durch z.\ B. Router-Überlastung.
 
 \minisec{Was versteht man bei TCP unter 'Slow Start'?}
-\begin{itemize}
-    \item Congestion Window bestimmt insbesondere zu Beginn die Übertragungsrate (Slow Start)
-\end{itemize}
+Congestion Window bestimmt insbesondere zu Beginn die Übertragungsrate (Slow Start)
 
-\minisec{Erklären Sie die unterschiedlichen Strategien zur Kontrolle der genutzen Bandbreite bei TCP Reno!}
+\minisec{Erklären Sie die unterschiedlichen Strategien zur Kontrolle der genutzten Bandbreite bei TCP Reno!}
 \begin{itemize}
     \item Vorsichtiger Beginn (Slow-Start), aber nur bis zu einem Schwellwert
-    \item Unterscheidung zwischen Timeout und duplicate ACKs:
+    \item Unterscheidung zwischen Time-Out und duplicate ACKs:
     \begin{itemize}
-        \item Bei Timeout gleiches Verhalten wie TCP Thaoe
+        \item Bei Time-Out gleiches Verhalten wie TCP Thaoe
         \item Bei dup-ACKs (selective Reject) → Halbierung des Congestion Window (fast recovery)
     \end{itemize}
 \end{itemize}
 
 \minisec{Wie funktioniert der Verbindungsaufbau bei TCP? Welcher Begriff wird zur Beschreibung des Verfahrens verwendet?}
-\begin{itemize}
-    \item Three-Way-Handshake:
-    \begin{enumerate}
-        \item Der Server wartet auf eingehende Verbindungswünsche
-        \item Der Client führt unter Angabe von IP-Adresse, Portnummer und maximal akzeptabler Segment-Größe eine CONNECT-Operation aus
-        \item CONNECT sendet ein SYN
-        \item Ist der Destination Port der CONNECTAnfrage identisch zu der Port-Nummer, auf der der Server wartet, wird die Verbindung akzeptiert, andernfalls mit RST abgelehnt
-        \item Der Server schickt seinerseits das SYN zum Client und bestätigt zugleich den Erhalt des ersten SYN-Segments
-        \item Der Client schickt eine Bestätigung des SYNSegments des Servers.
-        Damit ist die Verbindung aufgebaut
-    \end{enumerate}
-\end{itemize}
+Three-Way-Handshake:
+\begin{enumerate}
+    \item Der Server wartet auf eingehende Verbindungswünsche
+    \item Der Client führt unter Angabe von IP-Adresse, Portnummer und maximal akzeptabler Segment-Größe eine CONNECT-Operation aus
+    \item CONNECT sendet ein SYN
+    \item Ist der Destination Port der CONNECTAnfrage identisch zu der Portnummer, auf der der Server wartet, wird die Verbindung akzeptiert, andernfalls mit RST abgelehnt
+    \item Der Server schickt seinerseits das SYN zum Client und bestätigt zugleich den Erhalt des ersten SYN-Segments
+    \item Der Client schickt eine Bestätigung des SYNSegments des Servers.
+    Damit ist die Verbindung aufgebaut
+\end{enumerate}
 
 \minisec{Wozu dient der Keepalive-Timer? Wann ist dieser Timer wichtig?}
-\begin{itemize}
-    \item Relativ lange Wartezeit.
-    Wird bei jeder Transaktion rückgesetzt.
-    Nach Ablauf → Abbau der Verbindung
-\end{itemize}
+Relativ lange Wartezeit.
+Wird bei jeder Transaktion rückgesetzt.
+Nach Ablauf → Abbau der Verbindung
 
 \minisec{Welche Datenfelder enthält der TCP-Header? Wozu werden sie jeweils verwendet?}
 \begin{itemize}
@@ -138,17 +140,15 @@ doch verschickt
 \end{itemize}
 
 \minisec{Wozu dient der Persistence-Timer in TCP? Was passiert nach seinem Ablauf?}
-\begin{itemize}
-    \item Timer wird nach Empfang einer Fenstergröße von 0 gestartet.
-    Nach Ablauf Anfrage nach neuem Fenster (>0)
-\end{itemize}
+Timer wird nach Empfang einer Fenstergröße von 0 gestartet.
+Nach Ablauf Anfrage nach neuem Fenster (>0)
 
 \minisec{Wie funktioniert die (häufig eingesetzte) Window-Scale Option in TCP? Wann wird sie benötigt?}
 \begin{itemize}
     \item Einführen einer Window-Scale-Erweiterung die ein Skalierungsfaktor für das 16-Bit Window-Feld darstellt
-    \item Der Skalierungsfaktor wird als neue TCP-Option eingeführt: Window Scale ist 3 Byte lang – Das letzte Byte gibt die Skalierung LOGARITHMISCH an (shift count: Das Fenster wird shift count bits nach links veschieben – hierbei ist der maximale Wert 14!)
-    \item Die Option wird nur in einem SYN-Segement beim Verbindungsaufbau übertragen.
-    Danach wird der Wert für die Ganze Verbindung angenommen
+    \item Der Skalierungsfaktor wird als neue TCP-Option eingeführt: Window Scale ist 3 Byte lang – das letzte Byte gibt die Skalierung LOGARITHMISCH an (shift count: Das Fenster wird shift count bits nach links veschieben – hierbei ist der maximale Wert 14!)
+    \item Die Option wird nur in einem SYN-Segment beim Verbindungsaufbau übertragen.
+    Danach wird der Wert für die ganze Verbindung angenommen
     \item Beide Seiten müssen eine Window-Scale-Option verschicken Null bedeutet „keine Skalierung“
     \item Die neue maximale Fenstergröße in Bytes errechnet sich wie folgt: \[65536 * 214 = 65535 * 16384 = 1.073.725.440\]
     \item TCP-intern wird die Fenstergröße jetzt als 32-Bit-Zahl verwaltet
@@ -156,8 +156,8 @@ doch verschickt
 
 \minisec{Was versteht man unter dem 'Silly Window'-Syndrom? Wie kann es gelöst werden?}
 \begin{itemize}
-    \item Empfangsfenster ist ``voll``, die empfangende Applikation liest die Zeichen aber nur einzeln aus
-    \item -> Sender würde für jedes einzelne Zeichen ein neues Paket senden
+    \item Empfangsfenster ist „voll“, die empfangende Applikation liest die Zeichen aber nur einzeln aus
+    \item → Sender würde für jedes einzelne Zeichen ein neues Paket senden
     \item Lösung (Clark): Empfänger darf neue Fenstergröße erst erneut senden, wenn in seinem Buffer mehr Platz ist (z.\ B. ein Segment)
 \end{itemize}
 

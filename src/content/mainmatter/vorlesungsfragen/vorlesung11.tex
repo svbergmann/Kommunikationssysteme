@@ -1,9 +1,7 @@
 \addsec{Vorlesung 11 - Kanalzuteilung, Fehlerkorrektur}
 
 \minisec{Welche Aufgabe hat der MAC Sublayer in der Schicht 2 (Wiederholungsfrage, siehe Vorlesung 10)?}
-\begin{itemize}
-    \item \todo A
-\end{itemize}
+Regelung des Zugriffs auf das Übertragungsmedium
 
 \minisec{Welche Eigenschaften hätte ein ideales Mehrfachzugriffsprotokoll?}
 Broadcast-Medium mit Maximalrate R bps
@@ -69,27 +67,25 @@ Broadcast-Medium mit Maximalrate R bps
     \begin{itemize}
         \item wie CSMA, zusätzlich: höre während der Sendung das Medium weiter ab und breche die Übertragung ab, wenn eine Kollision auftritt
         \item sende ein Jamming-Signal, damit jede Station weiß, dass eine Kollision aufgetreten ist und die Nachricht nutzlos geworden ist.
-        \item Wichtig: Man muss so lange senden, dass man ein Jamming -Signal während dessen auch mitbekommt
+        \item Wichtig: Man muss so lange senden, dass man ein Jamming-Signal während dessen auch mitbekommt
     \end{itemize}
 \end{itemize}
 
 \minisec{Erklären Sie, warum bei CSMA/CD ein Sender eine Mindestzeit senden muss (und parallel per "CD" das Medium abhören muss)!
-Wie lässt sich diese Mindestzeit berechnen und ggf. in eine Mindest-Rahmengröße umrechnen?}
-\begin{itemize}
-    \item
-\end{itemize}
+Wie lässt sich diese Mindestzeit berechnen und ggf.\ in eine Mindest-Rahmengröße umrechnen?}
+Die maximale Zeit zur Entdeckung einer Kollision ist knapp zweimal so lang wie die Signallaufzeit auf dem Medium.
+Bei einer Signalgeschwindigkeit von ungefähr 100000 $\frac{km}{s}$ (10 $\frac{\mu s}{km}$) erhält man (unter Berücksichtigung der Zeit in 4 Repeatern) eine maximale Ende-zu-Ende-Signallaufzeit von 25 $\mu s$.
+Die maximale Konfliktdauer ist damit ca.\ 50 $\mu s$.
+Um einen Konflikt mit Sicherheit zu erkennen, muss die Station mindestens 50 $\mu s$ auf dem Medium horchen und senden → bei 10 $\frac{MBit}{s}$ mindestens 500 Bit.
+Darauf basierend wurde für eine Senderate von 10 $\frac{MBit}{s}$ eine minimale Rahmenlänge (aufgerundet 64 Byte) definiert, um eine Kollisionserkennung auch im Worst-Case zu ermöglichen!
 
 \minisec{Wie funktioniert und wozu dient der "Binary Exponential Backoff"-Algorithmus?}
-Um nach einer Kollision die gleichzeitige Wiederholung der kollidierten Sendungen
-zu vermeiden (Folgekollision), wird eine zufällige Wartezeit aus einem vorgegebenen
-Intervall gezogen.
-Das Intervall wird \textit{klein} gehalten, um große Wartezeiten
-bis zur Wiederholung zu vermeiden.
-Dadurch ist allerdings das Risiko eines
-Folgekonflikts groß.
-Kommt es so zu einer weiteren Kollision, wird das Intervall
-vor dem nächsten Versuch vergrößert, um mehr Spielraum für alle sendenden
-Parteien zu schaffen.
+Um nach einer Kollision die gleichzeitige Wiederholung der kollidierten Sendungen zu vermeiden (Folgekollision),
+wird eine zufällige Wartezeit aus einem vorgegebenen Intervall gezogen.
+Das Intervall wird \textit{klein} gehalten, um große Wartezeiten bis zur Wiederholung zu vermeiden.
+Dadurch ist allerdings das Risiko eines Folgekonflikts groß.
+Kommt es so zu einer weiteren Kollision, wird das Intervall vor dem nächsten Versuch vergrößert,
+um mehr Spielraum für alle sendenden Parteien zu schaffen.
 
 \minisec{Welche heute typischerweise eingesetzten Ethernet-Standards kennen Sie? Wie sind die Namen aufgebaut?}
 Basiert auf IEEE 802.3 „CSMA/CD“
@@ -102,9 +98,8 @@ Basiert auf IEEE 802.3 „CSMA/CD“
 \end{itemize}
 
 \minisec{Warum wurde bei Gigabit-Ethernet die minimale Rahmenlänge von 64 auf 520 Bytes erhöht?}
-\begin{itemize}
-    \item  \todo A
-\end{itemize}
+Damit die Segmentlänge nicht auf ca.\ 20 Meter verringert werden musste.
+Da Gigabit-Ethernet 10-mal schneller ist Fast Ethernet, musste (bei gleicher mindest-Sendedauer) die Rahmenlänge ca.\ verzehnfacht werden (64 Byte → 520 Byte).
 
 \minisec{Warum wurde bei Fast-Ethernet die Segmentlänge von 2500m (10MBit Ethernet) auf 200--250m verkleinert?}
 Die minimale Rahmenlänge zur Kollisionserkennung bei Ethernet beträgt 64 Byte.
@@ -144,9 +139,7 @@ Felder in Schicht 2:
 \end{itemize}
 
 \minisec{Was versteht man unter "Forward Error Correction"?}
-\begin{itemize}
-    \item \todo A
-\end{itemize}
+Das Erkennen UND Korrigieren von Bitfehlern bei der Datenübertragung
 
 \minisec{Wie groß muss der Hamming-Abstand mindestens sein, um e-Bitfehler zu erkennen bzw. zu beheben?}
 \begin{itemize}
@@ -155,9 +148,7 @@ Felder in Schicht 2:
 \end{itemize}
 
 \minisec{Nennen Sie einen Code, der mit einer minimalen Anzahl von Prüfbits Einzelbitfehler korrigieren kann!}
-\begin{itemize}
-    \item \todo A
-\end{itemize}
+Hamming-Code (siehe KS\_17, Seite 39 ff)
 
 \minisec{Was versteht man unter Modulo-2 Arithmetik? Wie werden Addition und Subtraktion durchgeführt?}
 \begin{itemize}

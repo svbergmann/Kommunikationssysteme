@@ -1,10 +1,8 @@
 \addsec{Vorlesung 3 - Internet, IP Adressen und CIDR}
 
 \minisec{Was ist ein sog. Autonomes System (AS) im Internet?}
-\begin{itemize}
-    \item In IP-Netzen sind autonome Systeme (AS) ein Verbund von Routern und Netzwerken, die einer einzigen administrativen Instanz unterstehen, einer Organisation oder einem Unternehmen.
-    Das bedeutet, dass sie alle zu einer Organisation oder zu einem Unternehmen gehören.
-\end{itemize}
+In IP-Netzen sind autonome Systeme (AS) ein Verbund von Routern und Netzwerken, die einer einzigen administrativen Instanz unterstehen, einer Organisation oder einem Unternehmen.
+Das bedeutet, dass sie alle zu einer Organisation oder zu einem Unternehmen gehören.
 
 \minisec{Wodurch sind Tier 1--3 ISPs charakterisiert?}
 \begin{itemize}
@@ -36,9 +34,7 @@
 \end{itemize}
 
 \minisec{Wie kann im (alten) klassenbasierten System von IP-Adressen erkannt werden, um was für eine Klasse es sich im konkreten Fall handelt?}
-\begin{itemize}
-    \item Über die ersten Bits (Class A: 0, Class B: 10, Class C: 110, Class D: 1110, Class E: 1111)
-\end{itemize}
+Über die ersten Bits (Class A: 0, Class B: 10, Class C: 110, Class D: 1110, Class E: 1111)
 
 \minisec{Wie viele Knoten (Hosts) können maximal an ein Class-B Netz angeschlossen werden?}
 IP-Adressklassen:
@@ -74,30 +70,24 @@ IP-Adressklassen:
 \end{itemize}
 
 \minisec{Was sind sog. private IP Adressen und Netzwerke?}
-\begin{itemize}
-    \item Private IP-Adressen (abgekürzt Private IP) sind IP-Adressen, die von der IANA nicht im Internet vergeben sind.
-    Sie wurden für die private Nutzung aus dem öffentlichen Adressraum ausgespart, damit sie ohne administrativen Mehraufwand (Registrierung der IP-Adressen) in lokalen Netzwerken genutzt werden können.
-\end{itemize}
+Private IP-Adressen (abgekürzt Private IP) sind IP-Adressen, die von der IANA nicht im Internet vergeben sind.
+Sie wurden für die private Nutzung aus dem öffentlichen Adressraum ausgespart, damit sie ohne administrativen Mehraufwand (Registrierung der IP-Adressen) in lokalen Netzwerken genutzt werden können.
 
 \minisec{Was ist eine Subnetzmaske (häufig auch einfach nur Netzmaske genannt) und wie ist sie aufgebaut?}
-\begin{itemize}
-    \item Subnetzmasken kennzeichnen den Bereich der IP-Adresse, der das Netzwerk und das Subnetzwerk beschreibt.
-    Dieser Bereich wird dabei durch Einsen („1“) in der binären Form der Subnetzmaske festgestellt.
-    \begin{center}
-        \begin{tabular}{c|c c c c}
-            Beispiel & 140.\ & 201.\ & 10.\  & 100 \tabularnewline
-            & 255.\ & 255.\ & 255.\ & 0 \tabularnewline
-            Netzwerk: & 140.\ & 201.\ & & \tabularnewline
-            Subnetz: & & & 10.\ & \tabularnewline
-            Endsystem: & & & & 100 \tabularnewline
-        \end{tabular}
-    \end{center}
-\end{itemize}
+Subnetzmasken kennzeichnen den Bereich der IP-Adresse, der das Netzwerk und das Subnetzwerk beschreibt.
+Dieser Bereich wird dabei durch Einsen („1“) in der binären Form der Subnetzmaske festgestellt.
+\begin{center}
+    \begin{tabular}{c|c c c c}
+        Beispiel & 140.\ & 201.\ & 10.\  & 100 \tabularnewline
+        & 255.\ & 255.\ & 255.\ & 0 \tabularnewline
+        Netzwerk: & 140.\ & 201.\ & & \tabularnewline
+        Subnetz: & & & 10.\ & \tabularnewline
+        Endsystem: & & & & 100 \tabularnewline
+    \end{tabular}
+\end{center}
 
 \minisec{Wie kann man aus einer Ziel-IP und einer Netzmaske die Adresse des Ziel-Netzes berechnen?}
-\begin{itemize}
-    \item Indem man beide Adressen mit AND verknüpft
-\end{itemize}
+Indem man beide Adressen mit AND verknüpft
 
 \minisec{Welche Vorteile hat CIDR gegenüber dem alten Ansatz der klassenbasierten IP-Adressen?}
 \begin{itemize}
@@ -108,14 +98,10 @@ IP-Adressklassen:
 \end{itemize}
 
 \minisec{Was muss ein Router bei Verwendung von CIDR für jeden Eintrag in der Routing-Tabelle speichern?}
-\begin{itemize}
-    \item Router merken sich in ihrer Routing-Tabelle zusätzlich zu den IP-Adressen die Präfixlänge, z.\ B. 194.142.0.x/17 = betrachte die ersten 17 Bit als Netzadresse
-\end{itemize}
+Router merken sich in ihrer Routing-Tabelle zusätzlich zu den IP-Adressen die Präfixlänge, z.\ B. 194.142.0.x/17 = betrachte die ersten 17 Bit als Netzadresse
 
 \minisec{Erklären Sie das Logest-Prefix-Match Verfahren!}
-\begin{itemize}
-    \item Suche nach dem Routing-Eintrag mit der größten Überdeckung der Zieladresse
-\end{itemize}
+Suche nach dem Routing-Eintrag mit der größten Überdeckung der Zieladresse
 \begin{center}
     \begin{tabular}{c l c}
         Ziel & 11.1.2.5 & = 00001011.0000001.00000010.00000101 \tabularnewline
@@ -145,7 +131,5 @@ Es wird der Weg ermittelt, welcher am genausten spezifiziert wird (most specific
 \end{itemize}
 
 \minisec{Wozu dient der default-Route Eintrag in einer Routingtabelle?}
-\begin{itemize}
-    \item Die Default-Route wird gewählt, wenn keine Route bevorzugt wird.
-\end{itemize}
+Die Default-Route wird gewählt, wenn keine Route bevorzugt wird.
     

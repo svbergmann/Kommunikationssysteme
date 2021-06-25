@@ -17,10 +17,8 @@
 \end{itemize}
 
 \minisec{Was bedeutet eine 'virtuelle Verbindungsorientierung'?}
-\begin{itemize}
-    \item Modell zweier Streams die die Prozesse miteinander verbinden;
-    „Open“-“Close“ der Streams sind die virtuellen Verbindungen
-\end{itemize}
+Modell zweier Streams die die Prozesse miteinander verbinden;
+„Open“-“Close“ der Streams sind die virtuellen Verbindungen
 
 \minisec{Erklären Sie das ARQ-Protokoll und die Randbedingungen, unter denen dieses Protokoll eine sichere Datenübertragung gewährleistet! Wo und warum werden hier Timeouts eingesetzt?}
 \begin{itemize}
@@ -84,50 +82,55 @@
 \end{itemize}
 
 \minisec{Warum sollten sich bei 'Sliding-Window' Verfahren Sender und Empfänger bzgl. ihrer Fensterbreiten koordinieren?}
-\begin{itemize}
-    \item \todo A
-\end{itemize}
+Weil sonst nicht die volle Bandbreite der Verbindung genutzt wird, oder auf Empfängerseite Pakete verworfen werden müssen (s.\ u.).
 
 \minisec{Was passiert, wenn das Sendefenster größer als das Empfangsfenster ist?}
-\begin{itemize}
-    \item \todo A
-\end{itemize}
+Wenn das Sendefenster größer ist als das Empfangsfenster, muss der Empfänger Pakete verwerfen, die später erneut gesendet werden müssen.
 
 \minisec{Was passiert, wenn das Empfangsfenster größer als das Sendefenster ist?}
-\begin{itemize}
-    \item \todo A
-\end{itemize}
+Wenn das Sendefenster kleiner als das Empfangsfenster ist, wird nicht die maximal mögliche Bandbreite der Übertragung genutzt,
+d.\ h. der Empfänger könnte noch mehr Pakete zwischenspeichern, die der Sender aber nicht sendet.
 
 \minisec{Was passiert, wenn beide Fensterbreiten 1 sind?}
-\begin{itemize}
-    \item \todo A
-\end{itemize}
+Dann haben wir einen Rückfall auf das Stop-and-Wait-Verfahren, also im Extremfall ein Byte senden,
+auf Quittung warten (dauert die Hin- und Rücksendezeit), nächstes Byte schicken u.s.w.
 
 \minisec{Warum sind große Fensterbreiten häufig schwer zu realisieren?}
-\begin{itemize}
-    \item \todo A
-\end{itemize}
+Große Fensterbreiten setzten große Puffer im TCP/IP Stack voraus.
+Außerdem kann TCP standardmäßig nur max.\ 64 kB Fenstergröße realisieren.
+Daher wird häufig die sog.\ Window-Scale-Option von TCP verwendet.
 
 \minisec{Wie kann der Empfänger eine 'Flusskontrolle' bei der Datenübertragung realisieren?}
-\begin{itemize}
-    \item \todo A
-\end{itemize}
+Wenn z.\ B. die Daten auf der Empfängerseite von der Anwendungsschicht nicht abgeholt werden, teilt der Empfänger irgendwann eine Fenstergröße von 0 mit, wodurch der Sender aufhört zu senden.
+Dadurch kann eine Flusskontrolle realisiert werden.
 
 \minisec{Leiten Sie die Berechnung der benötigten Fensterbreite aus dem 'Bandwidth-Delay'-Produkt her!}
-\begin{itemize}
-    \item \todo A
-\end{itemize}
+\begin{gather*}
+    \rho = \#seg \cdot \frac{\frac{L}{R}}{\frac{L}{R} + RTT}\\
+    R\rho = \#seg \cdot \frac{L}{\frac{L}{R} + RTT}\\
+    R\rho = erzielbare \ Bandbreite = B\\
+    \#seg \cdot L = Fensterbreite \ in \ bit = W\\
+    Es \ gilt \ \frac{L}{R} \ll RTT \ (siehe \ vorherige \ Beispiele)\\
+    B \leq \frac{W}{RTT} \ bzw.\ W \geq B \cdot RTT\\
+\end{gather*}
 
 \minisec{Wie funktioniert das "Selective Repeat"-Verfahren? Werden hier auf Empfängerseite Segmente verworfen im Fehlerfall?}
 \begin{itemize}
-    \item Mittelbare Kenntnis über etwaig bereits empfangene Segmente, Empfänger puffert nicht erwartete Segmente, so dass sich bei Neuübertragung der „Lücke“ das Fenster ruckartig verschiebt
-    \item \todo Erklärung
+    \item Mittelbare Kenntnis über etwaig bereits empfangene Segmente, Empfänger puffert nicht erwartete Segmente, sodass sich bei Neuübertragung der „Lücke“ das Fenster ruckartig verschiebt
+    \item Sender und Empfänger haben eine Fensterbreite > 1.
+    Wenn ein Paket beim Empfänger nicht ankommt, sendet der Empfänger ab dann keine ACKs mehr, wodurch der Sender irgendwann in den Re-Transmission-Timeout läuft.
+    Der Sender wiederholt dann das Versenden des fehlenden Paketes und aller folgenden Pakete (obwohl die ggf.\ schon vorher fehlerfrei beim Empfänger angekommen waren).
+    Das Empfänger-Fenster kann nach Empfang des fehlenden Paketes einen 'Sprung' machen.
+    \item Ja, es werden im Fehlerfall auf Empfängerseite Pakete verworfen (die oben erwähnten, doppelt gesendeten Pakete \ldots)
 \end{itemize}
 
 \minisec{Wie funktioniert das "Selective Reject"-Verfahren? Werden hier auf Empfängerseite Segmente verworfen im Fehlerfall?}
 \begin{itemize}
     \item Unmittelbare Kenntnis über unerwartete Ereignisse und sofortige Reaktion zur Behebung
-    \item \todo Erklärung
+    \item Grundsätzlich so wie Selective Repeat, nur dass der Empfänger nicht aufhört ACKs zu senden, sondern nach jedem weiteren Paket immer der gleiche ACK $n$ ($n$ ist entsprechende Sequenznummer) gesendet wird.
+    Wenn der Sender dann z.\ B. 3-mal den gleichen ACK $n$ empfängt, wird das auf Senderseite als NACK interpretiert,und das Packet $n$ noch einmal gesendet.
+    Dadurch kann der Sender früher auf den Fehler reagieren, und muss i.\ d.\ R. weniger oder keine Pakete zweimal senden wie beim Selective Repeat.
+    Daher: Nein, in der Regel werden auf Empfängerseite keine Pakete verworfen (siehe Folie KS\_11 Seite 16).
 \end{itemize}
 
 \minisec{Was bedeutet eine kumulative Bestätigung?}
