@@ -7,7 +7,7 @@
     \item Nein, nach der 3.\ Nachricht weiß der Initiator des Verbindungsaufbaus nicht, ob die 3.\ Nachricht nicht verloren gegangen ist (Stichwort: 2 army problem).
     Man geht aber davon aus, dass die 3.\ Nachricht genauso wie die 1.\ Nachricht (gleiche Richtung) erfolgreich zugestellt wurde.
     \item Durch die bei TCP folgende Datenübertragung wird der Verbindungsaufbau indirekt mit bestätigt.
-    Mit dem Verbindungsaufbau wird eine 'Bestätigungskette' über die ACKs aufgebaut, die am Anfang der Datenübertragung auch den Verbindungsaufbau bestätigt, also die 4. Nachricht die 3. Nachricht bestätigt, u.s.w.
+    Mit dem Verbindungsaufbau wird eine 'Bestätigungskette' über die ACKs aufgebaut, die am Anfang der Datenübertragung auch den Verbindungsaufbau bestätigt, also die 4.\ Nachricht die 3.\ Nachricht bestätigt, u.\ s.\ w.
 \end{enumerate}
 
 \minisec{Übungsaufgabe 2:}
@@ -34,5 +34,5 @@ Damit die erforderliche Fensterbreite verwendet werden kann, muss der ursprüngl
 D.\ h. im 3.\ Byte der Window-Scale Option muss mindestens eine 3 stehen ($2^3$ = Faktor 8).
 Dadurch können nun allerdings Fenstergrößen nur noch in Vielfachen
 von 8 Byte kommuniziert werden!
-Beim Verbindungsaufbau muss bei beiden SYN-Nachrichten die Window-Scale Option entsprechend mitgesendet werden, damit ein Voll-Duplex Betrieb mit 40MBit/s möglich ist.
+Beim Verbindungsaufbau muss bei beiden SYN-Nachrichten die Window-Scale Option entsprechend mitgesendet werden, damit ein Voll-Duplex Betrieb mit 40 $\frac{MBit}{s}$ möglich ist.
 Eine nachträgliche Änderung der Fenster-Skalierung ist nach erfolgtem Verbindungsaufbau nicht mehr möglich!

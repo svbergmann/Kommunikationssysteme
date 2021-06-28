@@ -86,9 +86,10 @@ Der Server adressiert in seiner Antwort ein Ziel-Port, das der NAT-Router dann w
 \minisec{Warum verletzt das NAT-Verfahren die Schichtenarchitektur?}
 Layer 3 kennt Details des Layer 4, was eigentlich nicht sein darf.
 
-\minisec{Nennen Sie 2 Szenarien, wo der Einsatz von NAT zu Problemen führen würde. Begründen Sie jeweils ihre Antwort!}
+\minisec{Nennen Sie 2 Szenarien, wo der Einsatz von NAT zu Problemen führen würde.
+Begründen Sie jeweils ihre Antwort!}
 \begin{itemize}
-    \item Es wird nicht TCP/UTP verwendet
+    \item Es wird nicht TCP/UDP verwendet
     \begin{itemize}
         \item Begründung: Wenn TCP/UDP nicht verwendet wird, existiert ggf.\ das Konzept der Portnummern überhaupt nicht mehr.
         Diese Portnummern sind aber elementare Voraussetzung für die internen „Übersetzungen“ eines NAT-Routers.

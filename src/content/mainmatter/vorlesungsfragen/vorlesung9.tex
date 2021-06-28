@@ -98,13 +98,13 @@ Die Ausstellung des Zertifikats erfolgt durch eine offizielle Zertifizierungsste
 
 \minisec{Welche Aufgaben hat das SSL Handshake Protokoll und das SSL Record Protokoll?}
 \begin{itemize}
-    \item SSL Handshake Protokoll:
+    \item \textcolor{blue}{SSL Handshake Protokoll:}
     \begin{itemize}
         \item Den stärksten gemeinsam unterstützten Algorithmus ermitteln
         \item Authentifikation der Kommunikationspartner (Client optional)
         \item Ermitteln eines Session Keys zur symmetrischen Verschlüsselung (optional)
     \end{itemize}
-    \item SSL Record Layer:
+    \item \textcolor{blue}{SSL Record Layer:}
     \begin{itemize}
         \item Vollständig getrennt vom Handshake Protokoll
         \item Verschickt Daten symmetrisch mit dem im Handshake ausgehandelten Verschlüsselungsalgorithmen und Session Keys
@@ -128,8 +128,8 @@ Diese Daten (IP in einem privaten Netz und Portnummer) sind aber für den NAT-Ro
 
 \minisec{Wie funktionieren SFTP und TFTP?}
 \begin{itemize}
-    \item \underline{SFTP:} FTP über SSH Session
-    \item \underline{TFTP:}
+    \item \textcolor{blue}{SFTP:} FTP über SSH Session
+    \item \textcolor{blue}{TFTP:}
     \begin{itemize}
         \item sehr einfaches Protokoll für den File-Transfer
         \item die Kommunikation läuft über Port 69 und benutzt UDP, nicht TCP
@@ -199,7 +199,7 @@ Diese Daten (IP in einem privaten Netz und Portnummer) sind aber für den NAT-Ro
     \begin{itemize}
         \item Bei der sogenannten hostbased-Authentifizierung akzeptiert ein Rechner ohne eigene account-spezifische Tests die Vorgaben eines fremden Rechners.
         Es wird höchstens die Identität des fremden Rechners überprüft.
-        \item Die Authentifikation mit einem Passwort ist derzeit die "übliche" Methode, um sich an einem Rechner anzumelden.
+        \item Die Authentifikation mit einem Passwort ist derzeit die 'übliche' Methode, um sich an einem Rechner anzumelden.
         Die Sicherheit dieses Mechanismus beruht auf der Geheimhaltung des Passwortes, dessen Übertragung allerdings verschlüsselt wird
         \item Um auch das Übertragen eines verschlüsselten Passwortes zu vermeiden, werden die sogenannten public-key-Verfahren eingesetzt
     \end{itemize}

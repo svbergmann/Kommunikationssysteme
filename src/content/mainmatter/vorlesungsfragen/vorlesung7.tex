@@ -4,7 +4,7 @@
 \begin{itemize}
     \item Segmente werden durch ihren Byte-Offset im Stream identifiziert (Sequence Number), wobei die Startposition beim Verbindungsaufbau zufällig festgelegt wird.
     Der Offset selbst ist dabei ein 32-Bit Integer.
-    \item TCP verwendet kumulative ACKs: ACK $n+1$ sagt aus, dass alle Daten von der vorigen logischen Position bis zur Position $n$ korrekt empfangen wurden und nun das Segment $n+1$erwartet wird
+    \item TCP verwendet kumulative ACKs: ACK $n+1$ sagt aus, dass alle Daten von der vorigen logischen Position bis zur Position $n$ korrekt empfangen wurden und nun das Segment $n+1$ erwartet wird
 \end{itemize}
 
 \minisec{Wird bei jedem TCP-Paket ein ACK mitgesendet?}
@@ -72,8 +72,8 @@ Timer wird beim Senden eines Segmentes (auf Senderseite) gestartet.
 \end{itemize}
 
 \minisec{Was ist ein 'Congestion Collapse'? Wie wird er hervorgerufen?}
-Verstärkung der Überlastsituation durch unnütze Übertragung
-Durch viele Verbindungen können Router überlastet \textcolor{blue}{werden}
+Verstärkung der Überlastsituation durch unnütze Übertragung.
+Durch viele Verbindungen können Router überlastet werden.
 \begin{itemize}
     \item Überlast/Verstopfung: engl.: \textcolor{blue}{Congestion}
     \item Pakete werden verworfen, auf TCP-Ebene gehen keine Quittungen ein
@@ -104,7 +104,7 @@ Three-Way-Handshake:
     \item Der Server wartet auf eingehende Verbindungswünsche
     \item Der Client führt unter Angabe von IP-Adresse, Portnummer und maximal akzeptabler Segment-Größe eine CONNECT-Operation aus
     \item CONNECT sendet ein SYN
-    \item Ist der Destination Port der CONNECTAnfrage identisch zu der Portnummer, auf der der Server wartet, wird die Verbindung akzeptiert, andernfalls mit RST abgelehnt
+    \item Ist der Destination Port der CONNECT Anfrage identisch zu der Portnummer, auf der der Server wartet, wird die Verbindung akzeptiert, andernfalls mit RST abgelehnt
     \item Der Server schickt seinerseits das SYN zum Client und bestätigt zugleich den Erhalt des ersten SYN-Segments
     \item Der Client schickt eine Bestätigung des SYNSegments des Servers.
     Damit ist die Verbindung aufgebaut
@@ -117,26 +117,26 @@ Nach Ablauf → Abbau der Verbindung
 
 \minisec{Welche Datenfelder enthält der TCP-Header? Wozu werden sie jeweils verwendet?}
 \begin{itemize}
-    \item \textcolor{blue}{Source Port :} Identifiziert die Anwendung auf der Senderseite.
-    \item \textcolor{blue}{Destination Port :} Identifiziert die Anwendung auf der Empfängerseite.
-    \item \textcolor{blue}{Sequence Number :} TCP betrachtet die zu übertragenden Daten als nummerierten Byte-Strom.
+    \item \textcolor{blue}{Source Port:} Identifiziert die Anwendung auf der Senderseite.
+    \item \textcolor{blue}{Destination Port:} Identifiziert die Anwendung auf der Empfängerseite.
+    \item \textcolor{blue}{Sequence Number:} TCP betrachtet die zu übertragenden Daten als nummerierten Byte-Strom.
     Die Sequence Number ist die Nummer des ersten im Segment enthaltenen Datenbytes.
-    \item \textcolor{blue}{Acknowledgement Number :} Dieses Feld bezieht sich auf einen Datenfluss in Gegenrichtung, d.\ h. hiermit werden Daten bestätigt, die die Station, die das Segment absendet, zuvor von der Zielstation empfangen hat.
-    \item \textcolor{blue}{Data Offset :} Da der Segment-Header Optionen enthalten kann, ist seine Länge nicht fix.
+    \item \textcolor{blue}{Acknowledgement Number:} Dieses Feld bezieht sich auf einen Datenfluss in Gegenrichtung, d.\ h. hiermit werden Daten bestätigt, die die Station, die das Segment absendet, zuvor von der Zielstation empfangen hat.
+    \item \textcolor{blue}{Data Offset:} Da der Segment-Header Optionen enthalten kann, ist seine Länge nicht fix.
     Im Data Offset-Feld wird die Länge (d.\ h. der Beginn des Datenteils) in 32-Bit-Einheiten angegeben.
-    \item \textcolor{blue}{Res. :} Reserviert für zukünftige Nutzung.
-    \item \textcolor{blue}{Code :} Die Bits des Code-Feldes steuern besondere Funktionen des Segments.
+    \item \textcolor{blue}{Res.:} Reserviert für zukünftige Nutzung.
+    \item \textcolor{blue}{Code:} Die Bits des Code-Feldes steuern besondere Funktionen des Segments.
     \begin{itemize}
-        \item \textcolor{red}{URG :} Urgent Pointer Field is valid
-        \item \textcolor{red}{PSH :} This segment requests a push
-        \item \textcolor{red}{SYN :} Synchronize sequence numbers
-        \item \textcolor{red}{ACK :} Acknowledgement Field is valid
-        \item \textcolor{red}{RST :} Reset the Connection
-        \item \textcolor{red}{FIN :} Sender has reached end of his byte stream
+        \item \textcolor{red}{URG:} Urgent Pointer Field is valid
+        \item \textcolor{red}{PSH:} This segment requests a push
+        \item \textcolor{red}{SYN:} Synchronize sequence numbers
+        \item \textcolor{red}{ACK:} Acknowledgement Field is valid
+        \item \textcolor{red}{RST:} Reset the Connection
+        \item \textcolor{red}{FIN:} Sender has reached end of his byte stream
     \end{itemize}
-    \item \textcolor{blue}{Window :} Spezifiziert die Anzahl der Datenbytes (beginnend mit der im Acknowledgement - Feld angegebenen Byte-Nummer), die der Sender des Segments als Empfänger eines Datenstromes in Gegenrichtung akzeptieren wird.
-    \item \textcolor{blue}{Checksum :} 16-Bit Längsparität über das gesamte Segment (Header + Daten).
-    \item \textcolor{blue}{Urgent Pointer :} Damit können Teile des zu übertragenden Byte-Stroms als dringend markiert werden.
+    \item \textcolor{blue}{Window:} Spezifiziert die Anzahl der Datenbytes (beginnend mit der im Acknowledgement - Feld angegebenen Byte-Nummer), die der Sender des Segments als Empfänger eines Datenstromes in Gegenrichtung akzeptieren wird.
+    \item \textcolor{blue}{Checksum:} 16-Bit Längsparität über das gesamte Segment (Header + Daten).
+    \item \textcolor{blue}{Urgent Pointer:} Damit können Teile des zu übertragenden Byte-Stroms als dringend markiert werden.
 \end{itemize}
 
 \minisec{Wozu dient der Persistence-Timer in TCP? Was passiert nach seinem Ablauf?}

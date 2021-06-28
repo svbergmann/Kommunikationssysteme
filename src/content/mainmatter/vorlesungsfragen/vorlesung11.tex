@@ -35,7 +35,7 @@ Broadcast-Medium mit Maximalrate R bps
     \item \textcolor{blue}{TDMA: Time Division Multiple Access:}
     \begin{itemize}
         \item Aufteilung des Kanals in kleine Zeiteinheiten, die sich in Runden wiederholen
-        \item Jeder Knoten kann eine bestimmte Anzahl an Zeiteinheiten in jeder Runde Nutzen
+        \item Jeder Knoten kann eine bestimmte Anzahl an Zeiteinheiten in jeder Runde nutzen
         \item Ungenutzte Einheiten (slots) bleiben ungenutzt
         \item Die Zeiteinheiten können meist auch gruppiert angefordert werden
         \item Anforderung entspricht Konfiguration der NIC-Karte
@@ -71,7 +71,7 @@ Broadcast-Medium mit Maximalrate R bps
     \end{itemize}
 \end{itemize}
 
-\minisec{Erklären Sie, warum bei CSMA/CD ein Sender eine Mindestzeit senden muss (und parallel per "CD" das Medium abhören muss)!
+\minisec{Erklären Sie, warum bei CSMA/CD ein Sender eine Mindestzeit senden muss (und parallel per 'CD' das Medium abhören muss)!
 Wie lässt sich diese Mindestzeit berechnen und ggf.\ in eine Mindest-Rahmengröße umrechnen?}
 Die maximale Zeit zur Entdeckung einer Kollision ist knapp zweimal so lang wie die Signallaufzeit auf dem Medium.
 Bei einer Signalgeschwindigkeit von ungefähr 100000 $\frac{km}{s}$ (10 $\frac{\mu s}{km}$) erhält man (unter Berücksichtigung der Zeit in 4 Repeatern) eine maximale Ende-zu-Ende-Signallaufzeit von 25 $\mu s$.
@@ -79,7 +79,7 @@ Die maximale Konfliktdauer ist damit ca.\ 50 $\mu s$.
 Um einen Konflikt mit Sicherheit zu erkennen, muss die Station mindestens 50 $\mu s$ auf dem Medium horchen und senden → bei 10 $\frac{MBit}{s}$ mindestens 500 Bit.
 Darauf basierend wurde für eine Senderate von 10 $\frac{MBit}{s}$ eine minimale Rahmenlänge (aufgerundet 64 Byte) definiert, um eine Kollisionserkennung auch im Worst-Case zu ermöglichen!
 
-\minisec{Wie funktioniert und wozu dient der "Binary Exponential Backoff"-Algorithmus?}
+\minisec{Wie funktioniert und wozu dient der 'Binary Exponential Backoff' - Algorithmus?}
 Um nach einer Kollision die gleichzeitige Wiederholung der kollidierten Sendungen zu vermeiden (Folgekollision),
 wird eine zufällige Wartezeit aus einem vorgegebenen Intervall gezogen.
 Das Intervall wird \textit{klein} gehalten, um große Wartezeiten bis zur Wiederholung zu vermeiden.
@@ -99,7 +99,7 @@ Basiert auf IEEE 802.3 „CSMA/CD“
 
 \minisec{Warum wurde bei Gigabit-Ethernet die minimale Rahmenlänge von 64 auf 520 Bytes erhöht?}
 Damit die Segmentlänge nicht auf ca.\ 20 Meter verringert werden musste.
-Da Gigabit-Ethernet 10-mal schneller ist Fast Ethernet, musste (bei gleicher mindest-Sendedauer) die Rahmenlänge ca.\ verzehnfacht werden (64 Byte → 520 Byte).
+Da Gigabit-Ethernet 10-mal schneller ist als Fast-Ethernet, musste (bei gleicher mindest-Sendedauer) die Rahmenlänge ca.\ verzehnfacht werden (64 Byte → 520 Byte).
 
 \minisec{Warum wurde bei Fast-Ethernet die Segmentlänge von 2500m (10MBit Ethernet) auf 200--250m verkleinert?}
 Die minimale Rahmenlänge zur Kollisionserkennung bei Ethernet beträgt 64 Byte.
@@ -108,11 +108,11 @@ Bei 100 Mb/s wird der Rahmen aber ca.\ 10 Mal so schnell abgesendet, sodass eine
 \minisec{Wie ist die Rahmen-Struktur eines Ethernet-Paketes aufgebaut? Welche Daten (-Felder) werden im Header und Trailer auf Schicht 2 übertragen?}
 Ethernet-Rahmen:
 \begin{itemize}
-    \item \textcolor{blue}{\textit{Präambel :}} kennzeichnet eine folgende Übertragung und synchronisiert den Empfänger mit dem Sender.
-    \item Der \textcolor{blue}{\textit{Start-of-Frame-Delimiter :}} (bzw. die beiden aufeinanderfolgenden Einsen) zeigen an, dass endlich Daten folgen.
-    \item \textcolor{blue}{\textit{Destination Address :}} das erste Bit kennzeichnet den Empfänger: entweder eine einzelne Station (1. Bit = 0) oder eine Gruppenadresse (1.\ Bit = 1; \ Broadcast ist auch hier durch 11 \ldots 1 gegeben).
-    \item \textcolor{blue}{\textit{Length/Type :}} Bei einem Wert bis 1500 wird die Angabe als Länge des Datenteils aufgefasst (dies ist der Fall beim sogenannten CSMA/CD), bei einem Wert ab 1536 wird hier angegeben, an welches Schicht-3-Protokoll die Daten weitergegeben werden sollen (verwendet bei Ethernet).
-    \item \textcolor{blue}{\textit{FCS :}} Checksumme, 32-Bit CRC. Diese erstreckt sich über die Felder DA, SA, Length/Type, Data/Padding.
+    \item \textcolor{blue}{Präambel:} kennzeichnet eine folgende Übertragung und synchronisiert den Empfänger mit dem Sender.
+    \item Der \textcolor{blue}{Start-of-Frame-Delimiter:} (bzw. die beiden aufeinanderfolgenden Einsen) zeigen an, dass endlich Daten folgen.
+    \item \textcolor{blue}{Destination Address:} das erste Bit kennzeichnet den Empfänger: entweder eine einzelne Station (1. Bit = 0) oder eine Gruppenadresse (1.\ Bit = 1; \ Broadcast ist auch hier durch 11 \ldots 1 gegeben).
+    \item \textcolor{blue}{Length/Type:} Bei einem Wert bis 1500 wird die Angabe als Länge des Datenteils aufgefasst (dies ist der Fall beim sogenannten CSMA/CD), bei einem Wert ab 1536 wird hier angegeben, an welches Schicht-3-Protokoll die Daten weitergegeben werden sollen (verwendet bei Ethernet).
+    \item \textcolor{blue}{FCS:} Checksumme, 32-Bit CRC. Diese erstreckt sich über die Felder DA, SA, Length/Type, Data/Padding.
 \end{itemize}
 Felder in Schicht 2:
 \begin{itemize}
@@ -126,7 +126,7 @@ Felder in Schicht 2:
 
 \minisec{Erklären Sie die grundsätzliche Vorgehensweise des Medienzugriffes beim Token-Ring Netz!}
 \begin{itemize}
-    \item “Token“-Verfahren, nur wer ein bestimmtes Token ( = Bitfolge) besitzt, darf senden
+    \item 'Token'-Verfahren, nur wer ein bestimmtes Token ( = Bitfolge) besitzt, darf senden
     \item Die Rechner teilen sich einen Ring aus Punkt-zu-Punkt-Verbindungen
     \item Das Token wird zyklisch weitergegeben
 \end{itemize}
@@ -157,7 +157,7 @@ Hamming-Code (siehe KS\_17, Seite 39 ff)
     \item Wir können einfach mit XOR arbeiten!
     \item Digitaltechnik, hier Halbaddierer: Eine Addition ist logisch ein XOR, das Carry ein UND
     \item Es gibt eine Bitkombination n, sodass gilt: $(D \cdot 2^r) XOR \ R = n G$
-    \item D.h., R soll so gewählt werden, dass G in $D \cdot 2^r$ ohne Rest teilbar ist
+    \item D.\ h., R soll so gewählt werden, dass G in $D \cdot 2^r$ ohne Rest teilbar ist
     \item $D \cdot 2^r = nG \ XOR \ R$
     \item Damit kann man R berechnen, denn wenn man $D \cdot 2^r$ durch G teilt, ist der Rest des Wertes genau R
     \[R = Rest\left[\frac{D \cdot 2^r}{G}\right]\]

@@ -25,11 +25,11 @@ Einsatzgebiete:
 
 \minisec{Welche Felder enthält der UDP-Header?}
 \begin{itemize}
-    \item \textbf{Source Port} Identifiziert den sendenden Prozess, also den Prozess, an den gegebenenfalls Rückmeldungen zu senden sind. Die Angabe ist optional; das Feld soll den Wert null haben, wenn die Option nicht genutzt wird.
-    \item \textbf{Destination Port} Identifiziert den Prozess im Zielsystem, an den die Daten abzuliefern sind.
-    \item \textbf{Length} Gibt die Gesamtlänge des UDP-Datagramms in Bytes an;
+    \item \textcolor{blue}{Source Port:} Identifiziert den sendenden Prozess, also den Prozess, an den gegebenenfalls Rückmeldungen zu senden sind. Die Angabe ist optional; das Feld soll den Wert null haben, wenn die Option nicht genutzt wird.
+    \item \textcolor{blue}{Destination Port:} Identifiziert den Prozess im Zielsystem, an den die Daten abzuliefern sind.
+    \item \textcolor{blue}{Length:} Gibt die Gesamtlänge des UDP-Datagramms in Bytes an;
     die Mindestlänge beträgt somit 8 (= Header-Länge)
-    \item \textbf{Checksum} Die Angabe ist optional (0 bedeutet: keine Angabe).
+    \item \textcolor{blue}{Checksum:} Die Angabe ist optional (0 bedeutet: keine Angabe).
     Für die Berechnung der Längsparität wird dem UDP-Datagramm ein (nicht mitübertragener) Pseudo-Header von 12 Bytes Länge vorangestellt, der im wesentlichen IP-Source Address, IP-Destination Address und die im IP-Datagramm angegebene Protokoll-Nr. für UDP (17) enthält. Da der Datenteil eines IP-Datagramms nicht durch die IP Header Checksum geschützt ist, bedeutet ein Verzicht auf die UDP-Checksum, dass der Inhalt des UDP-Datagramms (Header und Daten) nicht durch eine Prüfsumme gesichert ist.
 \end{itemize}
 
@@ -110,9 +110,9 @@ Ein direktes Blatt des DNS. Kategorien:
 
 \minisec{Welche Möglichkeiten hat der Resolver auf einem Rechner, einen Domänen-Namen aufzulösen?}
 \begin{itemize}
-    \item \underline{Rekursive Anfragen} Server schickt Anfrage zum nächsten Server weiter (oder Fehlermeldung).
+    \item \textcolor{blue}{Rekursive Anfragen:} Server schickt Anfrage zum nächsten Server weiter (oder Fehlermeldung).
     → Client-Server-Anfragen
-    \item \underline{Iterative Anfragen} Server antwortet dem Fragenden direkt mit IP-Adresse des nächsten Servers.
+    \item \textcolor{blue}{Iterative Anfragen:} Server antwortet dem Fragenden direkt mit IP-Adresse des nächsten Servers.
     → Server-Server-Anfragen
 \end{itemize}
 
@@ -153,7 +153,7 @@ Wichtig: Damit jede Mail auch am richtigen Mail-Server ankommt, müssen die MX-R
 \minisec{Warum ist das DNS ein kritischer Dienst im Internet, und Ziel von Hacking-Attacken?}
 Da er nur UDP verwendet, ist er häufig Angriffsziel:
 \begin{itemize}
-    \item DNS ID Hacking: Anfragen werden über IDs geschützt, d.\ h. man der Client erwartet nicht nur die Auflösung, sondern auch noch eine spezielle ID. Wenn diese nicht vom Netz abgegriffen werden kann, so muss man sie erraten
+    \item DNS ID Hacking: Anfragen werden über IDs geschützt, d.\ h. der Client erwartet nicht nur die Auflösung, sondern auch noch eine spezielle ID. Wenn diese nicht vom Netz abgegriffen werden kann, so muss man sie erraten
     \item DNS spoofing: Hier beantwortet ein falscher DNS-Server die Anfrage.
     Hier muss die ID verwendet werden.
     Auch wird die falsche IP, also die des eigentlich richtigen Servers angegeben (was von den Providern zu unterbinden ist)

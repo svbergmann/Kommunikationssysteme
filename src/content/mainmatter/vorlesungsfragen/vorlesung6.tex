@@ -1,12 +1,12 @@
 \addsec{Vorlesung 6 - Send and Wait, Sliding Window}
 
-\minisec{Nennen Sie die 2 wichtigen Transportprotokolle im Internet! Wie unterscheiden sie sich?}
+\minisec{Nennen Sie die 2 wichtige Transportprotokolle im Internet! Wie unterscheiden sie sich?}
 \begin{itemize}
     \item Transmission Control Protocol (TCP) → zuverlässig
     \begin{itemize}
         \item Kommunikationsprimitive, Sockets, Ports
         \item Virtuelle Verbindungsorientierung: Modell zweier Streams die die Prozesse miteinander verbinden;
-        „Open“-“Close“ der Streams sind die virtuellen Verbindungen
+        'Open'-'Close' der Streams sind die virtuellen Verbindungen
         \item Flusskontrolle, Staukontrolle
     \end{itemize}
     \item User Datagram Protocol (UDP) → unzuverlässig
@@ -18,7 +18,7 @@
 
 \minisec{Was bedeutet eine 'virtuelle Verbindungsorientierung'?}
 Modell zweier Streams die die Prozesse miteinander verbinden;
-„Open“-“Close“ der Streams sind die virtuellen Verbindungen
+'Open'-'Close' der Streams sind die virtuellen Verbindungen
 
 \minisec{Erklären Sie das ARQ-Protokoll und die Randbedingungen, unter denen dieses Protokoll eine sichere Datenübertragung gewährleistet! Wo und warum werden hier Timeouts eingesetzt?}
 \begin{itemize}
@@ -71,7 +71,7 @@ Modell zweier Streams die die Prozesse miteinander verbinden;
 \minisec{Wie löst das Go-Back-N Verfahren Übertragungsfehler?}
 \begin{itemize}
     \item Der Empfänger sendet nach dem Fehler kein ACK mehr
-    \item Der Sender läuft dadurch in ein Timeout und fängt wieder ein Segment nach dem letzten bestätigten Segment wieder an
+    \item Der Sender läuft dadurch in ein Timeout und fängt wieder ein Segment nach dem letzten bestätigten Segment an
     \item Alle direkt nach dem Fehler versendeten Segmente werden verworfen
 \end{itemize}
 
@@ -114,7 +114,7 @@ Dadurch kann eine Flusskontrolle realisiert werden.
     B \leq \frac{W}{RTT} \ bzw.\ W \geq B \cdot RTT\\
 \end{gather*}
 
-\minisec{Wie funktioniert das "Selective Repeat"-Verfahren? Werden hier auf Empfängerseite Segmente verworfen im Fehlerfall?}
+\minisec{Wie funktioniert das 'Selective Repeat' - Verfahren? Werden hier auf Empfängerseite Segmente verworfen im Fehlerfall?}
 \begin{itemize}
     \item Mittelbare Kenntnis über etwaig bereits empfangene Segmente, Empfänger puffert nicht erwartete Segmente, sodass sich bei Neuübertragung der „Lücke“ das Fenster ruckartig verschiebt
     \item Sender und Empfänger haben eine Fensterbreite > 1.
@@ -124,7 +124,7 @@ Dadurch kann eine Flusskontrolle realisiert werden.
     \item Ja, es werden im Fehlerfall auf Empfängerseite Pakete verworfen (die oben erwähnten, doppelt gesendeten Pakete \ldots)
 \end{itemize}
 
-\minisec{Wie funktioniert das "Selective Reject"-Verfahren? Werden hier auf Empfängerseite Segmente verworfen im Fehlerfall?}
+\minisec{Wie funktioniert das 'Selective Reject' - Verfahren? Werden hier auf Empfängerseite Segmente verworfen im Fehlerfall?}
 \begin{itemize}
     \item Unmittelbare Kenntnis über unerwartete Ereignisse und sofortige Reaktion zur Behebung
     \item Grundsätzlich so wie Selective Repeat, nur dass der Empfänger nicht aufhört ACKs zu senden, sondern nach jedem weiteren Paket immer der gleiche ACK $n$ ($n$ ist entsprechende Sequenznummer) gesendet wird.
